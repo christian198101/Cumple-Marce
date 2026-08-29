@@ -276,9 +276,14 @@ body {
         left: 0;
     }
 
-    /* DESPLAZAR SOLO img2.jpg A LA IZQUIERDA */
+    /* ⭐ img2 vuelve a su posición normal cuando NO está activa */
+    .carousel img:nth-child(2) {
+        object-position: center center !important;
+    }
+
+    /* ⭐ img2 desplazada solo cuando está activa */
     .carousel img:nth-child(2).active {
-        object-position: 20% center;
+        object-position: 20% center !important;
     }
 }
 </style>
