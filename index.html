@@ -46,7 +46,7 @@ body {
     opacity: 1;
 }
 
-/* ⭐ DESPLAZAR SOLO img2 EN ESCRITORIO (NO MÓVIL) */
+/* ⭐ Desplazar solo img2 en escritorio */
 @media (min-width: 769px) {
     .carousel img:nth-child(2).active {
         object-position: 20% center;
@@ -174,16 +174,32 @@ body {
     font-family: 'Quicksand', sans-serif;
 }
 
-.cuando-es-overlay h1 {
-    font-size: 32px;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
+/* Nuevo título principal */
+.titulo-festejar {
+    font-size: 48px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    margin-bottom: 25px;
+    text-transform: uppercase;
 }
 
-.cuando-es-overlay h2 {
-    font-size: 22px;
+/* Texto del evento */
+.texto-evento {
+    font-size: 24px;
+    line-height: 1.5;
+    margin-bottom: 35px;
+}
+
+/* SOLO ADULTOS en rojo */
+.solo-adultos {
+    font-size: 26px;
+    font-weight: 900;
+    color: red;
     margin-bottom: 40px;
-    opacity: 0.8;
+}
+
+.solo-adultos span {
+    text-shadow: 0px 0px 6px rgba(255,0,0,0.6);
 }
 
 #countdown {
@@ -247,15 +263,16 @@ body {
         padding: 10px;
     }
 
-    .cuando-es-overlay h1 {
-        font-size: 20px;
-        line-height: 1.4;
-        padding: 0 15px;
+    .titulo-festejar {
+        font-size: 32px;
     }
 
-    .cuando-es-overlay h2 {
-        font-size: 15px;
-        margin-bottom: 20px;
+    .texto-evento {
+        font-size: 18px;
+    }
+
+    .solo-adultos {
+        font-size: 20px;
     }
 
     #countdown {
@@ -267,7 +284,7 @@ body {
         margin-top: 25px;
     }
 
-    /* CARRUSEL PANTALLA COMPLETA Y CENTRADO EN MÓVIL */
+    /* Carrusel móvil centrado */
     .carousel {
         width: 100%;
         height: 100vh;
@@ -322,8 +339,8 @@ setInterval(() => {
     </div>
 
     <div class="columna">
-        <a class="boton" href="https://www.google.com/maps/search/?api=1&query=Avenida+Pérez+Bulter+y+Avenida+Costanera+Alto+Pilar+Barbacoa" target="_blank">
-            Cómo llegar – <strong>AltoPinar (Barbacoa)</strong>
+        <a class="boton" href="https://www.google.com/maps/search/?api=1&query=Avenida+Pérez+Bulter+y+Avenida+Costanera+Altopinar" target="_blank">
+            Cómo llegar – <strong>altopinar</strong>
         </a>
 
         <a class="boton" href="https://drive.google.com/drive/folders/1ZYV4_hRpaBB4g4KWKi0_7rsBJQp3LvvS?usp=drive_link" target="_blank">
@@ -335,9 +352,17 @@ setInterval(() => {
 
 <div class="cuando-es-overlay" id="overlayCuandoEs">
 
-    <h1>HAY QUE FESTEJAR EL SÁBADO 17 DE OCTUBRE DEL 2026 A PARTIR DE LAS 21:00 HS HASTA QUE LAS VELAS ARDAN</h1>
+    <h1 class="titulo-festejar">¡¡¡HAY QUE FESTEJAR!!!</h1>
 
-    <h2>IMPORTANTE (SOLO ADULTOS)</h2>
+    <h2 class="texto-evento">
+        El sábado 17 de octubre del 2026<br>
+        A partir de las 21:00 hs<br>
+        Hasta que las velas ardan
+    </h2>
+
+    <h2 class="solo-adultos">
+        🚫 <span>IMPORTANTE: SOLO ADULTOS</span>
+    </h2>
 
     <div id="countdown">Cargando cuenta regresiva...</div>
 
