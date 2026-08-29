@@ -22,7 +22,7 @@ body {
 }
 
 /* ============================
-   CARRUSEL (3 IMÁGENES)
+   CARRUSEL
    ============================ */
 .carousel {
     position: fixed;
@@ -33,17 +33,15 @@ body {
     overflow: hidden;
     z-index: 0;
 }
-
 .carousel img {
     position: absolute;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center center; /* ⭐ img2 centrada */
+    object-position: center center;
     opacity: 0;
-    transition: opacity 1.5s ease-in-out;
+    transition: opacity 2s ease-in-out;
 }
-
 .carousel img.active {
     opacity: 1;
 }
@@ -53,7 +51,7 @@ body {
    ============================ */
 .titulo-superior {
     position: absolute;
-    top: 20px;
+    top: 15px;
     width: 100%;
     text-align: center;
     z-index: 3;
@@ -69,6 +67,13 @@ body {
     text-shadow:
         0px 0px 6px rgba(0,0,0,0.85),
         0px 0px 18px rgba(0,0,0,0.65);
+    animation: cineGlow 8s infinite cubic-bezier(0.40, 0.0, 0.20, 1.0);
+}
+
+@keyframes cineGlow {
+    0% { opacity: 0.25; }
+    50% { opacity: 1; }
+    100% { opacity: 0.25; }
 }
 
 .titulo-superior h1 { font-size: 85px; }
@@ -90,7 +95,38 @@ body {
     text-decoration: none;
     font-weight: bold;
     backdrop-filter: blur(4px);
-    text-align: center;
+    transition: 0.3s;
+}
+.boton:hover {
+    background: rgba(255,255,255,0.20);
+    transform: scale(1.05);
+}
+
+.boton-whatsapp {
+    position: relative;
+    overflow: hidden;
+}
+.icono-wsp {
+    margin-right: 10px;
+    font-size: 22px;
+}
+.boton-whatsapp::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.25),
+        transparent
+    );
+    transition: 0.6s;
+}
+.boton-whatsapp:hover::after {
+    left: 100%;
 }
 
 /* ============================
@@ -133,6 +169,7 @@ body {
 
 .cuando-es-overlay h1 {
     font-size: 32px;
+    letter-spacing: 2px;
     margin-bottom: 20px;
 }
 
@@ -146,6 +183,10 @@ body {
     font-size: 45px;
     font-weight: 900;
     margin-top: 30px;
+    letter-spacing: 3px;
+    text-shadow:
+        0px 0px 8px rgba(255,255,255,0.7),
+        0px 0px 20px rgba(255,255,255,0.4);
 }
 
 .cerrar-overlay {
@@ -163,34 +204,20 @@ body {
    ============================ */
 @media (max-width: 768px) {
 
-    .carousel {
-        width: 100%;
-        height: 100vh;
-    }
-
-    .carousel img {
-        object-fit: cover;
-        object-position: center center;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-    }
-
     .titulo-superior h1 {
-        font-size: 38px;
+        font-size: 36px;
         letter-spacing: 1px;
     }
 
     .titulo-superior h2 {
-        font-size: 22px;
-        margin-top: -5px;
+        font-size: 20px;
+        margin-top: -4px;
     }
 
     .botones-abajo {
         flex-direction: column;
         align-items: center;
-        bottom: 25px;
+        bottom: 20px;
         padding: 0;
     }
 
@@ -232,23 +259,38 @@ body {
     .cerrar-overlay {
         margin-top: 25px;
     }
+
+    /* CARRUSEL PANTALLA COMPLETA Y CENTRADO */
+    .carousel {
+        width: 100%;
+        height: 100vh;
+    }
+
+    .carousel img {
+        object-fit: cover;
+        object-position: center center;
+        width: 100%;
+        height: 100%;
+        transform: scale(1);
+        top: 0;
+        left: 0;
+    }
+
+    /* DESPLAZAR SOLO img2.jpg A LA IZQUIERDA */
+    .carousel img:nth-child(2).active {
+        object-position: 20% center;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<!-- ============================
-     TÍTULO
-     ============================ -->
 <div class="titulo-superior">
     <h1>El Penúltimo Baile</h1>
     <h2>Llegaron Mis 50</h2>
 </div>
 
-<!-- ============================
-     CARRUSEL (3 IMÁGENES)
-     ============================ -->
 <div class="carousel">
     <img src="img1.jpg" class="active">
     <img src="img2.jpg">
@@ -258,7 +300,7 @@ body {
 <script>
 let index = 0;
 const imgs = document.querySelectorAll('.carousel img');
-
+imgs[0].classList.add('active');
 setInterval(() => {
     imgs[index].classList.remove('active');
     index = (index + 1) % imgs.length;
@@ -266,16 +308,14 @@ setInterval(() => {
 }, 4000);
 </script>
 
-<!-- ============================
-     BOTONES
-     ============================ -->
 <div class="botones-abajo">
 
     <div class="columna">
         <a class="boton" id="btnCuandoEs">¿CUANDO ES?</a>
 
         <a class="boton boton-whatsapp" href="https://wa.me/59899164492?text=Hola,%20confirmo%20mi%20asistencia">
-            📱 Confirmar asistencia
+            <span class="icono-wsp">📱</span>
+            Confirmar asistencia
         </a>
     </div>
 
@@ -291,9 +331,6 @@ setInterval(() => {
 
 </div>
 
-<!-- ============================
-     OVERLAY
-     ============================ -->
 <div class="cuando-es-overlay" id="overlayCuandoEs">
 
     <h1>HAY QUE FESTEJAR EL SÁBADO 17 DE OCTUBRE DEL 2026 A PARTIR DE LAS 21:00 HS HASTA QUE LAS VELAS ARDAN</h1>
@@ -344,7 +381,11 @@ actualizarCuentaRegresiva();
 
 <script>
 const player = document.getElementById("player");
+
+// Autoplay en computadoras
 player.play().catch(() => {});
+
+// Activación en móviles al primer toque
 document.addEventListener("click", () => {
     player.play().catch(() => {});
 }, { once: true });
