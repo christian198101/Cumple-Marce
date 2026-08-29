@@ -218,7 +218,6 @@ body {
    ============================ */
 @media (max-width: 768px) {
 
-    /* TÍTULO MÁS PEQUEÑO */
     .titulo-superior h1 {
         font-size: 38px;
         letter-spacing: 1px;
@@ -229,7 +228,6 @@ body {
         margin-top: -5px;
     }
 
-    /* BOTONES MÁS CENTRADOS Y AJUSTADOS */
     .botones-abajo {
         flex-direction: column;
         align-items: center;
@@ -251,7 +249,6 @@ body {
         padding: 12px;
     }
 
-    /* OVERLAY MÁS CENTRADO Y PROPORCIONAL */
     .cuando-es-overlay h1 {
         font-size: 20px;
         line-height: 1.4;
@@ -268,11 +265,12 @@ body {
         margin-top: 20px;
     }
 
-    /* CARRUSEL AJUSTADO */
+    /* CARRUSEL ACHICADO */
     .carousel img {
         object-fit: cover;
-        object-position: center top;
-        transform: scale(1.05);
+        object-position: center;
+        transform: scale(0.88);
+        top: 8%;
     }
 }
 </style>
@@ -280,17 +278,11 @@ body {
 
 <body>
 
-<!-- ============================
-     TÍTULO
-     ============================ -->
 <div class="titulo-superior">
     <h1>El Penúltimo Baile</h1>
     <h2>Llegaron Mis 50</h2>
 </div>
 
-<!-- ============================
-     CARRUSEL
-     ============================ -->
 <div class="carousel">
     <img src="img1.jpg" class="active">
     <img src="img2.jpg">
@@ -308,12 +300,8 @@ setInterval(() => {
 }, 4000);
 </script>
 
-<!-- ============================
-     BOTONES ABAJO
-     ============================ -->
 <div class="botones-abajo">
 
-    <!-- IZQUIERDA -->
     <div class="columna">
         <a class="boton" id="btnCuandoEs">¿CUANDO ES?</a>
 
@@ -323,7 +311,6 @@ setInterval(() => {
         </a>
     </div>
 
-    <!-- DERECHA -->
     <div class="columna">
         <a class="boton" href="https://www.google.com/maps/search/?api=1&query=Avenida+Pérez+Bulter+y+Avenida+Costanera+Alto+Pilar+Barbacoa" target="_blank">
             Cómo llegar – <strong>Alto Pilar (Barbacoa)</strong>
@@ -336,9 +323,6 @@ setInterval(() => {
 
 </div>
 
-<!-- ============================
-     OVERLAY
-     ============================ -->
 <div class="cuando-es-overlay" id="overlayCuandoEs">
 
     <h1>HAY QUE FESTEJAR EL SÁBADO 17 DE OCTUBRE DEL 2026 A PARTIR DE LAS 21:00 HS HASTA QUE LAS VELAS ARDAN</h1>
