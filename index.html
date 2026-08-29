@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Invitación – El Penúltimo Baile</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+@font-face {
+    font-family: 'VinerHand';
+    src: url('VinerHandITC.ttf') format('truetype');
+}
+</style>
+
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+/* ============================
+   CARRUSEL
+   ============================ */
+.carousel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+}
+.carousel img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+}
+.carousel img.active {
+    opacity: 1;
+}
+
+/* ============================
+   TÍTULO CINEMATOGRÁFICO
+   ============================ */
+.titulo-superior {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    text-align: center;
+    z-index: 3;
+}
+
+.titulo-superior h1,
+.titulo-superior h2 {
+    font-family: 'VinerHand', sans-serif;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #ffffff;
+    text-shadow:
+        0px 0px 6px rgba(0,0,0,0.85),
+        0px 0px 18px rgba(0,0,0,0.65);
+    animation: cineGlow 8s infinite cubic-bezier(0.40, 0.0, 0.20, 1.0);
+}
+
+@keyframes cineGlow {
+    0% { opacity: 0.25; }
+    50% { opacity: 1; }
+    100% { opacity: 0.25; }
+}
+
+.titulo-superior h1 { font-size: 85px; }
+.titulo-superior h2 { font-size: 45px; margin-top: -10px; }
+
+/* ============================
+   BOTONES
+   ============================ */
+.boton {
+    display: block;
+    width: 90%;
+    max-width: 260px;
+    margin: 15px auto;
+    padding: 15px;
+    background: rgba(255,255,255,0.10);
+    color: #fff;
+    font-size: 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    backdrop-filter: blur(4px);
+    transition: 0.3s;
+}
+.boton:hover {
+    background: rgba(255,255,255,0.20);
+    transform: scale(1.05);
+}
+
+/* ============================
+   BOTÓN WHATSAPP CON BRILLO
+   ============================ */
+.boton-whatsapp {
+    position: relative;
+    overflow: hidden;
+}
+.icono-wsp {
+    margin-right: 10px;
+    font-size: 22px;
+}
+.boton-whatsapp::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.25),
+        transparent
+    );
+    transition: 0.6s;
+}
+.boton-whatsapp:hover::after {
+    left: 100%;
+}
+
+/* ============================
+   BOTONES ABAJO IZQUIERDA / DERECHA
+   ============================ */
+.botones-abajo {
+    position: absolute;
+    bottom: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 40px;
+    z-index: 5;
+}
+
+.columna {
+    width: 45%;
+}
+
+/* ============================
+   PANTALLA NEGRA – ¿CUANDO ES?
+   ============================ */
+.cuando-es-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    color: white;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    z-index: 9999;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.cuando-es-overlay h1 {
+    font-size: 32px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    animation: cineText 6s infinite ease-in-out;
+    text-transform: uppercase;
+}
+
+.cuando-es-overlay h2 {
+    font-size: 22px;
+    margin-bottom: 40px;
+    opacity: 0.8;
+    text-transform: uppercase;
+}
+
+#countdown {
+    font-size: 45px;
+    font-weight: 900;
+    margin-top: 30px;
+    letter-spacing: 3px;
+    text-shadow:
+        0px 0px 8px rgba(255,255,255,0.7),
+        0px 0px 20px rgba(255,255,255,0.4);
+    animation: cineGlow 8s infinite cubic-bezier(0.40, 0.0, 0.20, 1.0);
+}
+
+.cerrar-overlay {
+    margin-top: 40px;
+    padding: 12px 25px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 10px;
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    backdrop-filter: blur(4px);
+}
+
+@keyframes cineText {
+    0% { opacity: 0.25; }
+    50% { opacity: 1; }
+    100% { opacity: 0.25; }
+}
+
+/* ============================
+   RESPONSIVE
+   ============================ */
+@media (max-width: 768px) {
+    .botones-abajo {
+        flex-direction: column;
+        align-items: center;
+        bottom: 20px;
+        padding: 0;
+    }
+    .columna {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ============================
+     TÍTULO
+     ============================ -->
+<div class="titulo-superior">
+    <h1>El Penúltimo Baile</h1>
+    <h2>Llegaron Mis 50</h2>
+</div>
+
+<!-- ============================
+     CARRUSEL
+     ============================ -->
+<div class="carousel">
+    <img src="img1.jpg" class="active">
+    <img src="img2.jpg">
+    <img src="img3.jpg">
+</div>
+
+<script>
+let index = 0;
+const imgs = document.querySelectorAll('.carousel img');
+imgs[0].classList.add('active');
+setInterval(() => {
+    imgs[index].classList.remove('active');
+    index = (index + 1) % imgs.length;
+    imgs[index].classList.add('active');
+}, 4000);
+</script>
+
+<!-- ============================
+     BOTONES ABAJO IZQUIERDA / DERECHA
+     ============================ -->
+<div class="botones-abajo">
+
+    <!-- IZQUIERDA -->
+    <div class="columna">
+        <a class="boton" id="btnCuandoEs">¿CUANDO ES?</a>
+
+        <a class="boton boton-whatsapp" href="https://wa.me/59899164492?text=Hola,%20confirmo%20mi%20asistencia">
+            <span class="icono-wsp">📱</span>
+            Confirmar asistencia
+        </a>
+    </div>
+
+    <!-- DERECHA -->
+    <div class="columna">
+        <a class="boton" href="https://www.google.com/maps/search/?api=1&query=Avenida+Pérez+Bulter+y+Avenida+Costanera+Alto+Pilar+Barbacoa" target="_blank">
+            Cómo llegar – <strong>Alto Pilar (Barbacoa)</strong>
+        </a>
+
+        <a class="boton" href="https://drive.google.com/drive/folders/1ZYV4_hRpaBB4g4KWKi0_7rsBJQp3LvvS?usp=drive_link" target="_blank">
+            Subir fotos
+        </a>
+    </div>
+
+</div>
+
+<!-- ============================
+     PANTALLA NEGRA
+     ============================ -->
+<div class="cuando-es-overlay" id="overlayCuandoEs">
+
+    <h1>HAY QUE FESTEJAR EL SÁBADO 17 DE OCTUBRE DEL 2026 A PARTIR DE LAS 21:00 HS HASTA QUE LAS VELAS ARDAN</h1>
+
+    <h2>IMPORTANTE (SOLO ADULTOS)</h2>
+
+    <div id="countdown">Cargando cuenta regresiva...</div>
+
+    <a class="cerrar-overlay" id="cerrarOverlay">Cerrar</a>
+
+</div>
+
+<script>
+/* ABRIR / CERRAR PANTALLA */
+const btnCuandoEs = document.getElementById("btnCuandoEs");
+const overlay = document.getElementById("overlayCuandoEs");
+const cerrarOverlay = document.getElementById("cerrarOverlay");
+
+btnCuandoEs.onclick = () => overlay.style.display = "flex";
+cerrarOverlay.onclick = () => overlay.style.display = "none";
+
+/* CUENTA REGRESIVA */
+function actualizarCuentaRegresiva() {
+    const evento = new Date("October 17, 2026 21:00:00").getTime();
+    const ahora = new Date().getTime();
+    const diferencia = evento - ahora;
+
+    if (diferencia <= 0) {
+        document.getElementById("countdown").innerHTML = "¡ES HOY!";
+        return;
+    }
+
+    const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+    const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+    const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+
+    document.getElementById("countdown").innerHTML =
+        `${dias} DÍAS • ${horas} HS • ${minutos} MIN • ${segundos} SEG`;
+}
+
+setInterval(actualizarCuentaRegresiva, 1000);
+actualizarCuentaRegresiva();
+</script>
+
+</body>
+</html>
