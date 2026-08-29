@@ -50,7 +50,7 @@ body {
    ============================ */
 .titulo-superior {
     position: absolute;
-    top: 20px;
+    top: 10px;
     width: 100%;
     text-align: center;
     z-index: 3;
@@ -75,6 +75,7 @@ body {
     100% { opacity: 0.25; }
 }
 
+/* Tamaños escritorio */
 .titulo-superior h1 { font-size: 85px; }
 .titulo-superior h2 { font-size: 45px; margin-top: -10px; }
 
@@ -102,7 +103,7 @@ body {
 }
 
 /* ============================
-   BOTÓN WHATSAPP CON BRILLO
+   BOTÓN WHATSAPP
    ============================ */
 .boton-whatsapp {
     position: relative;
@@ -132,7 +133,7 @@ body {
 }
 
 /* ============================
-   BOTONES ABAJO IZQUIERDA / DERECHA
+   BOTONES ABAJO
    ============================ */
 .botones-abajo {
     position: absolute;
@@ -149,7 +150,7 @@ body {
 }
 
 /* ============================
-   PANTALLA NEGRA – ¿CUANDO ES?
+   OVERLAY
    ============================ */
 .cuando-es-overlay {
     position: fixed;
@@ -213,18 +214,42 @@ body {
 }
 
 /* ============================
-   RESPONSIVE
+   RESPONSIVE MÓVIL
    ============================ */
 @media (max-width: 768px) {
+
+    .titulo-superior h1 {
+        font-size: 42px;
+        letter-spacing: 2px;
+    }
+
+    .titulo-superior h2 {
+        font-size: 26px;
+        margin-top: -5px;
+    }
+
     .botones-abajo {
         flex-direction: column;
         align-items: center;
         bottom: 20px;
         padding: 0;
     }
+
     .columna {
         width: 100%;
         margin-bottom: 20px;
+    }
+
+    #countdown {
+        font-size: 32px;
+    }
+
+    .cuando-es-overlay h1 {
+        font-size: 22px;
+    }
+
+    .cuando-es-overlay h2 {
+        font-size: 16px;
     }
 }
 </style>
@@ -261,7 +286,7 @@ setInterval(() => {
 </script>
 
 <!-- ============================
-     BOTONES ABAJO IZQUIERDA / DERECHA
+     BOTONES ABAJO
      ============================ -->
 <div class="botones-abajo">
 
@@ -289,7 +314,7 @@ setInterval(() => {
 </div>
 
 <!-- ============================
-     PANTALLA NEGRA
+     OVERLAY
      ============================ -->
 <div class="cuando-es-overlay" id="overlayCuandoEs">
 
@@ -304,7 +329,6 @@ setInterval(() => {
 </div>
 
 <script>
-/* ABRIR / CERRAR PANTALLA */
 const btnCuandoEs = document.getElementById("btnCuandoEs");
 const overlay = document.getElementById("overlayCuandoEs");
 const cerrarOverlay = document.getElementById("cerrarOverlay");
@@ -312,10 +336,9 @@ const cerrarOverlay = document.getElementById("cerrarOverlay");
 btnCuandoEs.onclick = () => overlay.style.display = "flex";
 cerrarOverlay.onclick = () => overlay.style.display = "none";
 
-/* CUENTA REGRESIVA */
 function actualizarCuentaRegresiva() {
     const evento = new Date("October 17, 2026 21:00:00").getTime();
-    const ahora = new Date().getTime();
+    const ahora = Date.now();
     const diferencia = evento - ahora;
 
     if (diferencia <= 0) {
@@ -338,3 +361,4 @@ actualizarCuentaRegresiva();
 
 </body>
 </html>
+
