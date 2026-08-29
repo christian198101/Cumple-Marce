@@ -22,7 +22,7 @@ body {
 }
 
 /* ============================
-   FONDO / CARRUSEL (UNA SOLA IMAGEN)
+   CARRUSEL (3 IMÁGENES)
    ============================ */
 .carousel {
     position: fixed;
@@ -33,12 +33,18 @@ body {
     overflow: hidden;
     z-index: 0;
 }
+
 .carousel img {
     position: absolute;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center center;
+    object-position: center center; /* ⭐ img2 centrada */
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.carousel img.active {
     opacity: 1;
 }
 
@@ -157,7 +163,6 @@ body {
    ============================ */
 @media (max-width: 768px) {
 
-    /* Fondo centrado y pantalla completa */
     .carousel {
         width: 100%;
         height: 100vh;
@@ -172,7 +177,6 @@ body {
         left: 0;
     }
 
-    /* Títulos centrados */
     .titulo-superior h1 {
         font-size: 38px;
         letter-spacing: 1px;
@@ -183,7 +187,6 @@ body {
         margin-top: -5px;
     }
 
-    /* Botones centrados */
     .botones-abajo {
         flex-direction: column;
         align-items: center;
@@ -205,7 +208,6 @@ body {
         padding: 12px;
     }
 
-    /* Overlay centrado */
     .cuando-es-overlay {
         justify-content: center;
         padding: 10px;
@@ -245,11 +247,24 @@ body {
 </div>
 
 <!-- ============================
-     FONDO (SOLO img2.jpg)
+     CARRUSEL (3 IMÁGENES)
      ============================ -->
 <div class="carousel">
+    <img src="img1.jpg" class="active">
     <img src="img2.jpg">
+    <img src="img3.jpg">
 </div>
+
+<script>
+let index = 0;
+const imgs = document.querySelectorAll('.carousel img');
+
+setInterval(() => {
+    imgs[index].classList.remove('active');
+    index = (index + 1) % imgs.length;
+    imgs[index].classList.add('active');
+}, 4000);
+</script>
 
 <!-- ============================
      BOTONES
