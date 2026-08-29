@@ -46,6 +46,13 @@ body {
     opacity: 1;
 }
 
+/* ⭐ DESPLAZAR SOLO img2 EN ESCRITORIO (NO MÓVIL) */
+@media (min-width: 769px) {
+    .carousel img:nth-child(2).active {
+        object-position: 20% center;
+    }
+}
+
 /* ============================
    TÍTULO
    ============================ */
@@ -260,7 +267,7 @@ body {
         margin-top: 25px;
     }
 
-    /* CARRUSEL PANTALLA COMPLETA Y CENTRADO */
+    /* CARRUSEL PANTALLA COMPLETA Y CENTRADO EN MÓVIL */
     .carousel {
         width: 100%;
         height: 100vh;
@@ -274,16 +281,6 @@ body {
         transform: scale(1);
         top: 0;
         left: 0;
-    }
-
-    /* ⭐ img2 vuelve a su posición normal cuando NO está activa */
-    .carousel img:nth-child(2) {
-        object-position: center center !important;
-    }
-
-    /* ⭐ img2 desplazada solo cuando está activa */
-    .carousel img:nth-child(2).active {
-        object-position: 20% center !important;
     }
 }
 </style>
@@ -379,18 +376,11 @@ setInterval(actualizarCuentaRegresiva, 1000);
 actualizarCuentaRegresiva();
 </script>
 
-<!-- ============================
-     AUDIO MP3
-     ============================ -->
 <audio id="player" src="musica.mp3" autoplay loop></audio>
 
 <script>
 const player = document.getElementById("player");
-
-// Autoplay en computadoras
 player.play().catch(() => {});
-
-// Activación en móviles al primer toque
 document.addEventListener("click", () => {
     player.play().catch(() => {});
 }, { once: true });
