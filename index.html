@@ -22,6 +22,81 @@ body {
 }
 
 /* ============================
+   POPUP 80s
+   ============================ */
+.popup-80s {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.popup-contenido {
+    background: rgba(20,20,20,0.9);
+    border: 3px solid #ff00ff;
+    padding: 30px;
+    width: 85%;
+    max-width: 420px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 0 25px #ff00ff, 0 0 60px #00eaff inset;
+    animation: popupEntrada 0.7s ease-out;
+}
+
+.popup-titulo {
+    font-size: 36px;
+    color: #00eaff;
+    text-shadow: 0 0 10px #00eaff, 0 0 25px #00eaff;
+    margin-bottom: 20px;
+    font-family: 'Quicksand', sans-serif;
+    text-transform: uppercase;
+}
+
+.popup-texto {
+    font-size: 20px;
+    color: #ffffff;
+    line-height: 1.6;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.popup-boton {
+    margin-top: 25px;
+    padding: 12px 25px;
+    background: #ff00ff;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 12px #ff00ff;
+    transition: 0.3s;
+}
+
+.popup-boton:hover {
+    background: #ff33ff;
+    transform: scale(1.08);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes popupEntrada {
+    0% { transform: scale(0.6) rotate(-4deg); opacity: 0; }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+/* ============================
    CARRUSEL
    ============================ */
 .carousel {
@@ -300,6 +375,21 @@ body {
 
 <body>
 
+<!-- POPUP 80s -->
+<div id="popup80s" class="popup-80s">
+    <div class="popup-contenido">
+        <h1 class="popup-titulo">YA FALTA MENOS…</h1>
+
+        <p class="popup-texto">
+            ⭐ <strong>Vestimenta:</strong> informal o elegante sport<br><br>
+            ⭐ <strong>Energías:</strong> vengan con ganas de divertirse<br><br>
+            ⭐ <strong>Importante:</strong> 🚫 NO apto para niños
+        </p>
+
+        <button id="cerrarPopup" class="popup-boton">ENTENDIDO</button>
+    </div>
+</div>
+
 <div class="titulo-superior">
     <h1>El Penúltimo Baile</h1>
     <h2>Llegaron Mis 50</h2>
@@ -336,7 +426,6 @@ setInterval(() => {
 
     <div class="columna">
 
-        <!-- ⭐ BOTÓN CON DIRECCIÓN + NOMBRE + INDICACIONES ⭐ -->
         <a class="boton" 
            href="https://www.google.com/maps/dir/?api=1&destination=ALTOP!NAR+Eventos,+Av.+Pérez+Butler,+15800+Ciudad+de+la+Costa,+Departamento+de+Canelones,+Uruguay" 
            target="_blank">
@@ -409,6 +498,16 @@ player.play().catch(() => {});
 document.addEventListener("click", () => {
     player.play().catch(() => {});
 }, { once: true });
+</script>
+
+<!-- SCRIPT POPUP -->
+<script>
+const popup80s = document.getElementById("popup80s");
+const cerrarPopup = document.getElementById("cerrarPopup");
+
+cerrarPopup.onclick = () => {
+    popup80s.style.display = "none";
+};
 </script>
 
 </body>
