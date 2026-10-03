@@ -85,6 +85,10 @@ body {
     background: #ff33ff;
     transform: scale(1.08);
 }
+
+/* ============================
+   ANIMACIONES
+   ============================ */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -254,6 +258,76 @@ body {
     margin-bottom: 25px;
     text-transform: uppercase;
 }
+
+/* ============================
+   AJUSTES PARA MÓVIL
+   ============================ */
+@media (max-width: 768px) {
+
+    /* TÍTULO CORREGIDO */
+    .titulo-superior {
+        top: 25px;
+        width: 100%;
+        text-align: center;
+        padding: 0 10px;
+    }
+
+    .titulo-superior h1 {
+        font-size: 36px;
+        letter-spacing: 1px;
+        line-height: 1.1;
+    }
+
+    .titulo-superior h2 {
+        font-size: 20px;
+        margin-top: -4px;
+        line-height: 1.1;
+    }
+
+    /* BOTONES EN VERTICAL */
+    .botones-abajo {
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        bottom: 20px;
+        padding: 0;
+        gap: 10px;
+    }
+
+    .columna {
+        width: 100% !important;
+        margin-bottom: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .columna a.boton {
+        width: 100% !important;
+        max-width: 260px !important;
+    }
+
+    .boton {
+        max-width: 240px;
+        font-size: 18px;
+        padding: 12px;
+    }
+
+    .carousel {
+        width: 100%;
+        height: 100vh;
+    }
+
+    .carousel img {
+        object-fit: cover;
+        object-position: center center;
+        width: 100%;
+        height: 100%;
+        transform: scale(1);
+        top: 0;
+        left: 0;
+    }
+}
 </style>
 </head>
 
@@ -322,6 +396,7 @@ setInterval(() => {
     </div>
 
 </div>
+
 <div class="cuando-es-overlay" id="overlayCuandoEs">
 
     <h1 class="titulo-festejar">¡¡¡HAY QUE FESTEJAR!!!</h1>
@@ -395,6 +470,3 @@ cerrarPopup.onclick = () => {
 
 </body>
 </html>
-
-
-
