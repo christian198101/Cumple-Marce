@@ -21,7 +21,9 @@ body {
     overflow: hidden;
 }
 
-/* POPUP */
+/* ============================
+   POPUP 80s
+   ============================ */
 .popup-80s {
     position: fixed;
     top: 0;
@@ -84,14 +86,22 @@ body {
     transform: scale(1.08);
 }
 
-/* ANIMACIONES */
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+/* ============================
+   ANIMACIONES
+   ============================ */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
 @keyframes popupEntrada {
     0% { transform: scale(0.6) rotate(-4deg); opacity: 0; }
     100% { transform: scale(1) rotate(0deg); opacity: 1; }
 }
 
-/* CARRUSEL */
+/* ============================
+   CARRUSEL
+   ============================ */
 .carousel {
     position: fixed;
     top: 0;
@@ -110,9 +120,19 @@ body {
     opacity: 0;
     transition: opacity 2s ease-in-out;
 }
-.carousel img.active { opacity: 1; }
+.carousel img.active {
+    opacity: 1;
+}
 
-/* TÍTULO */
+@media (min-width: 769px) {
+    .carousel img:nth-child(2).active {
+        object-position: 20% center;
+    }
+}
+
+/* ============================
+   TÍTULO
+   ============================ */
 .titulo-superior {
     position: absolute;
     top: 15px;
@@ -143,7 +163,9 @@ body {
 .titulo-superior h1 { font-size: 85px; }
 .titulo-superior h2 { font-size: 45px; margin-top: -10px; }
 
-/* BOTONES */
+/* ============================
+   BOTONES
+   ============================ */
 .boton {
     display: block;
     width: 90%;
@@ -164,30 +186,53 @@ body {
     transform: scale(1.05);
 }
 
-/* BOTÓN CERRAR DEFINITIVO */
-.cerrar-overlay {
-    margin-top: 25px;
-    display: inline-block;
-    padding: 14px 30px;
-    background: #ff00ff;
-    color: #ffffff;
-    border-radius: 12px;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    text-decoration: none;
-    cursor: pointer;
-    box-shadow: 0 0 15px #ff00ff;
-    transition: 0.3s;
-    border: none;
+.boton-whatsapp {
+    position: relative;
+    overflow: hidden;
+}
+.icono-wsp {
+    margin-right: 10px;
+    font-size: 22px;
+}
+.boton-whatsapp::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.25),
+        transparent
+    );
+    transition: 0.6s;
+}
+.boton-whatsapp:hover::after {
+    left: 100%;
 }
 
-.cerrar-overlay:hover {
-    background: #ff33ff;
-    transform: scale(1.12);
+/* ============================
+   BOTONES ABAJO (WEB)
+   ============================ */
+.botones-abajo {
+    position: absolute;
+    bottom: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 40px;
+    z-index: 5;
 }
 
-/* OVERLAY */
+.columna {
+    width: 45%;
+}
+
+/* ============================
+   OVERLAY
+   ============================ */
 .cuando-es-overlay {
     position: fixed;
     top: 0;
@@ -206,32 +251,89 @@ body {
     font-family: 'Quicksand', sans-serif;
 }
 
-/* MÓVIL */
+.titulo-festejar {
+    font-size: 48px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+/* ============================
+   AJUSTES PARA MÓVIL
+   ============================ */
 @media (max-width: 768px) {
 
-    #overlayCuandoEs {
-        position: fixed;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        height: 100vh !important;
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        padding: 20px !important;
-        overflow-y: auto;
+    /* TÍTULO CORREGIDO */
+    .titulo-superior {
+        top: 25px;
+        width: 100%;
+        text-align: center;
+        padding: 0 10px;
     }
 
-    .cerrar-overlay {
-        padding: 12px 24px;
-        font-size: 16px;
+    .titulo-superior h1 {
+        font-size: 36px;
+        letter-spacing: 1px;
+        line-height: 1.1;
+    }
+
+    .titulo-superior h2 {
+        font-size: 20px;
+        margin-top: -4px;
+        line-height: 1.1;
+    }
+
+    /* BOTONES EN VERTICAL */
+    .botones-abajo {
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        bottom: 20px;
+        padding: 0;
+        gap: 10px;
+    }
+
+    .columna {
+        width: 100% !important;
+        margin-bottom: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .columna a.boton {
+        width: 100% !important;
+        max-width: 260px !important;
+    }
+
+    .boton {
+        max-width: 240px;
+        font-size: 18px;
+        padding: 12px;
+    }
+
+    .carousel {
+        width: 100%;
+        height: 100vh;
+    }
+
+    .carousel img {
+        object-fit: cover;
+        object-position: center center;
+        width: 100%;
+        height: 100%;
+        transform: scale(1);
+        top: 0;
+        left: 0;
     }
 }
 </style>
 </head>
+
 <body>
 
-<!-- POPUP -->
+<!-- POPUP 80s -->
 <div id="popup80s" class="popup-80s">
     <div class="popup-contenido">
         <h1 class="popup-titulo">YA FALTA MENOS…</h1>
@@ -311,8 +413,7 @@ setInterval(() => {
 
     <div id="countdown">Cargando cuenta regresiva...</div>
 
-    <!-- ⭐ BOTÓN CERRAR DEFINITIVO ⭐ -->
-    <button class="cerrar-overlay" id="cerrarOverlay">Cerrar</button>
+    <a class="cerrar-overlay" id="cerrarOverlay">Cerrar</a>
 
 </div>
 
@@ -357,6 +458,7 @@ document.addEventListener("click", () => {
 }, { once: true });
 </script>
 
+<!-- SCRIPT POPUP -->
 <script>
 const popup80s = document.getElementById("popup80s");
 const cerrarPopup = document.getElementById("cerrarPopup");
@@ -368,3 +470,4 @@ cerrarPopup.onclick = () => {
 
 </body>
 </html>
+
