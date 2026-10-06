@@ -10,33 +10,23 @@
     font-family: 'VinerHand';
     src: url('VinerHandITC.ttf') format('truetype');
 }
-</style>
 
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;700&display=swap" rel="stylesheet">
-
-<style>
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     overflow: hidden;
 }
 
-/* ============================
-   POPUP 80s
-   ============================ */
+/* POPUP */
 .popup-80s {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: rgba(0,0,0,0.85);
     backdrop-filter: blur(4px);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 99999;
-    animation: fadeIn 0.8s ease-out;
 }
 
 .popup-contenido {
@@ -48,23 +38,6 @@ body {
     text-align: center;
     border-radius: 15px;
     box-shadow: 0 0 25px #ff00ff, 0 0 60px #00eaff inset;
-    animation: popupEntrada 0.7s ease-out;
-}
-
-.popup-titulo {
-    font-size: 36px;
-    color: #00eaff;
-    text-shadow: 0 0 10px #00eaff, 0 0 25px #00eaff;
-    margin-bottom: 20px;
-    font-family: 'Quicksand', sans-serif;
-    text-transform: uppercase;
-}
-
-.popup-texto {
-    font-size: 20px;
-    color: #ffffff;
-    line-height: 1.6;
-    font-family: 'Quicksand', sans-serif;
 }
 
 .popup-boton {
@@ -77,37 +50,12 @@ body {
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 0 12px #ff00ff;
-    transition: 0.3s;
 }
 
-.popup-boton:hover {
-    background: #ff33ff;
-    transform: scale(1.08);
-}
-
-/* ============================
-   ANIMACIONES
-   ============================ */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes popupEntrada {
-    0% { transform: scale(0.6) rotate(-4deg); opacity: 0; }
-    100% { transform: scale(1) rotate(0deg); opacity: 1; }
-}
-
-/* ============================
-   CARRUSEL
-   ============================ */
+/* CARRUSEL */
 .carousel {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     overflow: hidden;
     z-index: 0;
 }
@@ -116,56 +64,12 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center center;
     opacity: 0;
     transition: opacity 2s ease-in-out;
 }
-.carousel img.active {
-    opacity: 1;
-}
+.carousel img.active { opacity: 1; }
 
-@media (min-width: 769px) {
-    .carousel img:nth-child(2).active {
-        object-position: 20% center;
-    }
-}
-
-/* ============================
-   TÍTULO
-   ============================ */
-.titulo-superior {
-    position: absolute;
-    top: 15px;
-    width: 100%;
-    text-align: center;
-    z-index: 3;
-}
-
-.titulo-superior h1,
-.titulo-superior h2 {
-    font-family: 'VinerHand', sans-serif;
-    margin: 0;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: #ffffff;
-    text-shadow:
-        0px 0px 6px rgba(0,0,0,0.85),
-        0px 0px 18px rgba(0,0,0,0.65);
-    animation: cineGlow 8s infinite cubic-bezier(0.40, 0.0, 0.20, 1.0);
-}
-
-@keyframes cineGlow {
-    0% { opacity: 0.25; }
-    50% { opacity: 1; }
-    100% { opacity: 0.25; }
-}
-
-.titulo-superior h1 { font-size: 85px; }
-.titulo-superior h2 { font-size: 45px; margin-top: -10px; }
-
-/* ============================
-   BOTONES
-   ============================ */
+/* BOTONES */
 .boton {
     display: block;
     width: 90%;
@@ -178,67 +82,12 @@ body {
     border-radius: 10px;
     text-decoration: none;
     font-weight: bold;
-    backdrop-filter: blur(4px);
-    transition: 0.3s;
-}
-.boton:hover {
-    background: rgba(255,255,255,0.20);
-    transform: scale(1.05);
 }
 
-.boton-whatsapp {
-    position: relative;
-    overflow: hidden;
-}
-.icono-wsp {
-    margin-right: 10px;
-    font-size: 22px;
-}
-.boton-whatsapp::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        120deg,
-        transparent,
-        rgba(255,255,255,0.25),
-        transparent
-    );
-    transition: 0.6s;
-}
-.boton-whatsapp:hover::after {
-    left: 100%;
-}
-
-/* ============================
-   BOTONES ABAJO (WEB)
-   ============================ */
-.botones-abajo {
-    position: absolute;
-    bottom: 40px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 40px;
-    z-index: 5;
-}
-
-.columna {
-    width: 45%;
-}
-
-/* ============================
-   OVERLAY
-   ============================ */
+/* OVERLAY CUANDO ES */
 .cuando-es-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: black;
     color: white;
     display: none;
@@ -248,111 +97,46 @@ body {
     text-align: center;
     padding: 20px;
     z-index: 9999;
-    font-family: 'Quicksand', sans-serif;
 }
 
-.titulo-festejar {
-    font-size: 48px;
+/* BOTÓN CERRAR */
+.cerrar-overlay {
+    margin-top: 25px;
+    padding: 14px 30px;
+    background: #ff00ff;
+    color: #ffffff;
+    border-radius: 12px;
     font-weight: 900;
-    letter-spacing: 3px;
-    margin-bottom: 25px;
     text-transform: uppercase;
-}
-
-/* ============================
-   AJUSTES PARA MÓVIL
-   ============================ */
-@media (max-width: 768px) {
-
-    /* TÍTULO CORREGIDO */
-    .titulo-superior {
-        top: 25px;
-        width: 100%;
-        text-align: center;
-        padding: 0 10px;
-    }
-
-    .titulo-superior h1 {
-        font-size: 36px;
-        letter-spacing: 1px;
-        line-height: 1.1;
-    }
-
-    .titulo-superior h2 {
-        font-size: 20px;
-        margin-top: -4px;
-        line-height: 1.1;
-    }
-
-    /* BOTONES EN VERTICAL */
-    .botones-abajo {
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: center !important;
-        bottom: 20px;
-        padding: 0;
-        gap: 10px;
-    }
-
-    .columna {
-        width: 100% !important;
-        margin-bottom: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .columna a.boton {
-        width: 100% !important;
-        max-width: 260px !important;
-    }
-
-    .boton {
-        max-width: 240px;
-        font-size: 18px;
-        padding: 12px;
-    }
-
-    .carousel {
-        width: 100%;
-        height: 100vh;
-    }
-
-    .carousel img {
-        object-fit: cover;
-        object-position: center center;
-        width: 100%;
-        height: 100%;
-        transform: scale(1);
-        top: 0;
-        left: 0;
-    }
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 15px #ff00ff;
 }
 </style>
 </head>
 
 <body>
 
-<!-- POPUP 80s -->
+<!-- POPUP -->
 <div id="popup80s" class="popup-80s">
     <div class="popup-contenido">
         <h1 class="popup-titulo">YA FALTA MENOS…</h1>
-
         <p class="popup-texto">
-            ⭐ <strong>Vestimenta:</strong> INFORMAL O ELEGANTE SPORT<br><br>
-            ⭐ <strong>Energías:</strong> VENGAN CON GANAS DE DIVERTIRSE<br><br>
-            ⭐ <strong>Importante:</strong> NO SE OLVIDEN DE CONFIRMAR ASISTENCIA
+            ⭐ Vestimenta: INFORMAL O ELEGANTE SPORT<br><br>
+            ⭐ Energías: VENGAN CON GANAS DE DIVERTIRSE<br><br>
+            ⭐ Importante: CONFIRMAR ASISTENCIA
         </p>
-
         <button id="cerrarPopup" class="popup-boton">ENTENDIDO</button>
     </div>
 </div>
 
+<!-- TÍTULO -->
 <div class="titulo-superior">
     <h1>El Penúltimo Baile</h1>
     <h2>Llegaron Mis 50</h2>
 </div>
 
+<!-- CARRUSEL -->
 <div class="carousel">
     <img src="img1.jpg" class="active">
     <img src="img2.jpg">
@@ -363,7 +147,6 @@ body {
 <script>
 let index = 0;
 const imgs = document.querySelectorAll('.carousel img');
-imgs[0].classList.add('active');
 setInterval(() => {
     imgs[index].classList.remove('active');
     index = (index + 1) % imgs.length;
@@ -371,50 +154,32 @@ setInterval(() => {
 }, 4000);
 </script>
 
+<!-- BOTONES -->
 <div class="botones-abajo">
-
     <div class="columna">
         <a class="boton" id="btnCuandoEs">¿CUANDO ES?</a>
-
-        <a class="boton boton-whatsapp" href="https://wa.me/59899164492?text=Hola,%20confirmo%20mi%20asistencia">
-            <span class="icono-wsp">📱</span>
-            Confirmar asistencia
-        </a>
+        <a class="boton boton-whatsapp" href="https://wa.me/59899164492?text=Hola,%20confirmo%20mi%20asistencia">📱 Confirmar asistencia</a>
     </div>
 
     <div class="columna">
-
-        <a class="boton" 
-           href="https://www.google.com/maps/dir/?api=1&destination=ALTOP!NAR+Eventos,+Av.+Pérez+Butler,+15800+Ciudad+de+la+Costa,+Departamento+de+Canelones,+Uruguay" 
-           target="_blank">
-            Cómo llegar – <strong>Altopinar</strong>
-        </a>
-
-        <a class="boton" href="https://drive.google.com/drive/folders/1ZYV4_hRpaBB4g4KWKi0_7rsBJQp3LvvS?usp=drive_link" target="_blank">
-            Subir fotos
-        </a>
+        <a class="boton" href="https://www.google.com/maps/dir/?api=1&destination=ALTOP!NAR+Eventos" target="_blank">Cómo llegar – Altopinar</a>
+        <a class="boton" href="https://drive.google.com/drive/folders/1ZYV4_hRpaBB4g4KWKi0_7rsBJQp3LvvS" target="_blank">Subir fotos</a>
     </div>
-
 </div>
 
+<!-- OVERLAY CUANDO ES -->
 <div class="cuando-es-overlay" id="overlayCuandoEs">
-
     <h1 class="titulo-festejar">¡¡¡HAY QUE FESTEJAR!!!</h1>
-
     <h2 class="texto-evento">
         El sábado 17 de octubre del 2026<br>
         A partir de las 21:00 hs<br>
         Hasta que las velas ardan
     </h2>
-
-    <h2 class="solo-adultos">
-        🚫 <span>IMPORTANTE: SOLO ADULTOS</span>
-    </h2>
-
+    <h2 class="solo-adultos">🚫 SOLO ADULTOS</h2>
     <div id="countdown">Cargando cuenta regresiva...</div>
 
-    <a class="cerrar-overlay" id="cerrarOverlay">Cerrar</a>
-
+    <!-- BOTÓN CERRAR FUNCIONAL -->
+    <button class="cerrar-overlay" id="cerrarOverlay">Cerrar</button>
 </div>
 
 <script>
@@ -422,51 +187,48 @@ const btnCuandoEs = document.getElementById("btnCuandoEs");
 const overlay = document.getElementById("overlayCuandoEs");
 const cerrarOverlay = document.getElementById("cerrarOverlay");
 
-btnCuandoEs.onclick = () => overlay.style.display = "flex";
-cerrarOverlay.onclick = () => overlay.style.display = "none";
+/* ABRIR */
+btnCuandoEs.addEventListener("click", () => {
+    overlay.style.display = "flex";
+});
 
+/* CERRAR */
+cerrarOverlay.addEventListener("click", () => {
+    overlay.style.display = "none";
+});
+
+/* CUENTA REGRESIVA */
 function actualizarCuentaRegresiva() {
     const evento = new Date("October 17, 2026 21:00:00").getTime();
     const ahora = Date.now();
     const diferencia = evento - ahora;
 
     if (diferencia <= 0) {
-        document.getElementById("countdown").innerHTML = "¡ES HOY!";
+        countdown.innerHTML = "¡ES HOY!";
         return;
     }
 
-    const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-    const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
-    const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+    const dias = Math.floor(diferencia / 86400000);
+    const horas = Math.floor((diferencia % 86400000) / 3600000);
+    const minutos = Math.floor((diferencia % 3600000) / 60000);
+    const segundos = Math.floor((diferencia % 60000) / 1000);
 
-    document.getElementById("countdown").innerHTML =
-        `${dias} DÍAS • ${horas} HS • ${minutos} MIN • ${segundos} SEG`;
+    countdown.innerHTML = `${dias} DÍAS • ${horas} HS • ${minutos} MIN • ${segundos} SEG`;
 }
 
 setInterval(actualizarCuentaRegresiva, 1000);
 actualizarCuentaRegresiva();
 </script>
 
-<audio id="player" src="musica.mp3" autoplay loop></audio>
-
-<script>
-const player = document.getElementById("player");
-player.play().catch(() => {});
-document.addEventListener("click", () => {
-    player.play().catch(() => {});
-}, { once: true });
-</script>
-
-<!-- SCRIPT POPUP -->
 <script>
 const popup80s = document.getElementById("popup80s");
 const cerrarPopup = document.getElementById("cerrarPopup");
 
-cerrarPopup.onclick = () => {
+cerrarPopup.addEventListener("click", () => {
     popup80s.style.display = "none";
-};
+});
 </script>
 
 </body>
 </html>
+
