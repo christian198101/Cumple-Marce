@@ -259,12 +259,33 @@ body {
     text-transform: uppercase;
 }
 
+/* ⭐ BOTÓN CERRAR RESALTADO ⭐ */
+.cerrar-overlay {
+    margin-top: 25px;
+    display: inline-block;
+    padding: 14px 30px;
+    background: #ff00ff;
+    color: #ffffff;
+    border-radius: 12px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 0 15px #ff00ff;
+    transition: 0.3s;
+}
+
+.cerrar-overlay:hover {
+    background: #ff33ff;
+    transform: scale(1.12);
+}
+
 /* ============================
    AJUSTES PARA MÓVIL
    ============================ */
 @media (max-width: 768px) {
 
-    /* TÍTULO */
     .titulo-superior {
         top: 25px;
         width: 100%;
@@ -284,7 +305,6 @@ body {
         line-height: 1.1;
     }
 
-    /* BOTONES EN VERTICAL */
     .botones-abajo {
         flex-direction: column !important;
         align-items: center !important;
@@ -313,7 +333,7 @@ body {
         padding: 12px;
     }
 
-    /* CORRECCIÓN DEL OVERLAY */
+    /* ⭐ CORRECCIÓN DEL OVERLAY EN MÓVIL ⭐ */
     #overlayCuandoEs {
         position: fixed;
         top: 0 !important;
@@ -337,6 +357,11 @@ body {
     #countdown {
         font-size: 18px;
         line-height: 1.3;
+    }
+
+    .cerrar-overlay {
+        padding: 12px 24px;
+        font-size: 16px;
     }
 }
 </style>
