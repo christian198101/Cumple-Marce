@@ -84,13 +84,6 @@ body {
     transform: scale(1.08);
 }
 
-/* ANIMACIONES */
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-@keyframes popupEntrada {
-    0% { transform: scale(0.6) rotate(-4deg); opacity: 0; }
-    100% { transform: scale(1) rotate(0deg); opacity: 1; }
-}
-
 /* CARRUSEL */
 .carousel {
     position: fixed;
@@ -132,12 +125,6 @@ body {
         0px 0px 6px rgba(0,0,0,0.85),
         0px 0px 18px rgba(0,0,0,0.65);
     animation: cineGlow 8s infinite cubic-bezier(0.40, 0.0, 0.20, 1.0);
-}
-
-@keyframes cineGlow {
-    0% { opacity: 0.25; }
-    50% { opacity: 1; }
-    100% { opacity: 0.25; }
 }
 
 .titulo-superior h1 { font-size: 85px; }
@@ -333,7 +320,8 @@ setInterval(() => {
 
     <div id="countdown">Cargando cuenta regresiva...</div>
 
-    <a class="cerrar-overlay" id="cerrarOverlay">Cerrar</a>
+    <!-- ⭐ BOTÓN CERRAR CORREGIDO ⭐ -->
+    <button class="cerrar-overlay" id="cerrarOverlay">Cerrar</button>
 
 </div>
 
@@ -389,4 +377,3 @@ cerrarPopup.onclick = () => {
 
 </body>
 </html>
-
