@@ -251,7 +251,7 @@
 <!-- BOTONES -->
 <div class="botones-abajo">
     <div class="columna">
-        <a class="boton" id="btnCuandoEs">¿CUANDO ES?</a>
+        <a class="boton" id="btnCuandoEs">¿CUÁNDO FUE?</a>
         <a class="boton" href="https://wa.me/59899164492?text=Hola,%20confirmo%20mi%20asistencia">
             📱 Dejame un Mensaje
         </a>
@@ -272,14 +272,17 @@
 
 <!-- OVERLAY -->
 <div class="cuando-es-overlay" id="overlayCuandoEs">
-    <h1 class="titulo-festejar">¡¡¡HAY QUE FESTEJAR!!!</h1>
+    <h1 class="titulo-festejar">¡¡¡GRACIAS!!!</h1>
+
     <h2 class="texto-evento">
-        El sábado 17 de octubre del 2026<br>
-        A partir de las 21:00 hs<br>
-        Hasta que las velas ardan
+        Si no vinieron, se lo perdieron:<br>
+        fue una noche espectacular.<br><br>
+        Y a los que vinieron…<br>
+        ¡GRACIAS!
     </h2>
-    <h2 class="solo-adultos">🚫 SOLO ADULTOS</h2>
+
     <div id="countdown">Cargando cuenta regresiva...</div>
+
     <a class="boton" id="cerrarOverlay">Cerrar</a>
 </div>
 
@@ -313,7 +316,7 @@ function actualizarCuentaRegresiva() {
     const diferencia = evento - ahora;
 
     if (diferencia <= 0) {
-        document.getElementById("countdown").innerHTML = "¡ES HOY!";
+        document.getElementById("countdown").innerHTML = "Gracias por haber venido";
         return;
     }
 
@@ -349,6 +352,7 @@ btnMusica.onclick = () => {
 
 </body>
 </html>
+
 
 
 
