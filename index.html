@@ -2,35 +2,24 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>MIS 50 EL PENULTIMO BAILE (TE LO VAS A PERDER ?)</title>
+<title>MIS 50 – EL PENÚLTIMO BAILE</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-@font-face {
-    font-family: 'VinerHand';
-    src: url('VinerHandITC.ttf') format('truetype');
-}
-</style>
 
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;700&display=swap" rel="stylesheet">
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    overflow: hidden;
+:root {
+    --neon-rosa: #ff00ff;
+    --neon-celeste: #00eaff;
+    --neon-blanco: #ffffff;
+    --fondo-oscuro: rgba(0,0,0,0.85);
 }
 
-/* ============================
-   POPUP 80s
-   ============================ */
+/* POPUP */
 .popup-80s {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.85);
+    inset: 0;
+    background: var(--fondo-oscuro);
     backdrop-filter: blur(4px);
     display: flex;
     justify-content: center;
@@ -41,23 +30,14 @@ body {
 
 .popup-contenido {
     background: rgba(20,20,20,0.9);
-    border: 3px solid #ff00ff;
+    border: 3px solid var(--neon-rosa);
     padding: 30px;
     width: 85%;
     max-width: 420px;
     text-align: center;
     border-radius: 15px;
-    box-shadow: 0 0 25px #ff00ff, 0 0 60px #00eaff inset;
+    box-shadow: 0 0 25px var(--neon-rosa), 0 0 60px var(--neon-celeste) inset;
     animation: popupEntrada 0.7s ease-out;
-}
-
-.popup-titulo {
-    font-size: 36px;
-    color: #00eaff;
-    text-shadow: 0 0 10px #00eaff, 0 0 25px #00eaff;
-    margin-bottom: 20px;
-    font-family: 'Quicksand', sans-serif;
-    text-transform: uppercase;
 }
 
 .popup-texto {
@@ -70,69 +50,55 @@ body {
 .popup-boton {
     margin-top: 25px;
     padding: 12px 25px;
-    background: #ff00ff;
+    background: var(--neon-rosa);
     border: none;
     border-radius: 10px;
     color: white;
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 0 12px #ff00ff;
+    box-shadow: 0 0 12px var(--neon-rosa);
     transition: 0.3s;
 }
-
 .popup-boton:hover {
     background: #ff33ff;
     transform: scale(1.08);
 }
 
-/* ============================
-   ANIMACIONES
-   ============================ */
+/* ANIMACIONES */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
 }
-
 @keyframes popupEntrada {
     0% { transform: scale(0.6) rotate(-4deg); opacity: 0; }
     100% { transform: scale(1) rotate(0deg); opacity: 1; }
 }
 
-/* ============================
-   CARRUSEL
-   ============================ */
+/* CARRUSEL */
 .carousel {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     overflow: hidden;
     z-index: 0;
 }
+
 .carousel img {
     position: absolute;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center center;
     opacity: 0;
-    transition: opacity 2s ease-in-out;
+    transform: scale(1.05);
+    transition: opacity 2s ease-in-out, transform 8s ease-in-out;
 }
+
 .carousel img.active {
     opacity: 1;
+    transform: scale(1);
 }
 
-@media (min-width: 769px) {
-    .carousel img:nth-child(2).active {
-        object-position: 20% center;
-    }
-}
-
-/* ============================
-   TÍTULO
-   ============================ */
+/* TÍTULO */
 .titulo-superior {
     position: absolute;
     top: 15px;
@@ -143,29 +109,22 @@ body {
 
 .titulo-superior h1,
 .titulo-superior h2 {
-    font-family: 'VinerHand', sans-serif;
-    margin: 0;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: #ffffff;
-    text-shadow:
-        0px 0px 6px rgba(0,0,0,0.85),
-        0px 0px 18px rgba(0,0,0,0.65);
-    animation: cineGlow 8s infinite cubic-bezier(0.40, 0.0, 0.20, 1.0);
+    font-family: 'Quicksand', sans-serif;
+    color: var(--neon-blanco);
+    text-shadow: 0 0 10px var(--neon-celeste), 0 0 25px var(--neon-celeste);
+    animation: neonPulse 4s infinite ease-in-out;
 }
 
-@keyframes cineGlow {
-    0% { opacity: 0.25; }
-    50% { opacity: 1; }
-    100% { opacity: 0.25; }
+@keyframes neonPulse {
+    0% { text-shadow: 0 0 5px var(--neon-celeste); }
+    50% { text-shadow: 0 0 25px var(--neon-celeste); }
+    100% { text-shadow: 0 0 5px var(--neon-celeste); }
 }
 
 .titulo-superior h1 { font-size: 85px; }
 .titulo-superior h2 { font-size: 45px; margin-top: -10px; }
 
-/* ============================
-   BOTONES
-   ============================ */
+/* BOTONES */
 .boton {
     display: block;
     width: 90%;
@@ -186,36 +145,22 @@ body {
     transform: scale(1.05);
 }
 
-.boton-whatsapp {
-    position: relative;
-    overflow: hidden;
-}
-.icono-wsp {
-    margin-right: 10px;
+/* BOTÓN MÚSICA */
+#btnMusica {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--neon-rosa);
+    padding: 12px 18px;
+    border-radius: 50%;
+    color: white;
     font-size: 22px;
-}
-.boton-whatsapp::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        120deg,
-        transparent,
-        rgba(255,255,255,0.25),
-        transparent
-    );
-    transition: 0.6s;
-}
-.boton-whatsapp:hover::after {
-    left: 100%;
+    cursor: pointer;
+    box-shadow: 0 0 12px var(--neon-rosa);
+    z-index: 9999;
 }
 
-/* ============================
-   BOTONES ABAJO (WEB)
-   ============================ */
+/* BOTONES ABAJO */
 .botones-abajo {
     position: absolute;
     bottom: 40px;
@@ -230,16 +175,11 @@ body {
     width: 45%;
 }
 
-/* ============================
-   OVERLAY
-   ============================ */
+/* OVERLAY */
 .cuando-es-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: black;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
     color: white;
     display: none;
     flex-direction: column;
@@ -248,84 +188,32 @@ body {
     text-align: center;
     padding: 20px;
     z-index: 9999;
-    font-family: 'Quicksand', sans-serif;
+    animation: overlayIn 0.6s ease-out;
 }
 
-.titulo-festejar {
-    font-size: 48px;
-    font-weight: 900;
-    letter-spacing: 3px;
-    margin-bottom: 25px;
-    text-transform: uppercase;
+@keyframes overlayIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
 }
 
-/* ============================
-   AJUSTES PARA MÓVIL
-   ============================ */
+/* RESPONSIVE */
 @media (max-width: 768px) {
+    .titulo-superior h1 { font-size: 36px; }
+    .titulo-superior h2 { font-size: 20px; }
 
-    /* TÍTULO CORREGIDO */
-    .titulo-superior {
-        top: 25px;
-        width: 100%;
-        text-align: center;
-        padding: 0 10px;
-    }
-
-    .titulo-superior h1 {
-        font-size: 36px;
-        letter-spacing: 1px;
-        line-height: 1.1;
-    }
-
-    .titulo-superior h2 {
-        font-size: 20px;
-        margin-top: -4px;
-        line-height: 1.1;
-    }
-
-    /* BOTONES EN VERTICAL */
     .botones-abajo {
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: center !important;
+        flex-direction: column;
+        align-items: center;
         bottom: 20px;
         padding: 0;
         gap: 10px;
     }
 
     .columna {
-        width: 100% !important;
-        margin-bottom: 0;
+        width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
-    }
-
-    .columna a.boton {
-        width: 100% !important;
-        max-width: 260px !important;
-    }
-
-    .boton {
-        max-width: 240px;
-        font-size: 18px;
-        padding: 12px;
-    }
-
-    .carousel {
-        width: 100%;
-        height: 100vh;
-    }
-
-    .carousel img {
-        object-fit: cover;
-        object-position: center center;
-        width: 100%;
-        height: 100%;
-        transform: scale(1);
-        top: 0;
-        left: 0;
     }
 }
 </style>
@@ -333,26 +221,26 @@ body {
 
 <body>
 
-<!-- POPUP 80s -->
+<!-- POPUP -->
 <div id="popup80s" class="popup-80s">
     <div class="popup-contenido">
-        <h1 class="popup-titulo">YA FALTA MENOS…</h1>
+        <h1 class="popup-titulo">GRACIAS</h1>
 
         <p class="popup-texto">
-            ⭐ <strong>Vestimenta:</strong> INFORMAL O ELEGANTE SPORT<br><br>
-            ⭐ <strong>Energías:</strong> VENGAN CON GANAS DE DIVERTIRSE<br><br>
-            ⭐ <strong>Importante:</strong> NO SE OLVIDEN DE CONFIRMAR ASISTENCIA
+            ⭐ Su presencia hizo la fiesta aún más especial. ¡Gracias! ⭐
         </p>
 
-        <button id="cerrarPopup" class="popup-boton">ENTENDIDO</button>
+        <button id="cerrarPopup" class="popup-boton">CERRAR</button>
     </div>
 </div>
 
+<!-- TÍTULO -->
 <div class="titulo-superior">
     <h1>El Penúltimo Baile</h1>
     <h2>Llegaron Mis 50</h2>
 </div>
 
+<!-- CARRUSEL -->
 <div class="carousel">
     <img src="img1.jpg" class="active">
     <img src="img2.jpg">
@@ -360,30 +248,16 @@ body {
     <img src="img4.jpg">
 </div>
 
-<script>
-let index = 0;
-const imgs = document.querySelectorAll('.carousel img');
-imgs[0].classList.add('active');
-setInterval(() => {
-    imgs[index].classList.remove('active');
-    index = (index + 1) % imgs.length;
-    imgs[index].classList.add('active');
-}, 4000);
-</script>
-
+<!-- BOTONES -->
 <div class="botones-abajo">
-
     <div class="columna">
         <a class="boton" id="btnCuandoEs">¿CUANDO ES?</a>
-
-        <a class="boton boton-whatsapp" href="https://wa.me/59899164492?text=Hola,%20confirmo%20mi%20asistencia">
-            <span class="icono-wsp">📱</span>
-            Confirmar asistencia
+        <a class="boton" href="https://wa.me/59899164492?text=Hola,%20confirmo%20mi%20asistencia">
+            📱 Dejame un Mensaje
         </a>
     </div>
 
     <div class="columna">
-
         <a class="boton" 
            href="https://www.google.com/maps/dir/?api=1&destination=ALTOP!NAR+Eventos,+Av.+Pérez+Butler,+15800+Ciudad+de+la+Costa,+Departamento+de+Canelones,+Uruguay" 
            target="_blank">
@@ -394,37 +268,45 @@ setInterval(() => {
             Subir fotos
         </a>
     </div>
-
 </div>
 
+<!-- OVERLAY -->
 <div class="cuando-es-overlay" id="overlayCuandoEs">
-
     <h1 class="titulo-festejar">¡¡¡HAY QUE FESTEJAR!!!</h1>
-
     <h2 class="texto-evento">
         El sábado 17 de octubre del 2026<br>
         A partir de las 21:00 hs<br>
         Hasta que las velas ardan
     </h2>
-
-    <h2 class="solo-adultos">
-        🚫 <span>IMPORTANTE: SOLO ADULTOS</span>
-    </h2>
-
+    <h2 class="solo-adultos">🚫 SOLO ADULTOS</h2>
     <div id="countdown">Cargando cuenta regresiva...</div>
-
-    <a class="cerrar-overlay" id="cerrarOverlay">Cerrar</a>
-
+    <a class="boton" id="cerrarOverlay">Cerrar</a>
 </div>
 
+<!-- AUDIO -->
+<audio id="player" src="musica.mp3" loop></audio>
+<div id="btnMusica">🔊</div>
+
+<!-- SCRIPTS -->
 <script>
-const btnCuandoEs = document.getElementById("btnCuandoEs");
+/* CARRUSEL */
+let index = 0;
+const imgs = document.querySelectorAll('.carousel img');
+
+function cambiarImagen() {
+    imgs.forEach(img => img.classList.remove('active'));
+    index = (index + 1) % imgs.length;
+    imgs[index].classList.add('active');
+    setTimeout(cambiarImagen, 4000);
+}
+setTimeout(cambiarImagen, 4000);
+
+/* OVERLAY */
 const overlay = document.getElementById("overlayCuandoEs");
-const cerrarOverlay = document.getElementById("cerrarOverlay");
+document.getElementById("btnCuandoEs").onclick = () => overlay.style.display = "flex";
+document.getElementById("cerrarOverlay").onclick = () => overlay.style.display = "none";
 
-btnCuandoEs.onclick = () => overlay.style.display = "flex";
-cerrarOverlay.onclick = () => overlay.style.display = "none";
-
+/* CUENTA REGRESIVA */
 function actualizarCuentaRegresiva() {
     const evento = new Date("October 17, 2026 21:00:00").getTime();
     const ahora = Date.now();
@@ -443,32 +325,30 @@ function actualizarCuentaRegresiva() {
     document.getElementById("countdown").innerHTML =
         `${dias} DÍAS • ${horas} HS • ${minutos} MIN • ${segundos} SEG`;
 }
-
 setInterval(actualizarCuentaRegresiva, 1000);
 actualizarCuentaRegresiva();
-</script>
 
-<audio id="player" src="musica.mp3" autoplay loop></audio>
+/* POPUP */
+document.getElementById("cerrarPopup").onclick = () =>
+    document.getElementById("popup80s").style.display = "none";
 
-<script>
+/* MÚSICA */
 const player = document.getElementById("player");
-player.play().catch(() => {});
-document.addEventListener("click", () => {
-    player.play().catch(() => {});
-}, { once: true });
-</script>
+const btnMusica = document.getElementById("btnMusica");
 
-<!-- SCRIPT POPUP -->
-<script>
-const popup80s = document.getElementById("popup80s");
-const cerrarPopup = document.getElementById("cerrarPopup");
-
-cerrarPopup.onclick = () => {
-    popup80s.style.display = "none";
+btnMusica.onclick = () => {
+    if (player.paused) {
+        player.play();
+        btnMusica.textContent = "🔊";
+    } else {
+        player.pause();
+        btnMusica.textContent = "🔈";
+    }
 };
 </script>
 
 </body>
 </html>
+
 
 
