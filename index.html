@@ -137,21 +137,49 @@
     z-index: 9999;
 }
 
-/* SUBMENÚ FOTOS */
+/* PANEL DESLIZABLE DE FOTOS */
 #submenuFotos {
-    display: none;
-    margin-top: 20px;
+    position: fixed;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    height: 75vh;
+    background: rgba(0,0,0,0.95);
+    backdrop-filter: blur(6px);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 20px;
+
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: flex-start;
+
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+
+    transition: bottom 0.35s ease;
+    z-index: 999999;
 }
+
+/* MANIJA DEL PANEL */
+#handle {
+    width: 60px;
+    height: 6px;
+    background: #ccc;
+    border-radius: 3px;
+    margin: 0 auto 15px auto;
+}
+
+/* FOTOS */
 #submenuFotos img {
-    width: 90px;
-    height: 90px;
+    width: 100px;
+    height: 100px;
     object-fit: cover;
-    border-radius: 10px;
-    margin: 5px;
-    cursor: pointer;
+    border-radius: 12px;
+    margin: 8px;
     border: 2px solid var(--neon-rosa);
+    cursor: pointer;
 }
 
 /* FOTO AMPLIADA */
@@ -288,9 +316,12 @@
     <a class="boton" id="btnAbrirFotos">📸 Ver fotos</a>
     <a class="boton" id="cerrarSubmenuFotos">Cerrar fotos</a>
 
-    <!-- SUBMENÚ FOTOS -->
+    <!-- PANEL DESLIZABLE -->
     <div id="submenuFotos">
 
+        <div id="handle"></div>
+
+        <!-- 45 FOTOS -->
         <img src="fotos/fiesta1.jpg">
         <img src="fotos/fiesta2.jpg">
         <img src="fotos/fiesta3.jpg">
@@ -388,20 +419,55 @@ document.getElementById("cerrarOverlayAyer").onclick = () => {
     player.play();
 };
 
-/* SUBMENÚ FOTOS + MÚSICA */
-const playerFotos = document.getElementById("playerFotos");
+/* PANEL DESLIZABLE */
+const panel = document.getElementById("submenuFotos");
+let startY = 0;
+let currentY = 0;
+let isDragging = false;
+
+/* Abrir panel */
 document.getElementById("btnAbrirFotos").onclick = () => {
-    document.getElementById("submenuFotos").style.display = "flex";
+    panel.style.bottom = "0";
     player.pause();
     playerFotos.play();
 };
 
-/* CERRAR SUBMENÚ FOTOS */
+/* Cerrar panel */
 document.getElementById("cerrarSubmenuFotos").onclick = () => {
-    document.getElementById("submenuFotos").style.display = "none";
+    panel.style.bottom = "-100%";
     playerFotos.pause();
     player.play();
 };
+
+/* Gesto táctil */
+panel.addEventListener("touchstart", (e) => {
+    startY = e.touches[0].clientY;
+    currentY = startY;
+    isDragging = true;
+});
+
+panel.addEventListener("touchmove", (e) => {
+    if (!isDragging) return;
+
+    currentY = e.touches[0].clientY;
+    let diff = currentY - startY;
+
+    if (diff > 0) {
+        panel.style.bottom = `-${diff}px`;
+    }
+});
+
+panel.addEventListener("touchend", () => {
+    isDragging = false;
+
+    if (currentY - startY > 120) {
+        panel.style.bottom = "-100%";
+        playerFotos.pause();
+        player.play();
+    } else {
+        panel.style.bottom = "0";
+    }
+});
 
 /* AMPLIAR FOTO */
 const fotos = document.querySelectorAll("#submenuFotos img");
@@ -461,6 +527,7 @@ btnMusica.onclick = () => {
 
 </body>
 </html>
+
 
 
 
