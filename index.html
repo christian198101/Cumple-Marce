@@ -25,9 +25,7 @@
     justify-content: center;
     align-items: center;
     z-index: 99999;
-    animation: fadeIn 0.8s ease-out;
 }
-
 .popup-contenido {
     background: rgba(20,20,20,0.9);
     border: 3px solid var(--neon-rosa);
@@ -37,16 +35,12 @@
     text-align: center;
     border-radius: 15px;
     box-shadow: 0 0 25px var(--neon-rosa), 0 0 60px var(--neon-celeste) inset;
-    animation: popupEntrada 0.7s ease-out;
 }
-
 .popup-texto {
     font-size: 20px;
     color: #ffffff;
     line-height: 1.6;
-    font-family: 'Quicksand', sans-serif;
 }
-
 .popup-boton {
     margin-top: 25px;
     padding: 12px 25px;
@@ -57,22 +51,6 @@
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
-    box-shadow: 0 0 12px var(--neon-rosa);
-    transition: 0.3s;
-}
-.popup-boton:hover {
-    background: #ff33ff;
-    transform: scale(1.08);
-}
-
-/* ANIMACIONES */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-@keyframes popupEntrada {
-    0% { transform: scale(0.6) rotate(-4deg); opacity: 0; }
-    100% { transform: scale(1) rotate(0deg); opacity: 1; }
 }
 
 /* CARRUSEL */
@@ -82,7 +60,6 @@
     overflow: hidden;
     z-index: 0;
 }
-
 .carousel img {
     position: absolute;
     width: 100%;
@@ -92,7 +69,6 @@
     transform: scale(1.05);
     transition: opacity 2s ease-in-out, transform 8s ease-in-out;
 }
-
 .carousel img.active {
     opacity: 1;
     transform: scale(1);
@@ -106,21 +82,12 @@
     text-align: center;
     z-index: 3;
 }
-
 .titulo-superior h1,
 .titulo-superior h2 {
     font-family: 'Quicksand', sans-serif;
     color: var(--neon-blanco);
-    text-shadow: 0 0 10px var(--neon-celeste), 0 0 25px var(--neon-celeste);
-    animation: neonPulse 4s infinite ease-in-out;
+    text-shadow: 0 0 10px var(--neon-celeste);
 }
-
-@keyframes neonPulse {
-    0% { text-shadow: 0 0 5px var(--neon-celeste); }
-    50% { text-shadow: 0 0 25px var(--neon-celeste); }
-    100% { text-shadow: 0 0 5px var(--neon-celeste); }
-}
-
 .titulo-superior h1 { font-size: 85px; }
 .titulo-superior h2 { font-size: 45px; margin-top: -10px; }
 
@@ -138,26 +105,7 @@
     text-decoration: none;
     font-weight: bold;
     backdrop-filter: blur(4px);
-    transition: 0.3s;
-}
-.boton:hover {
-    background: rgba(255,255,255,0.20);
-    transform: scale(1.05);
-}
-
-/* BOTÓN MÚSICA */
-#btnMusica {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: var(--neon-rosa);
-    padding: 12px 18px;
-    border-radius: 50%;
-    color: white;
-    font-size: 22px;
-    cursor: pointer;
-    box-shadow: 0 0 12px var(--neon-rosa);
-    z-index: 9999;
+    text-align: center;
 }
 
 /* BOTONES ABAJO */
@@ -170,12 +118,11 @@
     padding: 0 40px;
     z-index: 5;
 }
-
 .columna {
     width: 45%;
 }
 
-/* OVERLAY */
+/* OVERLAY GENERAL */
 .cuando-es-overlay {
     position: fixed;
     inset: 0;
@@ -188,32 +135,88 @@
     text-align: center;
     padding: 20px;
     z-index: 9999;
-    animation: overlayIn 0.6s ease-out;
 }
 
-@keyframes overlayIn {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
+/* SUBMENÚ FOTOS */
+#submenuFotos {
+    display: none;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+#submenuFotos img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 5px;
+    cursor: pointer;
+    border: 2px solid var(--neon-rosa);
+}
+
+/* FOTO AMPLIADA */
+#fotoGrande {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
+    justify-content: center;
+    align-items: center;
+    z-index: 999999;
+}
+#fotoGrande img {
+    width: 90%;
+    max-width: 600px;
+    border-radius: 10px;
+}
+#cerrarFoto {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: var(--neon-rosa);
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* BOTÓN DE MÚSICA */
+#btnMusica {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 60px;
+    height: 60px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.4);
+    backdrop-filter: blur(6px);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    color: white;
+    cursor: pointer;
+    z-index: 9999;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    transition: all 0.25s ease;
+}
+#btnMusica:hover {
+    background: rgba(255,255,255,0.25);
+    transform: scale(1.1);
 }
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
     .titulo-superior h1 { font-size: 36px; }
     .titulo-superior h2 { font-size: 20px; }
-
     .botones-abajo {
         flex-direction: column;
         align-items: center;
         bottom: 20px;
-        padding: 0;
         gap: 10px;
     }
-
     .columna {
         width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
     }
 }
 </style>
@@ -225,11 +228,9 @@
 <div id="popup80s" class="popup-80s">
     <div class="popup-contenido">
         <h1 class="popup-titulo">GRACIAS</h1>
-
         <p class="popup-texto">
             ⭐ Su presencia hizo la fiesta aún más especial. ¡Gracias! ⭐
         </p>
-
         <button id="cerrarPopup" class="popup-boton">CERRAR</button>
     </div>
 </div>
@@ -252,42 +253,108 @@
 <div class="botones-abajo">
     <div class="columna">
         <a class="boton" id="btnCuandoEs">¿CUÁNDO FUE?</a>
-        <a class="boton" href="https://wa.me/59899164492?text=Hola,%20confirmo%20mi%20asistencia">
-            📱 Dejame un Mensaje
-        </a>
+        <a class="boton" id="btnQuePasoAyer">¿QUÉ PASÓ AYER? (FOTOS)</a>
+        <a class="boton" href="https://wa.me/59899164492?text=Hola,%20confirmo%20mi%20asistencia">📱 Confirmar asistencia</a>
     </div>
 
     <div class="columna">
-        <a class="boton" 
-           href="https://www.google.com/maps/dir/?api=1&destination=ALTOP!NAR+Eventos,+Av.+Pérez+Butler,+15800+Ciudad+de+la+Costa,+Departamento+de+Canelones,+Uruguay" 
-           target="_blank">
-            Cómo llegar – <strong>Altopinar</strong>
-        </a>
-
-        <a class="boton" href="https://drive.google.com/drive/folders/1ZYV4_hRpaBB4g4KWKi0_7rsBJQp3LvvS?usp=drive_link" target="_blank">
-            Subir fotos
-        </a>
+        <a class="boton" href="https://www.google.com/maps/dir/?api=1&destination=ALTOP!NAR+Eventos" target="_blank">Cómo llegar – <strong>Altopinar</strong></a>
+        <a class="boton" href="https://drive.google.com/drive/folders/1ZYV4_hRpaBB4g4KWKi0_7rsBJQp3LvvS?usp=drive_link" target="_blank">Subir fotos</a>
     </div>
 </div>
 
-<!-- OVERLAY -->
+<!-- OVERLAY ¿CUÁNDO FUE? -->
 <div class="cuando-es-overlay" id="overlayCuandoEs">
     <h1 class="titulo-festejar">¡¡¡GRACIAS!!!</h1>
-
     <h2 class="texto-evento">
         Si no vinieron, se lo perdieron:<br>
         fue una noche espectacular.<br><br>
         Y a los que vinieron…<br>
         ¡GRACIAS!
     </h2>
-
     <div id="countdown">Cargando cuenta regresiva...</div>
-
     <a class="boton" id="cerrarOverlay">Cerrar</a>
 </div>
 
-<!-- AUDIO -->
+<!-- OVERLAY ¿QUÉ PASÓ AYER? -->
+<div class="cuando-es-overlay" id="overlayQuePasoAyer">
+    <h1 class="titulo-festejar">¿QUÉ PASÓ AYER?</h1>
+
+    <h2 class="texto-evento">
+        Si no te acordás…<br>
+        esto pasó ↓
+    </h2>
+
+    <a class="boton" id="btnAbrirFotos">📸 Ver fotos</a>
+    <a class="boton" id="cerrarSubmenuFotos">Cerrar fotos</a>
+
+    <!-- SUBMENÚ FOTOS -->
+    <div id="submenuFotos">
+
+        <img src="fotos/fiesta1.jpg">
+        <img src="fotos/fiesta2.jpg">
+        <img src="fotos/fiesta3.jpg">
+        <img src="fotos/fiesta4.jpg">
+        <img src="fotos/fiesta5.jpg">
+        <img src="fotos/fiesta6.jpg">
+        <img src="fotos/fiesta7.jpg">
+        <img src="fotos/fiesta8.jpg">
+        <img src="fotos/fiesta9.jpg">
+        <img src="fotos/fiesta10.jpg">
+        <img src="fotos/fiesta11.jpg">
+        <img src="fotos/fiesta12.jpg">
+        <img src="fotos/fiesta13.jpg">
+        <img src="fotos/fiesta14.jpg">
+        <img src="fotos/fiesta15.jpg">
+        <img src="fotos/fiesta16.jpg">
+        <img src="fotos/fiesta17.jpg">
+        <img src="fotos/fiesta18.jpg">
+        <img src="fotos/fiesta19.jpg">
+        <img src="fotos/fiesta20.jpg">
+        <img src="fotos/fiesta21.jpg">
+        <img src="fotos/fiesta22.jpg">
+        <img src="fotos/fiesta23.jpg">
+        <img src="fotos/fiesta24.jpg">
+        <img src="fotos/fiesta25.jpg">
+        <img src="fotos/fiesta26.jpg">
+        <img src="fotos/fiesta27.jpg">
+        <img src="fotos/fiesta28.jpg">
+        <img src="fotos/fiesta29.jpg">
+        <img src="fotos/fiesta30.jpg">
+        <img src="fotos/fiesta31.jpg">
+        <img src="fotos/fiesta32.jpg">
+        <img src="fotos/fiesta33.jpg">
+        <img src="fotos/fiesta34.jpg">
+        <img src="fotos/fiesta35.jpg">
+        <img src="fotos/fiesta36.jpg">
+        <img src="fotos/fiesta37.jpg">
+        <img src="fotos/fiesta38.jpg">
+        <img src="fotos/fiesta39.jpg">
+        <img src="fotos/fiesta40.jpg">
+        <img src="fotos/fiesta41.jpg">
+        <img src="fotos/fiesta42.jpg">
+        <img src="fotos/fiesta43.jpg">
+        <img src="fotos/fiesta44.jpg">
+        <img src="fotos/fiesta45.jpg">
+
+    </div>
+
+    <a class="boton" id="cerrarOverlayAyer">Cerrar</a>
+</div>
+
+<!-- FOTO AMPLIADA -->
+<div id="fotoGrande">
+    <img id="fotoGrandeImg">
+    <div id="cerrarFoto">Cerrar</div>
+</div>
+
+<!-- AUDIO PRINCIPAL -->
 <audio id="player" src="musica.mp3" loop></audio>
+
+<!-- AUDIO SUBMENÚ -->
+<audio id="playerFotos" src="musica2.mp3" loop></audio>
+
+<!-- BOTÓN PRINCIPAL DE MÚSICA -->
 <div id="btnMusica">🔊</div>
 
 <!-- SCRIPTS -->
@@ -295,7 +362,6 @@
 /* CARRUSEL */
 let index = 0;
 const imgs = document.querySelectorAll('.carousel img');
-
 function cambiarImagen() {
     imgs.forEach(img => img.classList.remove('active'));
     index = (index + 1) % imgs.length;
@@ -304,10 +370,53 @@ function cambiarImagen() {
 }
 setTimeout(cambiarImagen, 4000);
 
-/* OVERLAY */
+/* POPUP */
+document.getElementById("cerrarPopup").onclick = () =>
+    document.getElementById("popup80s").style.display = "none";
+
+/* OVERLAY ¿CUÁNDO FUE? */
 const overlay = document.getElementById("overlayCuandoEs");
 document.getElementById("btnCuandoEs").onclick = () => overlay.style.display = "flex";
 document.getElementById("cerrarOverlay").onclick = () => overlay.style.display = "none";
+
+/* OVERLAY ¿QUÉ PASÓ AYER? */
+const overlayAyer = document.getElementById("overlayQuePasoAyer");
+document.getElementById("btnQuePasoAyer").onclick = () => overlayAyer.style.display = "flex";
+document.getElementById("cerrarOverlayAyer").onclick = () => {
+    overlayAyer.style.display = "none";
+    playerFotos.pause();
+    player.play();
+};
+
+/* SUBMENÚ FOTOS + MÚSICA */
+const playerFotos = document.getElementById("playerFotos");
+document.getElementById("btnAbrirFotos").onclick = () => {
+    document.getElementById("submenuFotos").style.display = "flex";
+    player.pause();
+    playerFotos.play();
+};
+
+/* CERRAR SUBMENÚ FOTOS */
+document.getElementById("cerrarSubmenuFotos").onclick = () => {
+    document.getElementById("submenuFotos").style.display = "none";
+    playerFotos.pause();
+    player.play();
+};
+
+/* AMPLIAR FOTO */
+const fotos = document.querySelectorAll("#submenuFotos img");
+const fotoGrande = document.getElementById("fotoGrande");
+const fotoGrandeImg = document.getElementById("fotoGrandeImg");
+
+fotos.forEach(foto => {
+    foto.onclick = () => {
+        fotoGrandeImg.src = foto.src;
+        fotoGrande.style.display = "flex";
+    };
+});
+
+document.getElementById("cerrarFoto").onclick = () =>
+    fotoGrande.style.display = "none";
 
 /* CUENTA REGRESIVA */
 function actualizarCuentaRegresiva() {
@@ -331,14 +440,14 @@ function actualizarCuentaRegresiva() {
 setInterval(actualizarCuentaRegresiva, 1000);
 actualizarCuentaRegresiva();
 
-/* POPUP */
-document.getElementById("cerrarPopup").onclick = () =>
-    document.getElementById("popup80s").style.display = "none";
-
-/* MÚSICA */
+/* MÚSICA PRINCIPAL */
 const player = document.getElementById("player");
 const btnMusica = document.getElementById("btnMusica");
 
+/* Intento autoplay en PC */
+player.play().catch(() => {});
+
+/* Botón música */
 btnMusica.onclick = () => {
     if (player.paused) {
         player.play();
