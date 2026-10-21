@@ -1,531 +1,1145 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
-<title>MIS 50 – EL PENÚLTIMO BAILE</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;700&display=swap" rel="stylesheet">
+<title>EL PENÚLTIMO BAILE - MIS 50</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
-:root {
-    --neon-rosa: #ff00ff;
-    --neon-celeste: #00eaff;
-    --neon-blanco: #ffffff;
-    --fondo-oscuro: rgba(0,0,0,0.85);
+
+:root{
+ --rosa:#ff00ff;
+ --celeste:#00eaff;
+ --blanco:#ffffff;
 }
 
-/* POPUP */
-.popup-80s {
-    position: fixed;
-    inset: 0;
-    background: var(--fondo-oscuro);
-    backdrop-filter: blur(4px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 99999;
-}
-.popup-contenido {
-    background: rgba(20,20,20,0.9);
-    border: 3px solid var(--neon-rosa);
-    padding: 30px;
-    width: 85%;
-    max-width: 420px;
-    text-align: center;
-    border-radius: 15px;
-    box-shadow: 0 0 25px var(--neon-rosa), 0 0 60px var(--neon-celeste) inset;
-}
-.popup-texto {
-    font-size: 20px;
-    color: #ffffff;
-    line-height: 1.6;
-}
-.popup-boton {
-    margin-top: 25px;
-    padding: 12px 25px;
-    background: var(--neon-rosa);
-    border: none;
-    border-radius: 10px;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
+*{
+ margin:0;
+ padding:0;
+ box-sizing:border-box;
+ font-family:'Quicksand',sans-serif;
 }
 
-/* CARRUSEL */
-.carousel {
-    position: fixed;
-    inset: 0;
-    overflow: hidden;
-    z-index: 0;
-}
-.carousel img {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transform: scale(1.05);
-    transition: opacity 2s ease-in-out, transform 8s ease-in-out;
-}
-.carousel img.active {
-    opacity: 1;
-    transform: scale(1);
+body{
+ background:#000;
+ color:#fff;
+ overflow:hidden;
 }
 
-/* TÍTULO */
-.titulo-superior {
-    position: absolute;
-    top: 15px;
-    width: 100%;
-    text-align: center;
-    z-index: 3;
-}
-.titulo-superior h1,
-.titulo-superior h2 {
-    font-family: 'Quicksand', sans-serif;
-    color: var(--neon-blanco);
-    text-shadow: 0 0 10px var(--neon-celeste);
-}
-.titulo-superior h1 { font-size: 85px; }
-.titulo-superior h2 { font-size: 45px; margin-top: -10px; }
-
-/* BOTONES */
-.boton {
-    display: block;
-    width: 90%;
-    max-width: 260px;
-    margin: 15px auto;
-    padding: 15px;
-    background: rgba(255,255,255,0.10);
-    color: #fff;
-    font-size: 20px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: bold;
-    backdrop-filter: blur(4px);
-    text-align: center;
+.carousel{
+ position:fixed;
+ inset:0;
+ overflow:hidden;
+ z-index:-1;
 }
 
-/* BOTONES ABAJO */
-.botones-abajo {
-    position: absolute;
-    bottom: 40px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 40px;
-    z-index: 5;
-}
-.columna {
-    width: 45%;
+.carousel img{
+ position:absolute;
+ width:100%;
+ height:100%;
+ object-fit:cover;
+ opacity:0;
+ transform:scale(1.08);
+ transition:opacity 2s ease,
+ transform 8s ease;
 }
 
-/* OVERLAY GENERAL */
-.cuando-es-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.95);
-    color: white;
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-    z-index: 9999;
+.carousel img.active{
+ opacity:1;
+ transform:scale(1);
 }
 
-/* PANEL DESLIZABLE DE FOTOS */
-#submenuFotos {
-    position: fixed;
-    bottom: -100%;
-    left: 0;
-    width: 100%;
-    height: 75vh;
-    background: rgba(0,0,0,0.95);
-    backdrop-filter: blur(6px);
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    padding: 20px;
-
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-
-    transition: bottom 0.35s ease;
-    z-index: 999999;
+.carousel::after{
+ content:"";
+ position:absolute;
+ inset:0;
+ background:
+ linear-gradient(
+ rgba(0,0,0,.15),
+ rgba(0,0,0,.80)
+ );
 }
 
-/* MANIJA DEL PANEL */
-#handle {
-    width: 60px;
-    height: 6px;
-    background: #ccc;
-    border-radius: 3px;
-    margin: 0 auto 15px auto;
+.header{
+ position:absolute;
+ top:30px;
+ width:100%;
+ text-align:center;
+ z-index:10;
+ padding:0 20px;
 }
 
-/* FOTOS */
-#submenuFotos img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 12px;
-    margin: 8px;
-    border: 2px solid var(--neon-rosa);
-    cursor: pointer;
+.header h1{
+ font-size:clamp(40px,8vw,90px);
+ text-shadow:
+ 0 0 10px var(--celeste),
+ 0 0 20px var(--celeste),
+ 0 0 40px var(--celeste);
+ animation:brillo 3s ease-in-out infinite;
 }
 
-/* FOTO AMPLIADA */
-#fotoGrande {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.95);
-    justify-content: center;
-    align-items: center;
-    z-index: 999999;
-}
-#fotoGrande img {
-    width: 90%;
-    max-width: 600px;
-    border-radius: 10px;
-}
-#cerrarFoto {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background: var(--neon-rosa);
-    border-radius: 10px;
-    color: white;
-    font-size: 20px;
-    cursor: pointer;
+.header h2{
+ font-size:clamp(20px,4vw,40px);
+ margin-top:-10px;
 }
 
-/* BOTÓN DE MÚSICA */
-#btnMusica {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    width: 60px;
-    height: 60px;
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.4);
-    backdrop-filter: blur(6px);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 28px;
-    color: white;
-    cursor: pointer;
-    z-index: 9999;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
-    transition: all 0.25s ease;
-}
-#btnMusica:hover {
-    background: rgba(255,255,255,0.25);
-    transform: scale(1.1);
+@keyframes brillo{
+
+ 0%{
+  opacity:.8;
+ }
+
+ 50%{
+  opacity:1;
+ }
+
+ 100%{
+  opacity:.8;
+ }
+
 }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
-    .titulo-superior h1 { font-size: 36px; }
-    .titulo-superior h2 { font-size: 20px; }
-    .botones-abajo {
-        flex-direction: column;
-        align-items: center;
-        bottom: 20px;
-        gap: 10px;
-    }
-    .columna {
-        width: 100%;
-    }
+.menu{
+ position:absolute;
+ bottom:30px;
+ width:100%;
+ display:flex;
+ justify-content:center;
+ gap:50px;
+ z-index:20;
 }
+
+.col{
+ display:flex;
+ flex-direction:column;
+}
+
+.boton{
+ width:290px;
+ padding:16px;
+ margin:10px;
+ border-radius:12px;
+ text-decoration:none;
+ text-align:center;
+ color:#fff;
+ font-size:20px;
+ font-weight:bold;
+ background:
+ rgba(255,255,255,.08);
+
+ backdrop-filter:blur(6px);
+
+ border:1px solid
+ rgba(255,255,255,.2);
+
+ cursor:pointer;
+
+ transition:.3s;
+}
+
+.boton:hover{
+
+ transform:translateY(-3px);
+
+ box-shadow:
+ 0 0 10px #ff00ff,
+ 0 0 20px #ff00ff,
+ 0 0 50px #00eaff;
+
+}
+
+.popup{
+
+ position:fixed;
+ inset:0;
+
+ display:flex;
+ justify-content:center;
+ align-items:center;
+
+ background:
+ rgba(0,0,0,.92);
+
+ z-index:999999;
+
+}
+
+.popup-box{
+
+ width:90%;
+ max-width:500px;
+
+ background:#111;
+
+ padding:40px;
+
+ border-radius:20px;
+
+ text-align:center;
+
+ border:2px solid #ff00ff;
+
+ box-shadow:
+ 0 0 20px #ff00ff,
+ 0 0 60px #00eaff;
+
+}
+
+.popup-box h1{
+ margin-bottom:20px;
+}
+
+.popup-box p{
+ line-height:1.8;
+}
+
+.overlay{
+
+ position:fixed;
+ inset:0;
+
+ background:
+ rgba(0,0,0,.95);
+
+ display:none;
+
+ justify-content:center;
+ align-items:center;
+ flex-direction:column;
+
+ padding:20px;
+
+ z-index:999999;
+
+}
+
+.galeria{
+
+ width:100%;
+ max-width:1200px;
+ max-height:70vh;
+
+ overflow:auto;
+
+ display:grid;
+
+ grid-template-columns:
+ repeat(auto-fill,minmax(140px,1fr));
+
+ gap:10px;
+
+ margin-top:20px;
+
+}
+
+.galeria img{
+
+ width:100%;
+ height:140px;
+
+ object-fit:cover;
+
+ border-radius:10px;
+
+ border:2px solid #ff00ff;
+
+ cursor:pointer;
+
+ transition:.3s;
+
+}
+
+.galeria img:hover{
+
+ transform:scale(1.08);
+
+}
+
+.viewer{
+
+ display:none;
+
+ position:fixed;
+ inset:0;
+
+ background:black;
+
+ justify-content:center;
+ align-items:center;
+
+ z-index:9999999;
+
+}
+
+.viewer img{
+
+ max-width:90%;
+ max-height:85vh;
+
+ border-radius:20px;
+
+}
+
+.nav{
+
+ position:absolute;
+
+ font-size:60px;
+
+ cursor:pointer;
+
+ user-select:none;
+
+}
+
+.prev{
+ left:20px;
+}
+
+.next{
+ right:20px;
+}
+
+.close{
+
+ position:absolute;
+
+ top:20px;
+ right:30px;
+
+ font-size:40px;
+
+ cursor:pointer;
+
+}
+
+#btnMusica{
+
+ position:fixed;
+
+ top:20px;
+ right:20px;
+
+ width:60px;
+ height:60px;
+
+ border-radius:50%;
+
+ background:#ff00ff;
+
+ display:flex;
+ justify-content:center;
+ align-items:center;
+
+ font-size:28px;
+
+ cursor:pointer;
+
+ z-index:999999;
+
+ box-shadow:
+ 0 0 15px #ff00ff,
+ 0 0 30px #ff00ff;
+
+ transition:.3s;
+
+ user-select:none;
+
+}
+
+#btnMusica:hover{
+
+ transform:scale(1.1);
+
+}
+
+#btnMusica.activo{
+
+ background:#00eaff;
+
+ box-shadow:
+ 0 0 15px #00eaff,
+ 0 0 40px #00eaff;
+
+}
+
+@media(max-width:768px){
+
+ body{
+  overflow:auto;
+ }
+
+ .menu{
+  flex-direction:column;
+  gap:0;
+  bottom:15px;
+ }
+
+ .boton{
+  width:90vw;
+ }
+
+ .header{
+  position:relative;
+  top:20px;
+ }
+
+}
+
 </style>
+
 </head>
 
 <body>
 
-<!-- POPUP -->
-<div id="popup80s" class="popup-80s">
-    <div class="popup-contenido">
-        <h1 class="popup-titulo">GRACIAS</h1>
-        <p class="popup-texto">
-            ⭐ Su presencia hizo la fiesta aún más especial. ¡Gracias! ⭐
-        </p>
-        <button id="cerrarPopup" class="popup-boton">CERRAR</button>
-    </div>
+<div id="popup" class="popup">
+
+ <div class="popup-box">
+
+  <h1>🎉 Gracias por formar parte</h1>
+
+  <p>
+   La fiesta terminó,
+   pero los recuerdos quedan para siempre.
+
+   <br><br>
+
+   Gracias por acompañarme en
+
+   <strong>El Penúltimo Baile</strong>
+
+  </p>
+
+  <br>
+
+  <div
+   class="boton"
+   onclick="cerrarPopup()">
+
+   Entrar
+
+  </div>
+
+ </div>
+
 </div>
 
-<!-- TÍTULO -->
-<div class="titulo-superior">
-    <h1>El Penúltimo Baile</h1>
-    <h2>Llegaron Mis 50</h2>
+<div class="header">
+
+ <h1>EL PENÚLTIMO BAILE</h1>
+
+ <h2>Llegaron Mis 50</h2>
+
 </div>
 
-<!-- CARRUSEL -->
 <div class="carousel">
-    <img src="img1.jpg" class="active">
-    <img src="img2.jpg">
-    <img src="img3.jpg">
-    <img src="img4.jpg">
+
+ <img
+  src="img1.jpg"
+  class="active">
+
+ <img
+  src="img2.jpg">
+
+ <img
+  src="img3.jpg">
+
+ <img
+  src="img4.jpg">
+
 </div>
 
-<!-- BOTONES -->
-<div class="botones-abajo">
-    <div class="columna">
-        <a class="boton" id="btnCuandoEs">¿CUÁNDO FUE?</a>
-        <a class="boton" id="btnQuePasoAyer">¿QUÉ PASÓ AYER? (FOTOS)</a>
-        <a class="boton" href="https://wa.me/59899164492?text=Hola,%20confirmo%20mi%20asistencia">📱 Dejame tu Comentario de la fiesta</a>
-    </div>
+<div class="menu">
 
-    <div class="columna">
-        <a class="boton" href="https://www.google.com/maps/dir/?api=1&destination=ALTOP!NAR+Eventos" target="_blank">Cómo llegar – <strong>Altopinar</strong></a>
-        <a class="boton" href="https://drive.google.com/drive/folders/1ZYV4_hRpaBB4g4KWKi0_7rsBJQp3LvvS?usp=drive_link" target="_blank">Subir fotos</a>
-    </div>
+ <div class="col">
+
+  <div
+   class="boton"
+   onclick="abrirGracias()">
+
+   ❤️ Gracias
+
+  </div>
+
+  <div
+   class="boton"
+   onclick="abrirGaleria()">
+
+   📸 Ver Fotos
+
+  </div>
+
+ </div>
+
+ <div class="col">
+
+  <a
+   class="boton"
+   href="https://wa.me/59899164492?text=Hola">
+
+   📱 WhatsApp
+
+  </a>
+
+  <a
+   class="boton"
+   href="https://drive.google.com"
+   target="_blank">
+
+   📤 Subir Fotos
+
+  </a>
+
+ </div>
+
 </div>
 
-<!-- OVERLAY ¿CUÁNDO FUE? -->
-<div class="cuando-es-overlay" id="overlayCuandoEs">
-    <h1 class="titulo-festejar">¡¡¡GRACIAS!!!</h1>
-    <h2 class="texto-evento">
-        Si no vinieron, se lo perdieron:<br>
-        fue una noche espectacular.<br><br>
-        Y a los que vinieron…<br>
-        ¡GRACIAS!
-    </h2>
-    <div id="countdown">Cargando cuenta regresiva...</div>
-    <a class="boton" id="cerrarOverlay">Cerrar</a>
+<div
+ id="overlayGracias"
+ class="overlay">
+
+ <h1>❤️ Gracias</h1>
+
+ <p
+  style="
+  max-width:700px;
+  text-align:center;
+  line-height:2;
+  font-size:22px;">
+
+  Gracias por acompañarme
+  en una noche inolvidable.
+
+  <br><br>
+
+  Risas,
+  abrazos,
+  música y recuerdos
+  que durarán para siempre.
+
+ </p>
+
+ <br>
+
+ <div
+  class="boton"
+  onclick="cerrarGracias()">
+
+  Cerrar
+
+ </div>
+
 </div>
 
-<!-- OVERLAY ¿QUÉ PASÓ AYER? -->
-<div class="cuando-es-overlay" id="overlayQuePasoAyer">
-    <h1 class="titulo-festejar">¿QUÉ PASÓ AYER?</h1>
+<div
+ id="overlayGaleria"
+ class="overlay">
 
-    <h2 class="texto-evento">
-        Si no te acordás…<br>
-        esto pasó ↓
-    </h2>
+ <h1>📸 Galería</h1>
 
-    <a class="boton" id="btnAbrirFotos">📸 Ver fotos</a>
-    <a class="boton" id="cerrarSubmenuFotos">Cerrar fotos</a>
+ <div
+  id="galeria"
+  class="galeria">
 
-    <!-- PANEL DESLIZABLE -->
-    <div id="submenuFotos">
+ </div>
 
-        <div id="handle"></div>
+ <br>
 
-        <!-- 45 FOTOS -->
-        <img src="fotos/fiesta1.jpg">
-        <img src="fotos/fiesta2.jpg">
-        <img src="fotos/fiesta3.jpg">
-        <img src="fotos/fiesta4.jpg">
-        <img src="fotos/fiesta5.jpg">
-        <img src="fotos/fiesta6.jpg">
-        <img src="fotos/fiesta7.jpg">
-        <img src="fotos/fiesta8.jpg">
-        <img src="fotos/fiesta9.jpg">
-        <img src="fotos/fiesta10.jpg">
-        <img src="fotos/fiesta11.jpg">
-        <img src="fotos/fiesta12.jpg">
-        <img src="fotos/fiesta13.jpg">
-        <img src="fotos/fiesta14.jpg">
-        <img src="fotos/fiesta15.jpg">
-        <img src="fotos/fiesta16.jpg">
-        <img src="fotos/fiesta17.jpg">
-        <img src="fotos/fiesta18.jpg">
-        <img src="fotos/fiesta19.jpg">
-        <img src="fotos/fiesta20.jpg">
-        <img src="fotos/fiesta21.jpg">
-        <img src="fotos/fiesta22.jpg">
-        <img src="fotos/fiesta23.jpg">
-        <img src="fotos/fiesta24.jpg">
-        <img src="fotos/fiesta25.jpg">
-        <img src="fotos/fiesta26.jpg">
-        <img src="fotos/fiesta27.jpg">
-        <img src="fotos/fiesta28.jpg">
-        <img src="fotos/fiesta29.jpg">
-        <img src="fotos/fiesta30.jpg">
-        <img src="fotos/fiesta31.jpg">
-        <img src="fotos/fiesta32.jpg">
-        <img src="fotos/fiesta33.jpg">
-        <img src="fotos/fiesta34.jpg">
-        <img src="fotos/fiesta35.jpg">
-        <img src="fotos/fiesta36.jpg">
-        <img src="fotos/fiesta37.jpg">
-        <img src="fotos/fiesta38.jpg">
-        <img src="fotos/fiesta39.jpg">
-        <img src="fotos/fiesta40.jpg">
-        <img src="fotos/fiesta41.jpg">
-        <img src="fotos/fiesta42.jpg">
-        <img src="fotos/fiesta43.jpg">
-        <img src="fotos/fiesta44.jpg">
-        <img src="fotos/fiesta45.jpg">
+ <div
+  class="boton"
+  onclick="cerrarGaleria()">
 
-    </div>
+  Cerrar
 
-    <a class="boton" id="cerrarOverlayAyer">Cerrar</a>
+ </div>
+
 </div>
 
-<!-- FOTO AMPLIADA -->
-<div id="fotoGrande">
-    <img id="fotoGrandeImg">
-    <div id="cerrarFoto">Cerrar</div>
+<div
+ id="viewer"
+ class="viewer">
+
+ <div
+  class="nav prev"
+  onclick="anterior()">
+
+  ❮
+
+ </div>
+
+ <img id="viewerImage">
+
+ <div
+  class="nav next"
+  onclick="siguiente()">
+
+  ❯
+
+ </div>
+
+ <div
+  class="close"
+  onclick="cerrarViewer()">
+
+  ✕
+
+ </div>
+
 </div>
 
-<!-- AUDIO PRINCIPAL -->
-<audio id="player" src="musica.mp3" loop></audio>
+<!-- MUSICA PRINCIPAL -->
 
-<!-- AUDIO SUBMENÚ -->
-<audio id="playerFotos" src="musica2.mp3" loop></audio>
+<audio
+ id="player"
+ preload="auto"
+ loop>
 
-<!-- BOTÓN PRINCIPAL DE MÚSICA -->
-<div id="btnMusica">🔊</div>
+ <source
+  src="musica.mp3"
+  type="audio/mpeg">
 
-<!-- SCRIPTS -->
+</audio>
+
+<!-- MUSICA GALERIA -->
+
+<audio
+ id="audioGaleria"
+ preload="auto">
+
+ <source
+  src="musica2.mp3"
+  type="audio/mpeg">
+
+</audio>
+
+<!-- BOTON MUSICA -->
+
+<div id="btnMusica">
+
+ 🔈
+
+</div>
+
 <script>
-/* CARRUSEL */
-let index = 0;
-const imgs = document.querySelectorAll('.carousel img');
-function cambiarImagen() {
-    imgs.forEach(img => img.classList.remove('active'));
-    index = (index + 1) % imgs.length;
-    imgs[index].classList.add('active');
-    setTimeout(cambiarImagen, 4000);
+
+/* ======================
+   POPUP PRINCIPAL
+====================== */
+
+function cerrarPopup(){
+
+ document
+ .getElementById("popup")
+ .style.display="none";
+
+ iniciarMusica();
+
 }
-setTimeout(cambiarImagen, 4000);
 
-/* POPUP */
-document.getElementById("cerrarPopup").onclick = () =>
-    document.getElementById("popup80s").style.display = "none";
+/* ======================
+   CARRUSEL
+====================== */
 
-/* OVERLAY ¿CUÁNDO FUE? */
-const overlay = document.getElementById("overlayCuandoEs");
-document.getElementById("btnCuandoEs").onclick = () => overlay.style.display = "flex";
-document.getElementById("cerrarOverlay").onclick = () => overlay.style.display = "none";
+let slide = 0;
 
-/* OVERLAY ¿QUÉ PASÓ AYER? */
-const overlayAyer = document.getElementById("overlayQuePasoAyer");
-document.getElementById("btnQuePasoAyer").onclick = () => overlayAyer.style.display = "flex";
-document.getElementById("cerrarOverlayAyer").onclick = () => {
-    overlayAyer.style.display = "none";
-    playerFotos.pause();
-    player.play();
-};
+const slides =
+document.querySelectorAll(
+ ".carousel img"
+);
 
-/* PANEL DESLIZABLE */
-const panel = document.getElementById("submenuFotos");
-let startY = 0;
-let currentY = 0;
-let isDragging = false;
+setInterval(()=>{
 
-/* Abrir panel */
-document.getElementById("btnAbrirFotos").onclick = () => {
-    panel.style.bottom = "0";
-    player.pause();
-    playerFotos.play();
-};
+ slides[slide]
+ .classList
+ .remove("active");
 
-/* Cerrar panel */
-document.getElementById("cerrarSubmenuFotos").onclick = () => {
-    panel.style.bottom = "-100%";
-    playerFotos.pause();
-    player.play();
-};
+ slide =
+ (slide + 1)
+ %
+ slides.length;
 
-/* Gesto táctil */
-panel.addEventListener("touchstart", (e) => {
-    startY = e.touches[0].clientY;
-    currentY = startY;
-    isDragging = true;
-});
+ slides[slide]
+ .classList
+ .add("active");
 
-panel.addEventListener("touchmove", (e) => {
-    if (!isDragging) return;
+},4000);
 
-    currentY = e.touches[0].clientY;
-    let diff = currentY - startY;
+/* ======================
+   MENSAJE GRACIAS
+====================== */
 
-    if (diff > 0) {
-        panel.style.bottom = `-${diff}px`;
-    }
-});
+function abrirGracias(){
 
-panel.addEventListener("touchend", () => {
-    isDragging = false;
+ document
+ .getElementById(
+ "overlayGracias"
+ )
+ .style.display="flex";
 
-    if (currentY - startY > 120) {
-        panel.style.bottom = "-100%";
-        playerFotos.pause();
-        player.play();
-    } else {
-        panel.style.bottom = "0";
-    }
-});
-
-/* AMPLIAR FOTO */
-const fotos = document.querySelectorAll("#submenuFotos img");
-const fotoGrande = document.getElementById("fotoGrande");
-const fotoGrandeImg = document.getElementById("fotoGrandeImg");
-
-fotos.forEach(foto => {
-    foto.onclick = () => {
-        fotoGrandeImg.src = foto.src;
-        fotoGrande.style.display = "flex";
-    };
-});
-
-document.getElementById("cerrarFoto").onclick = () =>
-    fotoGrande.style.display = "none";
-
-/* CUENTA REGRESIVA */
-function actualizarCuentaRegresiva() {
-    const evento = new Date("October 17, 2026 21:00:00").getTime();
-    const ahora = Date.now();
-    const diferencia = evento - ahora;
-
-    if (diferencia <= 0) {
-        document.getElementById("countdown").innerHTML = "Gracias por haber venido";
-        return;
-    }
-
-    const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-    const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
-    const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
-
-    document.getElementById("countdown").innerHTML =
-        `${dias} DÍAS • ${horas} HS • ${minutos} MIN • ${segundos} SEG`;
 }
-setInterval(actualizarCuentaRegresiva, 1000);
-actualizarCuentaRegresiva();
 
-/* MÚSICA PRINCIPAL */
-const player = document.getElementById("player");
-const btnMusica = document.getElementById("btnMusica");
+function cerrarGracias(){
 
-/* Intento autoplay en PC */
-player.play().catch(() => {});
+ document
+ .getElementById(
+ "overlayGracias"
+ )
+ .style.display="none";
 
-/* Botón música */
-btnMusica.onclick = () => {
-    if (player.paused) {
-        player.play();
-        btnMusica.textContent = "🔊";
-    } else {
-        player.pause();
-        btnMusica.textContent = "🔈";
-    }
-};
+}
+
+/* ======================
+   GALERIA + MUSICA2
+====================== */
+
+function abrirGaleria(){
+
+ document
+ .getElementById(
+ "overlayGaleria"
+ )
+ .style.display="flex";
+
+ const audioGaleria =
+ document.getElementById(
+ "audioGaleria"
+ );
+
+ audioGaleria.pause();
+
+ audioGaleria.currentTime = 0;
+
+ audioGaleria.play()
+ .catch(error=>{
+
+  console.log(error);
+
+ });
+
+}
+
+function cerrarGaleria(){
+
+ document
+ .getElementById(
+ "overlayGaleria"
+ )
+ .style.display="none";
+
+ const audioGaleria =
+ document.getElementById(
+ "audioGaleria"
+ );
+
+ audioGaleria.pause();
+
+ audioGaleria.currentTime = 0;
+
+}
+
+/* ======================
+   MUSICA PRINCIPAL
+====================== */
+
+const player =
+document.getElementById(
+"player"
+);
+
+const btnMusica =
+document.getElementById(
+"btnMusica"
+);
+
+async function iniciarMusica(){
+
+ try{
+
+  await player.play();
+
+  btnMusica.innerHTML =
+  "🔊";
+
+  btnMusica.classList.add(
+  "activo"
+  );
+
+ }catch(error){
+
+  console.log(
+  "Error audio:",
+  error
+  );
+
+ }
+
+}
+
+function pausarMusica(){
+
+ player.pause();
+
+ btnMusica.innerHTML =
+ "🔈";
+
+ btnMusica.classList.remove(
+ "activo"
+ );
+
+}
+
+btnMusica.addEventListener(
+
+ "click",
+
+ ()=>{
+
+  if(player.paused){
+
+   iniciarMusica();
+
+  }else{
+
+   pausarMusica();
+
+  }
+
+ }
+
+);
+
+player.addEventListener(
+
+ "play",
+
+ ()=>{
+
+  btnMusica.innerHTML =
+  "🔊";
+
+  btnMusica.classList.add(
+  "activo"
+  );
+
+ }
+
+);
+
+player.addEventListener(
+
+ "pause",
+
+ ()=>{
+
+  btnMusica.innerHTML =
+  "🔈";
+
+  btnMusica.classList.remove(
+  "activo"
+  );
+
+ }
+
+);
+
+player.addEventListener(
+
+ "error",
+
+ ()=>{
+
+  console.error(
+   "No se encuentra musica.mp3"
+  );
+
+ }
+
+);
+
+const audioGaleria =
+document.getElementById(
+"audioGaleria"
+);
+
+audioGaleria.addEventListener(
+
+ "error",
+
+ ()=>{
+
+  console.error(
+   "No se encuentra musica2.mp3"
+  );
+
+ }
+
+);
+
+/* ======================
+   CREAR GALERIA
+====================== */
+
+const contenedor =
+document.getElementById(
+"galeria"
+);
+
+const fotos = [];
+
+for(let i = 1; i <= 45; i++){
+
+ const img =
+ document.createElement("img");
+
+ img.loading = "lazy";
+
+ img.src =
+ `fotos/fiesta${i}.jpg`;
+
+ img.alt =
+ `Foto ${i}`;
+
+ img.onclick = ()=>{
+
+  abrirViewer(i - 1);
+
+ };
+
+ contenedor.appendChild(img);
+
+ fotos.push(img.src);
+
+}
+
+/* ======================
+   VIEWER
+====================== */
+
+let fotoActual = 0;
+
+function abrirViewer(indice){
+
+ fotoActual = indice;
+
+ document
+ .getElementById(
+ "viewerImage"
+ )
+ .src =
+ fotos[fotoActual];
+
+ document
+ .getElementById(
+ "viewer"
+ )
+ .style.display = "flex";
+
+}
+
+function cerrarViewer(){
+
+ document
+ .getElementById(
+ "viewer"
+ )
+ .style.display = "none";
+
+}
+
+function siguiente(){
+
+ fotoActual++;
+
+ if(
+  fotoActual >= fotos.length
+ ){
+  fotoActual = 0;
+ }
+
+ document
+ .getElementById(
+ "viewerImage"
+ )
+ .src =
+ fotos[fotoActual];
+
+}
+
+function anterior(){
+
+ fotoActual--;
+
+ if(
+  fotoActual < 0
+ ){
+  fotoActual =
+  fotos.length - 1;
+ }
+
+ document
+ .getElementById(
+ "viewerImage"
+ )
+ .src =
+ fotos[fotoActual];
+
+}
+
+/* ======================
+   TECLADO
+====================== */
+
+document
+.addEventListener(
+
+"keydown",
+
+function(e){
+
+ if(
+  document
+  .getElementById(
+   "viewer"
+  )
+  .style.display
+  ===
+  "flex"
+ ){
+
+  if(
+   e.key ===
+   "ArrowRight"
+  ){
+   siguiente();
+  }
+
+  if(
+   e.key ===
+   "ArrowLeft"
+  ){
+   anterior();
+  }
+
+  if(
+   e.key ===
+   "Escape"
+  ){
+   cerrarViewer();
+  }
+
+ }
+
+ if(
+  e.key ===
+  "Escape"
+ ){
+
+  cerrarViewer();
+  cerrarGaleria();
+  cerrarGracias();
+
+ }
+
+}
+
+);
+
+/* ======================
+   CLICK FUERA
+====================== */
+
+document
+.getElementById(
+"viewer"
+)
+.addEventListener(
+
+"click",
+
+function(e){
+
+ if(
+  e.target.id
+  ===
+  "viewer"
+ ){
+
+  cerrarViewer();
+
+ }
+
+}
+
+);
+
+/* ======================
+   INICIO AUTOMATICO
+====================== */
+
+document.addEventListener(
+
+ "click",
+
+ function iniciarAudio(){
+
+  if(player.paused){
+
+   iniciarMusica();
+
+  }
+
+  document.removeEventListener(
+   "click",
+   iniciarAudio
+  );
+
+ },
+
+ { once:true }
+
+);
+
+/* ======================
+   PRELOAD IMAGENES
+====================== */
+
+window.addEventListener(
+
+ "load",
+
+ ()=>{
+
+  const precarga = [];
+
+  for(
+   let i = 1;
+   i <= 4;
+   i++
+  ){
+
+   const img =
+   new Image();
+
+   img.src =
+   `img${i}.jpg`;
+
+   precarga.push(img);
+
+  }
+
+ }
+
+);
+
 </script>
 
 </body>
+
 </html>
 
 
