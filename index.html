@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>EL PENÚLTIMO BAILE - MIS 50</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
@@ -44,7 +41,7 @@ body{
  height:100%;
  object-fit:cover;
  opacity:0;
- transform:scale(1.08);
+ transform:scale(1.03);
  transition:opacity 2s ease,
  transform 8s ease;
 }
@@ -89,19 +86,9 @@ body{
 }
 
 @keyframes brillo{
-
- 0%{
-  opacity:.8;
- }
-
- 50%{
-  opacity:1;
- }
-
- 100%{
-  opacity:.8;
- }
-
+ 0%{opacity:.8;}
+ 50%{opacity:1;}
+ 100%{opacity:.8;}
 }
 
 .menu{
@@ -129,65 +116,41 @@ body{
  color:#fff;
  font-size:20px;
  font-weight:bold;
- background:
- rgba(255,255,255,.08);
-
+ background:rgba(255,255,255,.08);
  backdrop-filter:blur(6px);
-
- border:1px solid
- rgba(255,255,255,.2);
-
+ border:1px solid rgba(255,255,255,.2);
  cursor:pointer;
-
  transition:.3s;
 }
 
 .boton:hover{
-
  transform:translateY(-3px);
-
  box-shadow:
  0 0 10px #ff00ff,
  0 0 20px #ff00ff,
  0 0 50px #00eaff;
-
 }
-
 .popup{
-
  position:fixed;
  inset:0;
-
  display:flex;
  justify-content:center;
  align-items:center;
-
- background:
- rgba(0,0,0,.92);
-
+ background:rgba(0,0,0,.92);
  z-index:999999;
-
 }
 
 .popup-box{
-
  width:90%;
  max-width:500px;
-
  background:#111;
-
  padding:40px;
-
  border-radius:20px;
-
  text-align:center;
-
  border:2px solid #ff00ff;
-
  box-shadow:
  0 0 20px #ff00ff,
  0 0 60px #00eaff;
-
 }
 
 .popup-box h1{
@@ -199,102 +162,64 @@ body{
 }
 
 .overlay{
-
  position:fixed;
  inset:0;
-
- background:
- rgba(0,0,0,.95);
-
+ background:rgba(0,0,0,.95);
  display:none;
-
  justify-content:center;
  align-items:center;
  flex-direction:column;
-
  padding:20px;
-
  z-index:999999;
-
 }
 
 .galeria{
-
  width:100%;
  max-width:1200px;
  max-height:70vh;
-
  overflow:auto;
-
  display:grid;
-
  grid-template-columns:
  repeat(auto-fill,minmax(140px,1fr));
-
  gap:10px;
-
  margin-top:20px;
-
 }
 
 .galeria img{
-
  width:100%;
  height:140px;
-
  object-fit:cover;
-
  border-radius:10px;
-
  border:2px solid #ff00ff;
-
  cursor:pointer;
-
  transition:.3s;
-
 }
 
 .galeria img:hover{
-
  transform:scale(1.08);
-
 }
 
 .viewer{
-
  display:none;
-
  position:fixed;
  inset:0;
-
  background:black;
-
  justify-content:center;
  align-items:center;
-
  z-index:9999999;
-
 }
 
 .viewer img{
-
  max-width:90%;
  max-height:85vh;
-
  border-radius:20px;
-
 }
 
 .nav{
-
  position:absolute;
-
  font-size:60px;
-
  cursor:pointer;
-
  user-select:none;
-
 }
 
 .prev{
@@ -306,67 +231,46 @@ body{
 }
 
 .close{
-
  position:absolute;
-
  top:20px;
  right:30px;
-
  font-size:40px;
-
  cursor:pointer;
-
 }
 
 #btnMusica{
-
  position:fixed;
-
  top:20px;
  right:20px;
-
  width:60px;
  height:60px;
-
  border-radius:50%;
-
  background:#ff00ff;
-
  display:flex;
  justify-content:center;
  align-items:center;
-
  font-size:28px;
-
  cursor:pointer;
-
  z-index:999999;
-
  box-shadow:
  0 0 15px #ff00ff,
  0 0 30px #ff00ff;
-
  transition:.3s;
-
  user-select:none;
-
 }
 
 #btnMusica:hover{
-
  transform:scale(1.1);
-
 }
 
 #btnMusica.activo{
-
  background:#00eaff;
-
  box-shadow:
  0 0 15px #00eaff,
  0 0 40px #00eaff;
-
 }
+
+/* ======== MOVIL CORREGIDO ======== */
 
 @media(max-width:768px){
 
@@ -374,45 +278,122 @@ body{
   overflow:auto;
  }
 
+ .header{
+  position:relative;
+  top:10px;
+  z-index:20;
+  padding:10px;
+ }
+
+ .header h1{
+  font-size:34px;
+  line-height:1.1;
+ }
+
+ .header h2{
+  font-size:20px;
+  margin-top:5px;
+ }
+
+ .carousel{
+  position:relative;
+  width:100%;
+  height:40vh;
+  margin-top:15px;
+  inset:auto;
+  z-index:1;
+  overflow:hidden;
+ }
+
+ .carousel img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  background:#000;
+  transform:none !important;
+ }
+
+ .carousel img.active{
+  transform:none !important;
+ }
+
+ .carousel::after{
+  background:
+  linear-gradient(
+   rgba(0,0,0,.10),
+   rgba(0,0,0,.40)
+  );
+ }
+
  .menu{
+  position:relative;
   flex-direction:column;
+  align-items:center;
+  justify-content:center;
   gap:0;
-  bottom:15px;
+  margin-top:20px;
+
+  margin-bottom:20px;
+  bottom:auto;
+ }
+
+ .col{
+  width:100%;
+  align-items:center;
  }
 
  .boton{
   width:90vw;
+  max-width:350px;
+  margin:8px auto;
+  font-size:18px;
+  padding:14px;
  }
 
- .header{
-  position:relative;
-  top:20px;
+ .galeria{
+  grid-template-columns:
+  repeat(
+   auto-fill,
+   minmax(110px,1fr)
+  );
+ }
+
+ .galeria img{
+  height:110px;
+ }
+
+ .viewer img{
+  width:95%;
+  max-height:80vh;
+  object-fit:contain;
+ }
+
+ .nav{
+  font-size:42px;
+ }
+
+ .close{
+  font-size:34px;
  }
 
 }
 
 </style>
-
 </head>
 
 <body>
 
 <div id="popup" class="popup">
-
  <div class="popup-box">
-
   <h1>🎉 Gracias por formar parte</h1>
 
   <p>
    La fiesta terminó,
    pero los recuerdos quedan para siempre.
-
    <br><br>
 
    Gracias por acompañarme en
-
    <strong>El Penúltimo Baile</strong>
-
   </p>
 
   <br>
@@ -420,21 +401,15 @@ body{
   <div
    class="boton"
    onclick="cerrarPopup()">
-
    Entrar
-
   </div>
 
  </div>
-
 </div>
 
 <div class="header">
-
  <h1>EL PENÚLTIMO BAILE</h1>
-
  <h2>Llegaron Mis 50</h2>
-
 </div>
 
 <div class="carousel">
@@ -461,17 +436,13 @@ body{
   <div
    class="boton"
    onclick="abrirGracias()">
-
    ❤️ Gracias
-
   </div>
 
   <div
    class="boton"
    onclick="abrirGaleria()">
-
    📸 Ver Fotos
-
   </div>
 
  </div>
@@ -481,18 +452,14 @@ body{
   <a
    class="boton"
    href="https://wa.me/59899164492?text=Hola">
-
    📱 WhatsApp
-
   </a>
 
   <a
    class="boton"
    href="https://drive.google.com"
    target="_blank">
-
    📤 Subir Fotos
-
   </a>
 
  </div>
@@ -529,9 +496,7 @@ body{
  <div
   class="boton"
   onclick="cerrarGracias()">
-
   Cerrar
-
  </div>
 
 </div>
@@ -545,7 +510,6 @@ body{
  <div
   id="galeria"
   class="galeria">
-
  </div>
 
  <br>
@@ -553,9 +517,7 @@ body{
  <div
   class="boton"
   onclick="cerrarGaleria()">
-
   Cerrar
-
  </div>
 
 </div>
@@ -567,9 +529,7 @@ body{
  <div
   class="nav prev"
   onclick="anterior()">
-
   ❮
-
  </div>
 
  <img id="viewerImage">
@@ -577,17 +537,13 @@ body{
  <div
   class="nav next"
   onclick="siguiente()">
-
   ❯
-
  </div>
 
  <div
   class="close"
   onclick="cerrarViewer()">
-
   ✕
-
  </div>
 
 </div>
@@ -620,9 +576,7 @@ body{
 <!-- BOTON MUSICA -->
 
 <div id="btnMusica">
-
  🔈
-
 </div>
 
 <script>
@@ -711,7 +665,6 @@ function abrirGaleria(){
  );
 
  audioGaleria.pause();
-
  audioGaleria.currentTime = 0;
 
  audioGaleria.play()
@@ -737,7 +690,6 @@ function cerrarGaleria(){
  );
 
  audioGaleria.pause();
-
  audioGaleria.currentTime = 0;
 
 }
@@ -794,9 +746,7 @@ function pausarMusica(){
 }
 
 btnMusica.addEventListener(
-
  "click",
-
  ()=>{
 
   if(player.paused){
@@ -810,13 +760,10 @@ btnMusica.addEventListener(
   }
 
  }
-
 );
 
 player.addEventListener(
-
  "play",
-
  ()=>{
 
   btnMusica.innerHTML =
@@ -827,13 +774,10 @@ player.addEventListener(
   );
 
  }
-
 );
 
 player.addEventListener(
-
  "pause",
-
  ()=>{
 
   btnMusica.innerHTML =
@@ -844,21 +788,17 @@ player.addEventListener(
   );
 
  }
-
 );
 
 player.addEventListener(
-
  "error",
-
  ()=>{
 
   console.error(
-   "No se encuentra musica.mp3"
+  "No se encuentra musica.mp3"
   );
 
  }
-
 );
 
 const audioGaleria =
@@ -867,17 +807,14 @@ document.getElementById(
 );
 
 audioGaleria.addEventListener(
-
  "error",
-
  ()=>{
 
   console.error(
-   "No se encuentra musica2.mp3"
+  "No se encuentra musica2.mp3"
   );
 
  }
-
 );
 
 /* ======================
@@ -937,7 +874,8 @@ function abrirViewer(indice){
  .getElementById(
  "viewer"
  )
- .style.display = "flex";
+ .style.display =
+ "flex";
 
 }
 
@@ -947,7 +885,8 @@ function cerrarViewer(){
  .getElementById(
  "viewer"
  )
- .style.display = "none";
+ .style.display =
+ "none";
 
 }
 
@@ -958,7 +897,9 @@ function siguiente(){
  if(
   fotoActual >= fotos.length
  ){
+
   fotoActual = 0;
+
  }
 
  document
@@ -977,8 +918,10 @@ function anterior(){
  if(
   fotoActual < 0
  ){
+
   fotoActual =
   fotos.length - 1;
+
  }
 
  document
@@ -996,19 +939,21 @@ function anterior(){
 
 document
 .addEventListener(
-
 "keydown",
-
 function(e){
 
  if(
+
   document
   .getElementById(
    "viewer"
   )
   .style.display
+
   ===
+
   "flex"
+
  ){
 
   if(
@@ -1046,7 +991,6 @@ function(e){
  }
 
 }
-
 );
 
 /* ======================
@@ -1058,9 +1002,7 @@ document
 "viewer"
 )
 .addEventListener(
-
 "click",
-
 function(e){
 
  if(
@@ -1074,7 +1016,6 @@ function(e){
  }
 
 }
-
 );
 
 /* ======================
@@ -1082,7 +1023,6 @@ function(e){
 ====================== */
 
 document.addEventListener(
-
  "click",
 
  function iniciarAudio(){
@@ -1109,7 +1049,6 @@ document.addEventListener(
 ====================== */
 
 window.addEventListener(
-
  "load",
 
  ()=>{
@@ -1117,9 +1056,13 @@ window.addEventListener(
   const precarga = [];
 
   for(
+
    let i = 1;
+
    i <= 4;
+
    i++
+
   ){
 
    const img =
@@ -1139,7 +1082,6 @@ window.addEventListener(
 </script>
 
 </body>
-
 </html>
 
 
