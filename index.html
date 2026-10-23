@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EL PENÚLTIMO BAILE - MIS 50</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+EL PENÚLTIMO BAILE - MIS 50
+</title>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap"
+rel="stylesheet">
 
 <style>
 
@@ -28,108 +37,203 @@ body{
  overflow:hidden;
 }
 
+/* ======================
+   CARRUSEL PRINCIPAL
+====================== */
+
 .carousel{
  position:fixed;
  inset:0;
+ width:100%;
+ height:100vh;
  overflow:hidden;
  z-index:-1;
 }
 
 .carousel img{
+
  position:absolute;
+ inset:0;
+
  width:100%;
  height:100%;
- object-fit:cover;
+
+ object-fit:contain;
+
+ background:#000;
+
  opacity:0;
- transform:scale(1.03);
- transition:opacity 2s ease,
- transform 8s ease;
+
+ /* Comienza ampliada */
+ transform:scale(2);
+
+ transition:
+ opacity 2s ease,
+ transform 6s linear;
+
 }
 
 .carousel img.active{
+
  opacity:1;
+
+ /* Termina mostrando
+    toda la fotografía */
  transform:scale(1);
+
 }
 
 .carousel::after{
+
  content:"";
+
  position:absolute;
+
  inset:0;
+
  background:
  linear-gradient(
  rgba(0,0,0,.15),
- rgba(0,0,0,.80)
+ rgba(0,0,0,.75)
  );
+
 }
 
+/* ======================
+   TITULO
+====================== */
+
 .header{
+
  position:absolute;
+
  top:30px;
+
  width:100%;
+
  text-align:center;
+
  z-index:10;
+
  padding:0 20px;
+
 }
 
 .header h1{
- font-size:clamp(40px,8vw,90px);
+
+ font-size:
+ clamp(40px,8vw,90px);
+
  text-shadow:
  0 0 10px var(--celeste),
  0 0 20px var(--celeste),
  0 0 40px var(--celeste);
- animation:brillo 3s ease-in-out infinite;
+
+ animation:
+ brillo 3s ease-in-out infinite;
+
 }
 
 .header h2{
- font-size:clamp(20px,4vw,40px);
+
+ font-size:
+ clamp(20px,4vw,40px);
+
  margin-top:-10px;
+
 }
 
 @keyframes brillo{
- 0%{opacity:.8;}
- 50%{opacity:1;}
- 100%{opacity:.8;}
+
+ 0%{
+  opacity:.8;
+ }
+
+ 50%{
+  opacity:1;
+ }
+
+ 100%{
+  opacity:.8;
+ }
+
 }
 
+/* ======================
+   MENU
+====================== */
+
 .menu{
+
  position:absolute;
+
  bottom:30px;
+
  width:100%;
+
  display:flex;
+
  justify-content:center;
+
  gap:50px;
+
  z-index:20;
+
 }
 
 .col{
+
  display:flex;
+
  flex-direction:column;
+
 }
 
 .boton{
+
  width:290px;
+
  padding:16px;
+
  margin:10px;
+
  border-radius:12px;
+
  text-decoration:none;
+
  text-align:center;
+
  color:#fff;
+
  font-size:20px;
+
  font-weight:bold;
- background:rgba(255,255,255,.08);
+
+ background:
+ rgba(255,255,255,.08);
+
  backdrop-filter:blur(6px);
- border:1px solid rgba(255,255,255,.2);
+
+ border:1px solid
+ rgba(255,255,255,.2);
+
  cursor:pointer;
+
  transition:.3s;
+
 }
 
 .boton:hover{
+
  transform:translateY(-3px);
+
  box-shadow:
  0 0 10px #ff00ff,
  0 0 20px #ff00ff,
  0 0 50px #00eaff;
+
 }
+
 .popup{
  position:fixed;
  inset:0;
@@ -210,9 +314,10 @@ body{
 }
 
 .viewer img{
- max-width:90%;
- max-height:85vh;
+ max-width:95%;
+ max-height:90vh;
  border-radius:20px;
+ object-fit:contain;
 }
 
 .nav{
@@ -220,6 +325,10 @@ body{
  font-size:60px;
  cursor:pointer;
  user-select:none;
+ color:white;
+ text-shadow:
+ 0 0 10px #000,
+ 0 0 20px #000;
 }
 
 .prev{
@@ -270,7 +379,9 @@ body{
  0 0 40px #00eaff;
 }
 
-/* ======== MOVIL CORREGIDO ======== */
+/* ======================
+   MOVIL DEFINITIVO
+====================== */
 
 @media(max-width:768px){
 
@@ -279,15 +390,15 @@ body{
  }
 
  .header{
-  position:relative;
-  top:10px;
+  position:absolute;
+  top:15px;
+  left:0;
+  right:0;
   z-index:20;
-  padding:10px;
  }
 
  .header h1{
   font-size:34px;
-  line-height:1.1;
  }
 
  .header h2{
@@ -295,67 +406,33 @@ body{
   margin-top:5px;
  }
 
+ /* Carrusel pantalla completa */
  .carousel{
-  position:relative;
+  position:fixed;
+  inset:0;
   width:100%;
-  height:40vh;
-  margin-top:15px;
-  inset:auto;
-  z-index:1;
-  overflow:hidden;
+  height:100vh;
  }
 
  .carousel img{
-  width:100%;
-  height:100%;
   object-fit:contain;
   background:#000;
-  transform:none !important;
- }
-
- .carousel img.active{
-  transform:none !important;
- }
-
- .carousel::after{
-  background:
-  linear-gradient(
-   rgba(0,0,0,.10),
-   rgba(0,0,0,.40)
-  );
  }
 
  .menu{
-  position:relative;
   flex-direction:column;
   align-items:center;
-  justify-content:center;
   gap:0;
-  margin-top:20px;
-
-  margin-bottom:20px;
-  bottom:auto;
- }
-
- .col{
-  width:100%;
-  align-items:center;
  }
 
  .boton{
   width:90vw;
   max-width:350px;
-  margin:8px auto;
-  font-size:18px;
-  padding:14px;
  }
 
  .galeria{
   grid-template-columns:
-  repeat(
-   auto-fill,
-   minmax(110px,1fr)
-  );
+  repeat(auto-fill,minmax(110px,1fr));
  }
 
  .galeria img{
@@ -364,8 +441,7 @@ body{
 
  .viewer img{
   width:95%;
-  max-height:80vh;
-  object-fit:contain;
+  max-height:85vh;
  }
 
  .nav{
@@ -379,21 +455,38 @@ body{
 }
 
 </style>
+
 </head>
 
 <body>
 
+<!-- ======================
+     POPUP INICIAL
+====================== -->
+
 <div id="popup" class="popup">
+
  <div class="popup-box">
-  <h1>🎉 Gracias por formar parte</h1>
+
+  <h1>
+   🎉 Gracias por formar parte
+  </h1>
 
   <p>
+
    La fiesta terminó,
-   pero los recuerdos quedan para siempre.
+   pero los recuerdos
+   quedan para siempre.
+
    <br><br>
 
-   Gracias por acompañarme en
-   <strong>El Penúltimo Baile</strong>
+   Gracias por acompañarme
+   en
+
+   <strong>
+    El Penúltimo Baile
+   </strong>
+
   </p>
 
   <br>
@@ -401,16 +494,34 @@ body{
   <div
    class="boton"
    onclick="cerrarPopup()">
+
    Entrar
+
   </div>
 
  </div>
+
 </div>
 
+<!-- ======================
+     TITULO
+====================== -->
+
 <div class="header">
- <h1>EL PENÚLTIMO BAILE</h1>
- <h2>Llegaron Mis 50</h2>
+
+ <h1>
+  EL PENÚLTIMO BAILE
+ </h1>
+
+ <h2>
+  Llegaron Mis 50
+ </h2>
+
 </div>
+
+<!-- ======================
+     CARRUSEL
+====================== -->
 
 <div class="carousel">
 
@@ -429,6 +540,10 @@ body{
 
 </div>
 
+<!-- ======================
+     MENU
+====================== -->
+
 <div class="menu">
 
  <div class="col">
@@ -436,13 +551,17 @@ body{
   <div
    class="boton"
    onclick="abrirGracias()">
+
    ❤️ Gracias
+
   </div>
 
   <div
    class="boton"
    onclick="abrirGaleria()">
+
    📸 Ver Fotos
+
   </div>
 
  </div>
@@ -452,32 +571,42 @@ body{
   <a
    class="boton"
    href="https://wa.me/59899164492?text=Hola">
+
    📱 WhatsApp
+
   </a>
 
   <a
    class="boton"
    href="https://drive.google.com"
    target="_blank">
+
    📤 Subir Fotos
+
   </a>
 
  </div>
 
 </div>
 
+<!-- ======================
+     GRACIAS
+====================== -->
+
 <div
  id="overlayGracias"
  class="overlay">
 
- <h1>❤️ Gracias</h1>
+ <h1>
+  ❤️ Gracias
+ </h1>
 
  <p
-  style="
-  max-width:700px;
-  text-align:center;
-  line-height:2;
-  font-size:22px;">
+ style="
+ max-width:700px;
+ text-align:center;
+ line-height:2;
+ font-size:22px;">
 
   Gracias por acompañarme
   en una noche inolvidable.
@@ -496,16 +625,24 @@ body{
  <div
   class="boton"
   onclick="cerrarGracias()">
+
   Cerrar
+
  </div>
 
 </div>
+
+<!-- ======================
+     GALERIA
+====================== -->
 
 <div
  id="overlayGaleria"
  class="overlay">
 
- <h1>📸 Galería</h1>
+ <h1>
+  📸 Galería
+ </h1>
 
  <div
   id="galeria"
@@ -517,10 +654,16 @@ body{
  <div
   class="boton"
   onclick="cerrarGaleria()">
+
   Cerrar
+
  </div>
 
 </div>
+
+<!-- ======================
+     VISOR DE FOTOS
+====================== -->
 
 <div
  id="viewer"
@@ -529,7 +672,9 @@ body{
  <div
   class="nav prev"
   onclick="anterior()">
+
   ❮
+
  </div>
 
  <img id="viewerImage">
@@ -537,18 +682,24 @@ body{
  <div
   class="nav next"
   onclick="siguiente()">
+
   ❯
+
  </div>
 
  <div
   class="close"
   onclick="cerrarViewer()">
+
   ✕
+
  </div>
 
 </div>
 
-<!-- MUSICA PRINCIPAL -->
+<!-- ======================
+     MUSICA PRINCIPAL
+====================== -->
 
 <audio
  id="player"
@@ -561,7 +712,9 @@ body{
 
 </audio>
 
-<!-- MUSICA GALERIA -->
+<!-- ======================
+     MUSICA GALERIA
+====================== -->
 
 <audio
  id="audioGaleria"
@@ -573,10 +726,14 @@ body{
 
 </audio>
 
-<!-- BOTON MUSICA -->
+<!-- ======================
+     BOTON MUSICA
+====================== -->
 
 <div id="btnMusica">
+
  🔈
+
 </div>
 
 <script>
@@ -596,7 +753,7 @@ function cerrarPopup(){
 }
 
 /* ======================
-   CARRUSEL
+   CARRUSEL DEFINITIVO
 ====================== */
 
 let slide = 0;
@@ -606,11 +763,12 @@ document.querySelectorAll(
  ".carousel img"
 );
 
-setInterval(()=>{
+function cambiarSlide(){
 
  slides[slide]
- .classList
- .remove("active");
+ .classList.remove(
+  "active"
+ );
 
  slide =
  (slide + 1)
@@ -618,10 +776,28 @@ setInterval(()=>{
  slides.length;
 
  slides[slide]
- .classList
- .add("active");
+ .classList.add(
+  "active"
+ );
 
-},4000);
+}
+
+/*
+  8 segundos:
+
+  0-6 seg
+  zoom out
+
+  6-8 seg
+  foto completa
+
+  luego cambia
+*/
+
+setInterval(
+ cambiarSlide,
+ 8000
+);
 
 /* ======================
    MENSAJE GRACIAS
@@ -633,7 +809,8 @@ function abrirGracias(){
  .getElementById(
  "overlayGracias"
  )
- .style.display="flex";
+ .style.display =
+ "flex";
 
 }
 
@@ -643,12 +820,13 @@ function cerrarGracias(){
  .getElementById(
  "overlayGracias"
  )
- .style.display="none";
+ .style.display =
+ "none";
 
 }
 
 /* ======================
-   GALERIA + MUSICA2
+   GALERIA
 ====================== */
 
 function abrirGaleria(){
@@ -657,7 +835,8 @@ function abrirGaleria(){
  .getElementById(
  "overlayGaleria"
  )
- .style.display="flex";
+ .style.display =
+ "flex";
 
  const audioGaleria =
  document.getElementById(
@@ -665,6 +844,7 @@ function abrirGaleria(){
  );
 
  audioGaleria.pause();
+
  audioGaleria.currentTime = 0;
 
  audioGaleria.play()
@@ -682,7 +862,8 @@ function cerrarGaleria(){
  .getElementById(
  "overlayGaleria"
  )
- .style.display="none";
+ .style.display =
+ "none";
 
  const audioGaleria =
  document.getElementById(
@@ -690,6 +871,7 @@ function cerrarGaleria(){
  );
 
  audioGaleria.pause();
+
  audioGaleria.currentTime = 0;
 
 }
@@ -700,12 +882,12 @@ function cerrarGaleria(){
 
 const player =
 document.getElementById(
-"player"
+ "player"
 );
 
 const btnMusica =
 document.getElementById(
-"btnMusica"
+ "btnMusica"
 );
 
 async function iniciarMusica(){
@@ -718,14 +900,13 @@ async function iniciarMusica(){
   "🔊";
 
   btnMusica.classList.add(
-  "activo"
+   "activo"
   );
 
  }catch(error){
 
   console.log(
-  "Error audio:",
-  error
+   error
   );
 
  }
@@ -740,16 +921,19 @@ function pausarMusica(){
  "🔈";
 
  btnMusica.classList.remove(
- "activo"
+  "activo"
  );
 
 }
 
 btnMusica.addEventListener(
  "click",
+
  ()=>{
 
-  if(player.paused){
+  if(
+   player.paused
+  ){
 
    iniciarMusica();
 
@@ -760,61 +944,70 @@ btnMusica.addEventListener(
   }
 
  }
+
 );
 
 player.addEventListener(
  "play",
+
  ()=>{
 
   btnMusica.innerHTML =
   "🔊";
 
   btnMusica.classList.add(
-  "activo"
+   "activo"
   );
 
  }
+
 );
 
 player.addEventListener(
  "pause",
+
  ()=>{
 
   btnMusica.innerHTML =
   "🔈";
 
   btnMusica.classList.remove(
-  "activo"
+   "activo"
   );
 
  }
+
 );
 
 player.addEventListener(
  "error",
+
  ()=>{
 
   console.error(
-  "No se encuentra musica.mp3"
+   "No se encuentra musica.mp3"
   );
 
  }
+
 );
 
 const audioGaleria =
 document.getElementById(
-"audioGaleria"
+ "audioGaleria"
 );
 
 audioGaleria.addEventListener(
  "error",
+
  ()=>{
 
   console.error(
-  "No se encuentra musica2.mp3"
+   "No se encuentra musica2.mp3"
   );
 
  }
+
 );
 
 /* ======================
@@ -823,17 +1016,24 @@ audioGaleria.addEventListener(
 
 const contenedor =
 document.getElementById(
-"galeria"
+ "galeria"
 );
 
 const fotos = [];
 
-for(let i = 1; i <= 45; i++){
+for(
+ let i = 1;
+ i <= 45;
+ i++
+){
 
  const img =
- document.createElement("img");
+ document.createElement(
+  "img"
+ );
 
- img.loading = "lazy";
+ img.loading =
+ "lazy";
 
  img.src =
  `fotos/fiesta${i}.jpg`;
@@ -841,15 +1041,22 @@ for(let i = 1; i <= 45; i++){
  img.alt =
  `Foto ${i}`;
 
- img.onclick = ()=>{
+ img.onclick =
+ ()=>{
 
-  abrirViewer(i - 1);
+  abrirViewer(
+   i - 1
+  );
 
  };
 
- contenedor.appendChild(img);
+ contenedor.appendChild(
+  img
+ );
 
- fotos.push(img.src);
+ fotos.push(
+  img.src
+ );
 
 }
 
@@ -859,20 +1066,23 @@ for(let i = 1; i <= 45; i++){
 
 let fotoActual = 0;
 
-function abrirViewer(indice){
+function abrirViewer(
+ indice
+){
 
- fotoActual = indice;
+ fotoActual =
+ indice;
 
  document
  .getElementById(
- "viewerImage"
+  "viewerImage"
  )
  .src =
  fotos[fotoActual];
 
  document
  .getElementById(
- "viewer"
+  "viewer"
  )
  .style.display =
  "flex";
@@ -883,7 +1093,7 @@ function cerrarViewer(){
 
  document
  .getElementById(
- "viewer"
+  "viewer"
  )
  .style.display =
  "none";
@@ -895,7 +1105,8 @@ function siguiente(){
  fotoActual++;
 
  if(
-  fotoActual >= fotos.length
+  fotoActual >=
+  fotos.length
  ){
 
   fotoActual = 0;
@@ -904,7 +1115,7 @@ function siguiente(){
 
  document
  .getElementById(
- "viewerImage"
+  "viewerImage"
  )
  .src =
  fotos[fotoActual];
@@ -926,7 +1137,7 @@ function anterior(){
 
  document
  .getElementById(
- "viewerImage"
+  "viewerImage"
  )
  .src =
  fotos[fotoActual];
@@ -937,85 +1148,97 @@ function anterior(){
    TECLADO
 ====================== */
 
-document
-.addEventListener(
-"keydown",
-function(e){
+document.addEventListener(
+ "keydown",
 
- if(
-
-  document
-  .getElementById(
-   "viewer"
-  )
-  .style.display
-
-  ===
-
-  "flex"
-
- ){
+ function(e){
 
   if(
-   e.key ===
-   "ArrowRight"
-  ){
-   siguiente();
-  }
 
-  if(
-   e.key ===
-   "ArrowLeft"
+   document
+   .getElementById(
+    "viewer"
+   )
+   .style.display
+
+   ===
+
+   "flex"
+
   ){
-   anterior();
+
+   if(
+    e.key ===
+    "ArrowRight"
+   ){
+
+    siguiente();
+
+   }
+
+   if(
+    e.key ===
+    "ArrowLeft"
+   ){
+
+    anterior();
+
+   }
+
+   if(
+    e.key ===
+    "Escape"
+   ){
+
+    cerrarViewer();
+
+   }
+
   }
 
   if(
    e.key ===
    "Escape"
   ){
+
    cerrarViewer();
+
+   cerrarGaleria();
+
+   cerrarGracias();
+
   }
 
  }
 
- if(
-  e.key ===
-  "Escape"
- ){
-
-  cerrarViewer();
-  cerrarGaleria();
-  cerrarGracias();
-
- }
-
-}
 );
 
 /* ======================
-   CLICK FUERA
+   CLICK FUERA DEL VISOR
 ====================== */
 
 document
 .getElementById(
-"viewer"
+ "viewer"
 )
 .addEventListener(
-"click",
-function(e){
 
- if(
-  e.target.id
-  ===
-  "viewer"
- ){
+ "click",
 
-  cerrarViewer();
+ function(e){
+
+  if(
+   e.target.id
+   ===
+   "viewer"
+  ){
+
+   cerrarViewer();
+
+  }
 
  }
 
-}
 );
 
 /* ======================
@@ -1023,11 +1246,14 @@ function(e){
 ====================== */
 
 document.addEventListener(
+
  "click",
 
  function iniciarAudio(){
 
-  if(player.paused){
+  if(
+   player.paused
+  ){
 
    iniciarMusica();
 
@@ -1045,10 +1271,11 @@ document.addEventListener(
 );
 
 /* ======================
-   PRELOAD IMAGENES
+   PRECARGA IMAGENES
 ====================== */
 
 window.addEventListener(
+
  "load",
 
  ()=>{
@@ -1071,7 +1298,9 @@ window.addEventListener(
    img.src =
    `img${i}.jpg`;
 
-   precarga.push(img);
+   precarga.push(
+    img
+   );
 
   }
 
@@ -1079,9 +1308,14 @@ window.addEventListener(
 
 );
 
+/* ======================
+   FIN SCRIPT
+====================== */
+
 </script>
 
 </body>
+
 </html>
 
 
