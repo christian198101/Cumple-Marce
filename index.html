@@ -566,25 +566,71 @@ body{
 
  </div>
 
- <div class="col">
+<div class="col">
 
-  <a
-   class="boton"
-   href="https://wa.me/59899164492?text=Hola">
+    <div
+     class="boton"
+     onclick="abrirVideos()">
+     🎬 Ver Vídeos
+    </div>
 
-   📱 WhatsApp
+    <a
+     class="boton"
+     href="https://wa.me/59899164492?text=Hola">
+     📱 WhatsApp
+    </a>
 
-  </a>
+    <a
+     class="boton"
+     href="https://drive.google.com"
+     target="_blank">
+     📤 Subir Fotos
+    </a>
 
-  <a
-   class="boton"
-   href="https://drive.google.com"
-   target="_blank">
+</div>
 
-   📤 Subir Fotos
+<!-- ======================
+     VIDEOS
+====================== -->
 
-  </a>
+<div
+ id="overlayVideos"
+ class="overlay">
 
+ <h1>
+  🎬 Vídeos
+ </h1>
+
+ <div
+  style="
+  width:100%;
+  max-width:1000px;
+  display:grid;
+  grid-template-columns:
+  repeat(auto-fit,minmax(300px,1fr));
+  gap:20px;
+  margin-top:20px;">
+
+  <video controls style="width:100%;border-radius:12px;">
+   videos/video1.mp4
+  </video>
+
+  <video controls style="width:100%;border-radius:12px;">
+   videos/video2.mp4
+  </video>
+
+  <video controls style="width:100%;border-radius:12px;">
+   videos/video3.mp4
+  </video>
+
+ </div>
+
+ <br>
+
+ <div
+  class="boton"
+  onclick="cerrarVideos()">
+  Cerrar
  </div>
 
 </div>
@@ -661,6 +707,7 @@ body{
 
 </div>
 
+
 <!-- ======================
      VISOR DE FOTOS
 ====================== -->
@@ -696,6 +743,7 @@ body{
  </div>
 
 </div>
+
 
 <!-- ======================
      MUSICA PRINCIPAL
@@ -873,6 +921,32 @@ function cerrarGaleria(){
  audioGaleria.pause();
 
  audioGaleria.currentTime = 0;
+
+}
+
+/* ======================
+   VIDEOS
+====================== */
+
+function abrirVideos(){
+
+ document
+ .getElementById(
+ "overlayVideos"
+ )
+ .style.display =
+ "flex";
+
+}
+
+function cerrarVideos(){
+
+ document
+ .getElementById(
+ "overlayVideos"
+ )
+ .style.display =
+ "none";
 
 }
 
@@ -1201,11 +1275,10 @@ document.addEventListener(
    "Escape"
   ){
 
-   cerrarViewer();
-
-   cerrarGaleria();
-
-   cerrarGracias();
+  cerrarViewer();
+cerrarGaleria();
+cerrarGracias();
+cerrarVideos();
 
   }
 
@@ -1317,8 +1390,6 @@ window.addEventListener(
 </body>
 
 </html>
-
-
 
 
 
