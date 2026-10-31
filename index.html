@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+content="width=device-width,initial-scale=1.0">
 
 <title>
 EL PENÚLTIMO BAILE - MIS 50
@@ -19,80 +19,109 @@ rel="stylesheet">
 <style>
 
 :root{
+
  --rosa:#ff00ff;
  --celeste:#00eaff;
  --blanco:#ffffff;
- --oscuro:#000000;
+ --negro:#000000;
+
 }
 
 *{
+
  margin:0;
  padding:0;
  box-sizing:border-box;
- font-family:'Quicksand',sans-serif;
+
+ font-family:
+ 'Quicksand',
+ sans-serif;
+
 }
 
 html,
 body{
+
  width:100%;
  height:100%;
+
 }
 
 body{
+
  background:#000;
  color:#fff;
+
  overflow:hidden;
+
 }
 
 /* ======================
-   CARRUSEL
+   CARRUSEL FULLSCREEN
 ====================== */
 
 .carousel{
+
  position:fixed;
+
  inset:0;
+
  width:100%;
  height:100vh;
+
  overflow:hidden;
+
  z-index:-1;
+
  background:#000;
+
 }
 
 .carousel img{
+
  position:absolute;
+
  inset:0;
 
  width:100%;
  height:100%;
 
- object-fit:contain;
-
  background:#000;
+
+ object-fit:contain;
 
  opacity:0;
 
  transform:scale(1.60);
 
  transition:
-  opacity 2s ease,
-  transform 10s linear;
+ opacity 2s ease,
+ transform 10s linear;
+
 }
 
 .carousel img.active{
+
  opacity:1;
+
  transform:scale(1);
+
 }
 
 .carousel::after{
+
  content:"";
+
  position:absolute;
+
  inset:0;
 
  background:
  linear-gradient(
-  rgba(0,0,0,.15),
-  rgba(0,0,0,.75)
+ rgba(0,0,0,.10),
+ rgba(0,0,0,.75)
  );
+
 }
 
 /* ======================
@@ -100,9 +129,13 @@ body{
 ====================== */
 
 .header{
+
  position:absolute;
+
  top:25px;
+
  left:0;
+
  width:100%;
 
  text-align:center;
@@ -110,12 +143,17 @@ body{
  z-index:100;
 
  padding:0 20px;
+
 }
 
 .header h1{
 
  font-size:
- clamp(38px,8vw,90px);
+ clamp(
+  38px,
+  8vw,
+  95px
+ );
 
  text-shadow:
  0 0 10px var(--celeste),
@@ -130,17 +168,17 @@ body{
 .header h2{
 
  font-size:
- clamp(20px,4vw,40px);
+ clamp(
+ 20px,
+ 4vw,
+ 40px
+ );
 
  margin-top:-8px;
 
  color:#fff;
 
 }
-
-/* ======================
-   EFECTO TITULO
-====================== */
 
 @keyframes brillo{
 
@@ -171,6 +209,7 @@ body{
  width:100%;
 
  display:flex;
+
  justify-content:center;
 
  gap:40px;
@@ -180,10 +219,18 @@ body{
 }
 
 .col{
+
  display:flex;
+
  flex-direction:column;
+
  align-items:center;
+
 }
+
+/* ======================
+   BOTONES
+====================== */
 
 .boton{
 
@@ -193,7 +240,7 @@ body{
 
  margin:10px;
 
- border-radius:14px;
+ border-radius:16px;
 
  text-decoration:none;
 
@@ -203,15 +250,17 @@ body{
 
  font-size:20px;
 
- font-weight:bold;
+ font-weight:700;
 
  background:
  rgba(255,255,255,.02);
 
- border:1px solid
+ border:
+ 1px solid
  rgba(255,255,255,.10);
 
- backdrop-filter:blur(12px);
+ backdrop-filter:
+ blur(12px);
 
  cursor:pointer;
 
@@ -221,7 +270,8 @@ body{
 
 .boton:hover{
 
- transform:translateY(-3px);
+ transform:
+ translateY(-3px);
 
  box-shadow:
  0 0 10px #ff00ff,
@@ -233,6 +283,7 @@ body{
 .popup{
 
  position:fixed;
+
  inset:0;
 
  display:flex;
@@ -270,16 +321,21 @@ body{
 }
 
 .popup-box h1{
+
  margin-bottom:20px;
+
 }
 
 .popup-box p{
+
  line-height:1.8;
+
 }
 
 .overlay{
 
  position:fixed;
+
  inset:0;
 
  display:none;
@@ -288,18 +344,25 @@ body{
  align-items:center;
  flex-direction:column;
 
+ padding:20px;
+
+ overflow-y:auto;
+
  background:
  rgba(0,0,0,.95);
-
- padding:20px;
 
  z-index:999999;
 
 }
 
+/* ======================
+   GALERIA
+====================== */
+
 .galeria{
 
  width:100%;
+
  max-width:1200px;
 
  max-height:70vh;
@@ -320,11 +383,12 @@ body{
 .galeria img{
 
  width:100%;
+
  height:140px;
 
  object-fit:cover;
 
- border-radius:10px;
+ border-radius:12px;
 
  border:2px solid #ff00ff;
 
@@ -340,17 +404,22 @@ body{
 
 }
 
-.viewer{
+/* ======================
+   VISOR
+====================== */
 
- position:fixed;
- inset:0;
+.viewer{
 
  display:none;
 
- justify-content:center;
- align-items:center;
+ position:fixed;
+
+ inset:0;
 
  background:#000;
+
+ justify-content:center;
+ align-items:center;
 
  z-index:9999999;
 
@@ -359,6 +428,7 @@ body{
 .viewer img{
 
  max-width:95%;
+
  max-height:90vh;
 
  object-fit:contain;
@@ -371,9 +441,9 @@ body{
 
  position:absolute;
 
- font-size:60px;
+ color:#fff;
 
- color:white;
+ font-size:60px;
 
  cursor:pointer;
 
@@ -403,10 +473,82 @@ body{
 
  cursor:pointer;
 
+ color:#fff;
+
 }
 
 /* ======================
-   BOTON MUSICA
+   VIDEOS
+====================== */
+
+.videos-grid{
+
+ width:100%;
+
+ max-width:1200px;
+
+ display:grid;
+
+ grid-template-columns:
+ repeat(3,1fr);
+
+ gap:20px;
+
+ margin-top:20px;
+
+}
+
+.videos-grid video{
+
+ width:100%;
+
+ border-radius:12px;
+
+ background:#000;
+
+}
+
+/* ======================
+   CERRAR VIDEOS
+====================== */
+
+.close-video{
+
+ position:fixed;
+
+ top:15px;
+ right:15px;
+
+ width:54px;
+ height:54px;
+
+ border-radius:50%;
+
+ display:flex;
+ justify-content:center;
+ align-items:center;
+
+ background:
+ rgba(0,0,0,.6);
+
+ color:#fff;
+
+ font-size:30px;
+
+ cursor:pointer;
+
+ z-index:99999999;
+
+ backdrop-filter:
+ blur(10px);
+
+ border:
+ 1px solid rgba(255,255,255,.2);
+
+}
+
+/* ======================
+   MUSICA
 ====================== */
 
 #btnMusica{
@@ -452,7 +594,7 @@ body{
 }
 
 /* ======================
-   MOVILES
+   MOVILES PREMIUM
 ====================== */
 
 @media(max-width:768px){
@@ -461,20 +603,33 @@ body{
   overflow:hidden;
  }
 
+ /* TITULO */
+
  .header{
+
   top:10px;
+
   padding:0 15px;
+
  }
 
  .header h1{
+
   font-size:32px;
+
   line-height:1.05;
+
  }
 
  .header h2{
+
   font-size:18px;
+
   margin-top:5px;
+
  }
+
+ /* MENU */
 
  .menu{
 
@@ -493,8 +648,12 @@ body{
  }
 
  .col{
+
   width:100%;
+
  }
+
+ /* BOTONES ULTRA TRANSPARENTES */
 
  .boton{
 
@@ -506,38 +665,117 @@ body{
 
   font-size:18px;
 
+  background:
+  rgba(255,255,255,.004);
+
+  border:
+  1px solid
+  rgba(255,255,255,.05);
+
+  backdrop-filter:
+  blur(6px);
+
  }
 
+ .boton:active{
+
+  transform:
+  scale(.98);
+
+  background:
+  rgba(255,255,255,.08);
+
+ }
+
+ /* GALERIA */
+
  .galeria{
+
   grid-template-columns:
-  repeat(auto-fill,minmax(95px,1fr));
+  repeat(
+   auto-fill,
+   minmax(95px,1fr)
+  );
+
  }
 
  .galeria img{
+
   height:95px;
+
  }
 
+ /* VISOR */
+
  .viewer img{
+
   width:100%;
+
   max-height:88vh;
+
  }
 
  .nav{
-  font-size:38px;
+
+  font-size:40px;
+
+ }
+
+ .prev{
+  left:10px;
+ }
+
+ .next{
+  right:10px;
  }
 
  .close{
+
   font-size:34px;
+
  }
+
+ /* VIDEOS */
+
+ .videos-grid{
+
+  grid-template-columns:
+  1fr;
+
+  width:100%;
+
+  max-width:550px;
+
+ }
+
+ .videos-grid video{
+
+  width:100%;
+
+  max-height:40vh;
+
+ }
+
+ .close-video{
+
+  width:48px;
+  height:48px;
+
+  font-size:24px;
+
+ }
+
+ /* MUSICA */
 
  #btnMusica{
 
-  width:54px;
-  height:54px;
+  width:52px;
+  height:52px;
 
   font-size:22px;
 
  }
+
 }
 
 </style>
@@ -547,7 +785,7 @@ body{
 <body>
 
 <!-- ======================
-     POPUP
+     POPUP INICIAL
 ====================== -->
 
 <div
@@ -558,12 +796,14 @@ body{
   class="popup-box">
 
   <h1>
+
    🎉 Gracias por formar parte
+
   </h1>
 
   <p>
 
-   La fiesta terminó
+   La fiesta terminó,
    pero los recuerdos
    quedan para siempre.
 
@@ -593,17 +833,21 @@ body{
 </div>
 
 <!-- ======================
-     TITULO
+     CABECERA
 ====================== -->
 
 <div class="header">
 
  <h1>
+
   EL PENÚLTIMO BAILE
+
  </h1>
 
  <h2>
+
   Llegaron Mis 50
+
  </h2>
 
 </div>
@@ -616,25 +860,20 @@ body{
 
  <img
   src="img1.jpg"
-  class="active"
-  alt="Imagen 1">
+  class="active">
 
  <img
-  src="img2.jpg"
-  alt="Imagen 2">
+  src="img2.jpg">
 
  <img
-  src="img3.jpg"
-  alt="Imagen 3">
+  src="img3.jpg">
 
  <img
-  src="img4.jpg"
-  alt="Imagen 4">
+  src="img4.jpg">
 
 </div>
-
 <!-- ======================
-     MENU
+     MENU PRINCIPAL
 ====================== -->
 
 <div class="menu">
@@ -671,7 +910,7 @@ body{
 
   <a
    class="boton"
-   href="https://wa.me/59899164492?text=Hola"
+   href="https://wa.me/59899164492?text=Hola%20Christian"
    target="_blank">
 
    📱 WhatsApp
@@ -699,27 +938,26 @@ body{
  id="overlayVideos"
  class="overlay">
 
+ <div
+  class="close-video"
+  onclick="cerrarVideos()">
+
+  ✕
+
+ </div>
+
  <h1>
+
   🎬 Vídeos
+
  </h1>
 
- <div
-  style="
-  width:100%;
-  max-width:1000px;
-  display:grid;
-  grid-template-columns:
-  repeat(auto-fit,minmax(300px,1fr));
-  gap:20px;
-  margin-top:20px;">
+ <div class="videos-grid">
 
   <video
    controls
    playsinline
-   preload="metadata"
-   style="
-   width:100%;
-   border-radius:12px;">
+   preload="metadata">
 
    <source
     src="videos/video1.mp4"
@@ -730,10 +968,7 @@ body{
   <video
    controls
    playsinline
-   preload="metadata"
-   style="
-   width:100%;
-   border-radius:12px;">
+   preload="metadata">
 
    <source
     src="videos/video2.mp4"
@@ -744,26 +979,13 @@ body{
   <video
    controls
    playsinline
-   preload="metadata"
-   style="
-   width:100%;
-   border-radius:12px;">
+   preload="metadata">
 
    <source
     src="videos/video3.mp4"
     type="video/mp4">
 
   </video>
-
- </div>
-
- <br>
-
- <div
-  class="boton"
-  onclick="cerrarVideos()">
-
-  Cerrar
 
  </div>
 
@@ -778,14 +1000,16 @@ body{
  class="overlay">
 
  <h1>
+
   ❤️ Gracias
+
  </h1>
 
  <p
   style="
   max-width:700px;
-  text-align:center;
   line-height:2;
+  text-align:center;
   font-size:22px;">
 
   Gracias por acompañarme
@@ -821,7 +1045,9 @@ body{
  class="overlay">
 
  <h1>
+
   📸 Galería
+
  </h1>
 
  <div
@@ -841,9 +1067,8 @@ body{
  </div>
 
 </div>
-
 <!-- ======================
-     VISOR
+     VISOR DE FOTOS
 ====================== -->
 
 <div
@@ -881,7 +1106,7 @@ body{
 </div>
 
 <!-- ======================
-     AUDIOS
+     MUSICA PRINCIPAL
 ====================== -->
 
 <audio
@@ -895,6 +1120,10 @@ body{
 
 </audio>
 
+<!-- ======================
+     MUSICA GALERIA
+====================== -->
+
 <audio
  id="audioGaleria"
  preload="auto">
@@ -905,8 +1134,14 @@ body{
 
 </audio>
 
+<!-- ======================
+     BOTON MUSICA
+====================== -->
+
 <div id="btnMusica">
+
  🔈
+
 </div>
 
 <script>
@@ -998,85 +1233,7 @@ function cerrarGracias(){
 }
 
 /* ======================
-   GALERIA
-====================== */
-
-function abrirGaleria(){
-
- document
- .getElementById(
- "overlayGaleria"
- )
- .style.display =
- "flex";
-
- player.pause();
-
- audioGaleria.pause();
- audioGaleria.currentTime = 0;
-
- audioGaleria.play()
- .catch(err=>{
-  console.log(err);
- });
-
-}
-
-function cerrarGaleria(){
-
- document
- .getElementById(
- "overlayGaleria"
- )
- .style.display =
- "none";
-
- audioGaleria.pause();
- audioGaleria.currentTime = 0;
-
- if(player.paused){
-  iniciarMusica();
- }
-
-}
-
-/* ======================
-   VIDEOS
-====================== */
-
-function abrirVideos(){
-
- document
- .getElementById(
- "overlayVideos"
- )
- .style.display =
- "flex";
-
- audioGaleria.pause();
- audioGaleria.currentTime = 0;
-
- player.pause();
-
-}
-
-function cerrarVideos(){
-
- document
- .getElementById(
- "overlayVideos"
- )
- .style.display =
- "none";
-
- if(player.paused){
-  iniciarMusica();
- }
-
-}
-
-/* ======================
-   MUSICA
+   ELEMENTOS
 ====================== */
 
 const player =
@@ -1094,6 +1251,10 @@ document.getElementById(
  "btnMusica"
 );
 
+/* ======================
+   MUSICA
+====================== */
+
 async function iniciarMusica(){
 
  try{
@@ -1107,9 +1268,9 @@ async function iniciarMusica(){
    "activo"
   );
 
- }catch(e){
+ }catch(error){
 
-  console.log(e);
+  console.log(error);
 
  }
 
@@ -1146,7 +1307,104 @@ btnMusica.addEventListener(
 );
 
 /* ======================
-   GALERIA DINAMICA
+   GALERIA
+====================== */
+
+function abrirGaleria(){
+
+ document
+ .getElementById(
+ "overlayGaleria"
+ )
+ .style.display =
+ "flex";
+
+ player.pause();
+
+ audioGaleria.pause();
+
+ audioGaleria.currentTime = 0;
+
+ audioGaleria.play()
+ .catch(error=>{
+  console.log(error);
+ });
+
+}
+
+function cerrarGaleria(){
+
+ document
+ .getElementById(
+ "overlayGaleria"
+ )
+ .style.display =
+ "none";
+
+ audioGaleria.pause();
+
+ audioGaleria.currentTime = 0;
+
+ if(player.paused){
+
+  iniciarMusica();
+
+ }
+
+}
+
+/* ======================
+   VIDEOS
+====================== */
+
+function abrirVideos(){
+
+ document
+ .getElementById(
+ "overlayVideos"
+ )
+ .style.display =
+ "flex";
+
+ audioGaleria.pause();
+
+ audioGaleria.currentTime = 0;
+
+ player.pause();
+
+}
+
+function cerrarVideos(){
+
+ document
+ .getElementById(
+ "overlayVideos"
+ )
+ .style.display =
+ "none";
+
+ document
+ .querySelectorAll(
+ "#overlayVideos video"
+ )
+ .forEach(video=>{
+
+  video.pause();
+
+  video.currentTime = 0;
+
+ });
+
+ if(player.paused){
+
+  iniciarMusica();
+
+ }
+
+}
+
+/* ======================
+   CREAR GALERIA
 ====================== */
 
 const contenedor =
@@ -1182,7 +1440,9 @@ for(
  contenedor
  .appendChild(img);
 
- fotos.push(img.src);
+ fotos.push(
+  img.src
+ );
 
 }
 
@@ -1271,7 +1531,9 @@ function anterior(){
 ====================== */
 
 document.addEventListener(
+
  "keydown",
+
  function(e){
 
   const viewer =
@@ -1280,24 +1542,28 @@ document.addEventListener(
   );
 
   if(
-   viewer.style.display ===
+   viewer.style.display
+   ===
    "flex"
   ){
 
    if(
-    e.key==="ArrowRight"
+    e.key ===
+    "ArrowRight"
    ){
     siguiente();
    }
 
    if(
-    e.key==="ArrowLeft"
+    e.key ===
+    "ArrowLeft"
    ){
     anterior();
    }
 
    if(
-    e.key==="Escape"
+    e.key ===
+    "Escape"
    ){
     cerrarViewer();
    }
@@ -1305,7 +1571,8 @@ document.addEventListener(
   }
 
   if(
-   e.key==="Escape"
+   e.key ===
+   "Escape"
   ){
 
    cerrarViewer();
@@ -1316,6 +1583,7 @@ document.addEventListener(
   }
 
  }
+
 );
 
 /* ======================
@@ -1327,17 +1595,23 @@ document
  "viewer"
 )
 .addEventListener(
+
  "click",
+
  function(e){
 
   if(
-   e.target.id===
+   e.target.id
+   ===
    "viewer"
   ){
+
    cerrarViewer();
+
   }
 
  }
+
 );
 
 /* ======================
@@ -1352,11 +1626,13 @@ document
  overlay=>{
 
   overlay.addEventListener(
+
    "click",
+
    e=>{
 
     if(
-     e.target===
+     e.target ===
      overlay
     ){
 
@@ -1367,6 +1643,7 @@ document
     }
 
    }
+
   );
 
  }
@@ -1377,7 +1654,9 @@ document
 ====================== */
 
 player.addEventListener(
+
  "play",
+
  ()=>{
 
   btnMusica.textContent =
@@ -1388,10 +1667,13 @@ player.addEventListener(
   );
 
  }
+
 );
 
 player.addEventListener(
+
  "pause",
+
  ()=>{
 
   btnMusica.textContent =
@@ -1402,10 +1684,38 @@ player.addEventListener(
   );
 
  }
+
 );
 
+player.addEventListener(
+
+ "error",
+
+ ()=>{
+
+  console.warn(
+   "musica.mp3 no encontrada"
+  );
+
+ }
+
+);
+
+audioGaleria.addEventListener(
+
+ "error",
+
+ ()=>{
+
+  console.warn(
+   "musica2.mp3 no encontrada"
+  );
+
+ }
+
+);
 /* ======================
-   INICIO AUDIO
+   INICIO AUTOMATICO
 ====================== */
 
 document.addEventListener(
@@ -1424,7 +1734,7 @@ document.addEventListener(
 
  },
 
- {once:true}
+ { once:true }
 
 );
 
@@ -1438,6 +1748,8 @@ window.addEventListener(
 
  ()=>{
 
+  const precarga = [];
+
   for(
    let i=1;
    i<=4;
@@ -1450,6 +1762,10 @@ window.addEventListener(
    img.src =
    `img${i}.jpg`;
 
+   precarga.push(
+    img
+   );
+
   }
 
  }
@@ -1461,10 +1777,64 @@ window.addEventListener(
 ====================== */
 
 document.addEventListener(
+
  "touchstart",
+
  ()=>{},
- {passive:true}
+
+ { passive:true }
+
 );
+
+/* ======================
+   MEJORA VISOR MOVIL
+====================== */
+
+document.addEventListener(
+
+ "touchend",
+
+ function(e){
+
+  const viewer =
+  document.getElementById(
+   "viewer"
+  );
+
+  if(
+   viewer.style.display
+   !==
+   "flex"
+  ){
+   return;
+  }
+
+ }
+
+);
+
+/* ======================
+   CONTROL VIDEOS
+====================== */
+
+document
+.querySelectorAll(
+ "#overlayVideos video"
+)
+.forEach(video=>{
+
+ video.addEventListener(
+  "play",
+  ()=>{
+
+   player.pause();
+
+   audioGaleria.pause();
+
+  }
+ );
+
+});
 
 /* ======================
    FIN SCRIPT
