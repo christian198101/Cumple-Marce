@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 
 <meta charset="UTF-8">
@@ -21,6 +22,7 @@ rel="stylesheet">
  --rosa:#ff00ff;
  --celeste:#00eaff;
  --blanco:#ffffff;
+ --oscuro:#000000;
 }
 
 *{
@@ -30,6 +32,12 @@ rel="stylesheet">
  font-family:'Quicksand',sans-serif;
 }
 
+html,
+body{
+ width:100%;
+ height:100%;
+}
+
 body{
  background:#000;
  color:#fff;
@@ -37,7 +45,7 @@ body{
 }
 
 /* ======================
-   CARRUSEL PRINCIPAL
+   CARRUSEL
 ====================== */
 
 .carousel{
@@ -47,10 +55,10 @@ body{
  height:100vh;
  overflow:hidden;
  z-index:-1;
+ background:#000;
 }
 
 .carousel img{
-
  position:absolute;
  inset:0;
 
@@ -63,36 +71,28 @@ body{
 
  opacity:0;
 
- transform:scale(1.25);
+ transform:scale(1.60);
 
  transition:
- opacity 1.5s ease,
- transform 8s linear;
-
+  opacity 2s ease,
+  transform 10s linear;
 }
 
 .carousel img.active{
-
  opacity:1;
-
  transform:scale(1);
-
 }
 
 .carousel::after{
-
  content:"";
-
  position:absolute;
-
  inset:0;
 
  background:
  linear-gradient(
- rgba(0,0,0,.15),
- rgba(0,0,0,.75)
+  rgba(0,0,0,.15),
+  rgba(0,0,0,.75)
  );
-
 }
 
 /* ======================
@@ -100,25 +100,22 @@ body{
 ====================== */
 
 .header{
-
  position:absolute;
-
- top:30px;
-
+ top:25px;
+ left:0;
  width:100%;
 
  text-align:center;
 
- z-index:10;
+ z-index:100;
 
  padding:0 20px;
-
 }
 
 .header h1{
 
  font-size:
- clamp(40px,8vw,90px);
+ clamp(38px,8vw,90px);
 
  text-shadow:
  0 0 10px var(--celeste),
@@ -135,15 +132,29 @@ body{
  font-size:
  clamp(20px,4vw,40px);
 
- margin-top:-10px;
+ margin-top:-8px;
+
+ color:#fff;
 
 }
 
+/* ======================
+   EFECTO TITULO
+====================== */
+
 @keyframes brillo{
 
- 0%{opacity:.8;}
- 50%{opacity:1;}
- 100%{opacity:.8;}
+ 0%{
+  opacity:.8;
+ }
+
+ 50%{
+  opacity:1;
+ }
+
+ 100%{
+  opacity:.8;
+ }
 
 }
 
@@ -155,23 +166,23 @@ body{
 
  position:absolute;
 
- bottom:30px;
+ bottom:25px;
 
  width:100%;
 
  display:flex;
-
  justify-content:center;
 
- gap:50px;
+ gap:40px;
 
- z-index:20;
+ z-index:100;
 
 }
 
 .col{
  display:flex;
  flex-direction:column;
+ align-items:center;
 }
 
 .boton{
@@ -182,7 +193,7 @@ body{
 
  margin:10px;
 
- border-radius:12px;
+ border-radius:14px;
 
  text-decoration:none;
 
@@ -195,16 +206,16 @@ body{
  font-weight:bold;
 
  background:
- rgba(255,255,255,.04);
-
- backdrop-filter:blur(10px);
+ rgba(255,255,255,.02);
 
  border:1px solid
- rgba(255,255,255,.2);
+ rgba(255,255,255,.10);
+
+ backdrop-filter:blur(12px);
 
  cursor:pointer;
 
- transition:.3s;
+ transition:.35s;
 
 }
 
@@ -215,32 +226,47 @@ body{
  box-shadow:
  0 0 10px #ff00ff,
  0 0 20px #ff00ff,
- 0 0 50px #00eaff;
+ 0 0 40px #00eaff;
 
 }
 
 .popup{
+
  position:fixed;
  inset:0;
+
  display:flex;
  justify-content:center;
  align-items:center;
- background:rgba(0,0,0,.92);
+
+ background:
+ rgba(0,0,0,.92);
+
  z-index:999999;
+
  transition:.5s;
+
 }
 
 .popup-box{
+
  width:90%;
- max-width:500px;
+ max-width:520px;
+
  background:#111;
+
  padding:40px;
+
  border-radius:20px;
+
  text-align:center;
+
  border:2px solid #ff00ff;
+
  box-shadow:
  0 0 20px #ff00ff,
  0 0 60px #00eaff;
+
 }
 
 .popup-box h1{
@@ -252,69 +278,110 @@ body{
 }
 
 .overlay{
+
  position:fixed;
  inset:0;
- background:rgba(0,0,0,.95);
+
  display:none;
+
  justify-content:center;
  align-items:center;
  flex-direction:column;
+
+ background:
+ rgba(0,0,0,.95);
+
  padding:20px;
+
  z-index:999999;
+
 }
 
 .galeria{
+
  width:100%;
  max-width:1200px;
+
  max-height:70vh;
+
  overflow:auto;
+
  display:grid;
+
  grid-template-columns:
  repeat(auto-fill,minmax(140px,1fr));
- gap:10px;
+
+ gap:12px;
+
  margin-top:20px;
+
 }
 
 .galeria img{
+
  width:100%;
  height:140px;
+
  object-fit:cover;
+
  border-radius:10px;
+
  border:2px solid #ff00ff;
+
  cursor:pointer;
+
  transition:.3s;
+
 }
 
 .galeria img:hover{
+
  transform:scale(1.08);
+
 }
 
 .viewer{
- display:none;
+
  position:fixed;
  inset:0;
- background:black;
+
+ display:none;
+
  justify-content:center;
  align-items:center;
+
+ background:#000;
+
  z-index:9999999;
+
 }
 
 .viewer img{
+
  max-width:95%;
  max-height:90vh;
- border-radius:20px;
+
  object-fit:contain;
+
+ border-radius:20px;
+
 }
 
 .nav{
+
  position:absolute;
+
  font-size:60px;
- cursor:pointer;
- user-select:none;
+
  color:white;
+
+ cursor:pointer;
+
+ user-select:none;
+
  text-shadow:
- 0 0 10px #000,
- 0 0 20px #000;
+ 0 0 15px #000;
+
 }
 
 .prev{
@@ -326,97 +393,151 @@ body{
 }
 
 .close{
+
  position:absolute;
+
  top:20px;
  right:30px;
+
  font-size:40px;
+
  cursor:pointer;
+
 }
 
+/* ======================
+   BOTON MUSICA
+====================== */
+
 #btnMusica{
+
  position:fixed;
- top:20px;
- right:20px;
+
+ top:15px;
+ right:15px;
+
  width:60px;
  height:60px;
+
  border-radius:50%;
- background:#ff00ff;
+
  display:flex;
  justify-content:center;
  align-items:center;
+
  font-size:28px;
+
+ background:#ff00ff;
+
  cursor:pointer;
+
  z-index:999999;
+
  box-shadow:
  0 0 15px #ff00ff,
  0 0 30px #ff00ff;
- transition:.3s;
- user-select:none;
-}
 
-#btnMusica:hover{
- transform:scale(1.1);
+ transition:.3s;
+
 }
 
 #btnMusica.activo{
+
  background:#00eaff;
+
  box-shadow:
  0 0 15px #00eaff,
  0 0 40px #00eaff;
+
 }
+
+/* ======================
+   MOVILES
+====================== */
 
 @media(max-width:768px){
 
  body{
-  overflow:auto;
+  overflow:hidden;
  }
 
  .header{
-  top:15px;
+  top:10px;
+  padding:0 15px;
  }
 
  .header h1{
-  font-size:34px;
+  font-size:32px;
+  line-height:1.05;
  }
 
  .header h2{
-  font-size:20px;
+  font-size:18px;
   margin-top:5px;
  }
 
  .menu{
+
+  width:100%;
+
+  padding:0 10px;
+
+  bottom:10px;
+
   flex-direction:column;
+
   align-items:center;
+
   gap:0;
+
+ }
+
+ .col{
+  width:100%;
  }
 
  .boton{
-  width:90vw;
-  max-width:350px;
+
+  width:92vw;
+
+  max-width:420px;
+
+  padding:14px;
+
+  font-size:18px;
+
  }
 
  .galeria{
   grid-template-columns:
-  repeat(auto-fill,minmax(110px,1fr));
+  repeat(auto-fill,minmax(95px,1fr));
  }
 
  .galeria img{
-  height:110px;
+  height:95px;
  }
 
  .viewer img{
-  width:95%;
-  max-height:85vh;
+  width:100%;
+  max-height:88vh;
  }
 
  .nav{
-  font-size:42px;
+  font-size:38px;
  }
 
  .close{
   font-size:34px;
  }
 
+ #btnMusica{
+
+  width:54px;
+  height:54px;
+
+  font-size:22px;
+
+ }
 }
 
 </style>
@@ -425,22 +546,35 @@ body{
 
 <body>
 
-<div id="popup" class="popup">
+<!-- ======================
+     POPUP
+====================== -->
 
- <div class="popup-box">
+<div
+ id="popup"
+ class="popup">
 
-  <h1>🎉 Gracias por formar parte</h1>
+ <div
+  class="popup-box">
+
+  <h1>
+   🎉 Gracias por formar parte
+  </h1>
 
   <p>
 
-   La fiesta terminó,
+   La fiesta terminó
    pero los recuerdos
    quedan para siempre.
 
    <br><br>
 
-   Gracias por acompañarme en
-   <strong>El Penúltimo Baile</strong>
+   Gracias por acompañarme
+   en
+
+   <strong>
+    El Penúltimo Baile
+   </strong>
 
   </p>
 
@@ -458,22 +592,50 @@ body{
 
 </div>
 
+<!-- ======================
+     TITULO
+====================== -->
+
 <div class="header">
 
- <h1>EL PENÚLTIMO BAILE</h1>
+ <h1>
+  EL PENÚLTIMO BAILE
+ </h1>
 
- <h2>Llegaron Mis 50</h2>
+ <h2>
+  Llegaron Mis 50
+ </h2>
 
 </div>
+
+<!-- ======================
+     CARRUSEL
+====================== -->
 
 <div class="carousel">
 
- <img src="img1.jpg" class="active">
- <img src="img2.jpg">
- <img src="img3.jpg">
- <img src="img4.jpg">
+ <img
+  src="img1.jpg"
+  class="active"
+  alt="Imagen 1">
+
+ <img
+  src="img2.jpg"
+  alt="Imagen 2">
+
+ <img
+  src="img3.jpg"
+  alt="Imagen 3">
+
+ <img
+  src="img4.jpg"
+  alt="Imagen 4">
 
 </div>
+
+<!-- ======================
+     MENU
+====================== -->
 
 <div class="menu">
 
@@ -553,7 +715,11 @@ body{
 
   <video
    controls
-   style="width:100%;border-radius:12px;">
+   playsinline
+   preload="metadata"
+   style="
+   width:100%;
+   border-radius:12px;">
 
    <source
     src="videos/video1.mp4"
@@ -563,7 +729,11 @@ body{
 
   <video
    controls
-   style="width:100%;border-radius:12px;">
+   playsinline
+   preload="metadata"
+   style="
+   width:100%;
+   border-radius:12px;">
 
    <source
     src="videos/video2.mp4"
@@ -573,7 +743,11 @@ body{
 
   <video
    controls
-   style="width:100%;border-radius:12px;">
+   playsinline
+   preload="metadata"
+   style="
+   width:100%;
+   border-radius:12px;">
 
    <source
     src="videos/video3.mp4"
@@ -669,7 +843,7 @@ body{
 </div>
 
 <!-- ======================
-     VISOR DE FOTOS
+     VISOR
 ====================== -->
 
 <div
@@ -707,7 +881,7 @@ body{
 </div>
 
 <!-- ======================
-     MUSICA PRINCIPAL
+     AUDIOS
 ====================== -->
 
 <audio
@@ -721,10 +895,6 @@ body{
 
 </audio>
 
-<!-- ======================
-     MUSICA GALERIA
-====================== -->
-
 <audio
  id="audioGaleria"
  preload="auto">
@@ -735,20 +905,14 @@ body{
 
 </audio>
 
-<!-- ======================
-     BOTON MUSICA
-====================== -->
-
 <div id="btnMusica">
-
  🔈
-
 </div>
 
 <script>
 
 /* ======================
-   POPUP PRINCIPAL
+   POPUP
 ====================== */
 
 function cerrarPopup(){
@@ -758,11 +922,13 @@ function cerrarPopup(){
  "popup"
  );
 
- popup.style.opacity="0";
+ popup.style.opacity =
+ "0";
 
  setTimeout(()=>{
 
-  popup.style.display="none";
+  popup.style.display =
+  "none";
 
   iniciarMusica();
 
@@ -771,7 +937,7 @@ function cerrarPopup(){
 }
 
 /* ======================
-   CARRUSEL DEFINITIVO
+   CARRUSEL
 ====================== */
 
 let slide = 0;
@@ -806,7 +972,7 @@ setInterval(
 );
 
 /* ======================
-   MENSAJE GRACIAS
+   MENSAJES
 ====================== */
 
 function abrirGracias(){
@@ -846,13 +1012,12 @@ function abrirGaleria(){
 
  player.pause();
 
+ audioGaleria.pause();
  audioGaleria.currentTime = 0;
 
  audioGaleria.play()
- .catch(error=>{
-
-  console.log(error);
-
+ .catch(err=>{
+  console.log(err);
  });
 
 }
@@ -867,13 +1032,10 @@ function cerrarGaleria(){
  "none";
 
  audioGaleria.pause();
-
  audioGaleria.currentTime = 0;
 
  if(player.paused){
-
   iniciarMusica();
-
  }
 
 }
@@ -891,6 +1053,11 @@ function abrirVideos(){
  .style.display =
  "flex";
 
+ audioGaleria.pause();
+ audioGaleria.currentTime = 0;
+
+ player.pause();
+
 }
 
 function cerrarVideos(){
@@ -902,15 +1069,24 @@ function cerrarVideos(){
  .style.display =
  "none";
 
+ if(player.paused){
+  iniciarMusica();
+ }
+
 }
 
 /* ======================
-   MUSICA PRINCIPAL
+   MUSICA
 ====================== */
 
 const player =
 document.getElementById(
  "player"
+);
+
+const audioGaleria =
+document.getElementById(
+ "audioGaleria"
 );
 
 const btnMusica =
@@ -931,9 +1107,9 @@ async function iniciarMusica(){
    "activo"
   );
 
- }catch(error){
+ }catch(e){
 
-  console.log(error);
+  console.log(e);
 
  }
 
@@ -954,12 +1130,9 @@ function pausarMusica(){
 
 btnMusica.addEventListener(
  "click",
-
  ()=>{
 
-  if(
-   player.paused
-  ){
+  if(player.paused){
 
    iniciarMusica();
 
@@ -970,74 +1143,10 @@ btnMusica.addEventListener(
   }
 
  }
-
-);
-
-player.addEventListener(
- "play",
-
- ()=>{
-
-  btnMusica.textContent =
-  "🔊";
-
-  btnMusica.classList.add(
-   "activo"
-  );
-
- }
-
-);
-
-player.addEventListener(
- "pause",
-
- ()=>{
-
-  btnMusica.textContent =
-  "🔈";
-
-  btnMusica.classList.remove(
-   "activo"
-  );
-
- }
-
-);
-
-player.addEventListener(
- "error",
-
- ()=>{
-
-  console.warn(
-   "Archivo musica.mp3 no encontrado"
-  );
-
- }
-
-);
-
-const audioGaleria =
-document.getElementById(
- "audioGaleria"
-);
-
-audioGaleria.addEventListener(
- "error",
-
- ()=>{
-
-  console.warn(
-   "Archivo musica2.mp3 no encontrado"
-  );
-
- }
-
 );
 
 /* ======================
-   CREAR GALERIA
+   GALERIA DINAMICA
 ====================== */
 
 const contenedor =
@@ -1048,8 +1157,8 @@ document.getElementById(
 const fotos = [];
 
 for(
- let i = 1;
- i <= 45;
+ let i=1;
+ i<=45;
  i++
 ){
 
@@ -1068,21 +1177,12 @@ for(
  `Foto ${i}`;
 
  img.onclick =
- ()=>{
+ ()=>abrirViewer(i-1);
 
-  abrirViewer(
-   i - 1
-  );
+ contenedor
+ .appendChild(img);
 
- };
-
- contenedor.appendChild(
-  img
- );
-
- fotos.push(
-  img.src
- );
+ fotos.push(img.src);
 
 }
 
@@ -1101,14 +1201,14 @@ function abrirViewer(
 
  document
  .getElementById(
-  "viewerImage"
+ "viewerImage"
  )
  .src =
  fotos[fotoActual];
 
  document
  .getElementById(
-  "viewer"
+ "viewer"
  )
  .style.display =
  "flex";
@@ -1119,7 +1219,7 @@ function cerrarViewer(){
 
  document
  .getElementById(
-  "viewer"
+ "viewer"
  )
  .style.display =
  "none";
@@ -1134,9 +1234,7 @@ function siguiente(){
   fotoActual >=
   fotos.length
  ){
-
   fotoActual = 0;
-
  }
 
  document
@@ -1155,10 +1253,8 @@ function anterior(){
  if(
   fotoActual < 0
  ){
-
   fotoActual =
   fotos.length - 1;
-
  }
 
  document
@@ -1176,55 +1272,40 @@ function anterior(){
 
 document.addEventListener(
  "keydown",
-
  function(e){
 
+  const viewer =
+  document.getElementById(
+   "viewer"
+  );
+
   if(
-
-   document
-   .getElementById(
-    "viewer"
-   )
-   .style.display
-
-   ===
-
+   viewer.style.display ===
    "flex"
-
   ){
 
    if(
-    e.key ===
-    "ArrowRight"
+    e.key==="ArrowRight"
    ){
-
     siguiente();
-
    }
 
    if(
-    e.key ===
-    "ArrowLeft"
+    e.key==="ArrowLeft"
    ){
-
     anterior();
-
    }
 
    if(
-    e.key ===
-    "Escape"
+    e.key==="Escape"
    ){
-
     cerrarViewer();
-
    }
 
   }
 
   if(
-   e.key ===
-   "Escape"
+   e.key==="Escape"
   ){
 
    cerrarViewer();
@@ -1235,11 +1316,10 @@ document.addEventListener(
   }
 
  }
-
 );
 
 /* ======================
-   CLICK FUERA DEL VISOR
+   CLICK FUERA VISOR
 ====================== */
 
 document
@@ -1247,23 +1327,17 @@ document
  "viewer"
 )
 .addEventListener(
-
  "click",
-
  function(e){
 
   if(
-   e.target.id
-   ===
+   e.target.id===
    "viewer"
   ){
-
    cerrarViewer();
-
   }
 
  }
-
 );
 
 /* ======================
@@ -1274,29 +1348,64 @@ document
 .querySelectorAll(
  ".overlay"
 )
-.forEach(overlay=>{
+.forEach(
+ overlay=>{
 
- overlay.addEventListener(
-  "click",
-  (e)=>{
+  overlay.addEventListener(
+   "click",
+   e=>{
 
-   if(
-    e.target === overlay
-   ){
+    if(
+     e.target===
+     overlay
+    ){
 
-    cerrarGaleria();
-    cerrarGracias();
-    cerrarVideos();
+     cerrarGaleria();
+     cerrarGracias();
+     cerrarVideos();
+
+    }
 
    }
+  );
 
-  }
- );
-
-});
+ }
+);
 
 /* ======================
-   INICIO AUTOMATICO
+   ESTADO MUSICA
+====================== */
+
+player.addEventListener(
+ "play",
+ ()=>{
+
+  btnMusica.textContent =
+  "🔊";
+
+  btnMusica.classList.add(
+   "activo"
+  );
+
+ }
+);
+
+player.addEventListener(
+ "pause",
+ ()=>{
+
+  btnMusica.textContent =
+  "🔈";
+
+  btnMusica.classList.remove(
+   "activo"
+  );
+
+ }
+);
+
+/* ======================
+   INICIO AUDIO
 ====================== */
 
 document.addEventListener(
@@ -1315,12 +1424,12 @@ document.addEventListener(
 
  },
 
- { once:true }
+ {once:true}
 
 );
 
 /* ======================
-   PRECARGA IMAGENES
+   PRECARGA CARRUSEL
 ====================== */
 
 window.addEventListener(
@@ -1329,16 +1438,10 @@ window.addEventListener(
 
  ()=>{
 
-  const precarga = [];
-
   for(
-
-   let i = 1;
-
-   i <= 10;
-
+   let i=1;
+   i<=4;
    i++
-
   ){
 
    const img =
@@ -1347,14 +1450,20 @@ window.addEventListener(
    img.src =
    `img${i}.jpg`;
 
-   precarga.push(
-    img
-   );
-
   }
 
  }
 
+);
+
+/* ======================
+   SOPORTE TACTIL
+====================== */
+
+document.addEventListener(
+ "touchstart",
+ ()=>{},
+ {passive:true}
 );
 
 /* ======================
