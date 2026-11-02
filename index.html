@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 
 <meta charset="UTF-8">
@@ -41,12 +42,16 @@ body{
 ====================== */
 
 .carousel{
+
  position:fixed;
  inset:0;
+
  width:100%;
  height:100vh;
+
  overflow:hidden;
  z-index:-1;
+
 }
 
 .carousel img{
@@ -94,7 +99,6 @@ body{
  );
 
 }
-
 /* ======================
    TITULO
 ====================== */
@@ -170,9 +174,14 @@ body{
 }
 
 .col{
+
  display:flex;
+
  flex-direction:column;
+
 }
+
+/* BOTONES MÁS TRANSPARENTES */
 
 .boton{
 
@@ -194,13 +203,13 @@ body{
 
  font-weight:bold;
 
- background:
- rgba(255,255,255,.04);
+ background:rgba(255,255,255,.015);
 
- backdrop-filter:blur(10px);
+ backdrop-filter:blur(5px);
+ -webkit-backdrop-filter:blur(5px);
 
  border:1px solid
- rgba(255,255,255,.2);
+ rgba(255,255,255,.08);
 
  cursor:pointer;
 
@@ -220,149 +229,299 @@ body{
 }
 
 .popup{
+
  position:fixed;
+
  inset:0;
+
  display:flex;
+
  justify-content:center;
+
  align-items:center;
+
  background:rgba(0,0,0,.92);
+
  z-index:999999;
+
  transition:.5s;
+
 }
 
 .popup-box{
+
  width:90%;
+
  max-width:500px;
+
  background:#111;
+
  padding:40px;
+
  border-radius:20px;
+
  text-align:center;
+
  border:2px solid #ff00ff;
+
  box-shadow:
  0 0 20px #ff00ff,
  0 0 60px #00eaff;
+
 }
 
 .popup-box h1{
+
  margin-bottom:20px;
+
 }
 
 .popup-box p{
+
  line-height:1.8;
+
 }
 
 .overlay{
+
  position:fixed;
+
  inset:0;
+
  background:rgba(0,0,0,.95);
+
  display:none;
+
  justify-content:center;
+
  align-items:center;
+
  flex-direction:column;
+
  padding:20px;
+
  z-index:999999;
+
+}
+
+/* ======================
+   VIDEOS MEJORADOS
+====================== */
+
+#overlayVideos{
+
+ overflow-y:auto;
+
+ justify-content:flex-start;
+
+ padding-top:80px;
+
+}
+
+.videos-grid{
+
+ width:100%;
+
+ max-width:1100px;
+
+ display:grid;
+
+ grid-template-columns:
+ repeat(auto-fit,minmax(300px,1fr));
+
+ gap:20px;
+
+ margin-top:20px;
+
+}
+
+.videos-grid video{
+
+ width:100%;
+
+ border-radius:12px;
+
+ background:#000;
+
+}
+
+.btn-cerrar-videos{
+
+ margin-top:20px;
+
 }
 
 .galeria{
+
  width:100%;
+
  max-width:1200px;
+
  max-height:70vh;
+
  overflow:auto;
+
  display:grid;
+
  grid-template-columns:
  repeat(auto-fill,minmax(140px,1fr));
+
  gap:10px;
+
  margin-top:20px;
+
 }
 
 .galeria img{
+
  width:100%;
+
  height:140px;
+
  object-fit:cover;
+
  border-radius:10px;
+
  border:2px solid #ff00ff;
+
  cursor:pointer;
+
  transition:.3s;
+
 }
 
 .galeria img:hover{
+
  transform:scale(1.08);
+
 }
 
 .viewer{
+
  display:none;
+
  position:fixed;
+
  inset:0;
+
  background:black;
+
  justify-content:center;
+
  align-items:center;
+
  z-index:9999999;
+
 }
 
 .viewer img{
+
  max-width:95%;
+
  max-height:90vh;
+
  border-radius:20px;
+
  object-fit:contain;
+
 }
 
 .nav{
+
  position:absolute;
+
  font-size:60px;
+
  cursor:pointer;
+
  user-select:none;
+
  color:white;
+
  text-shadow:
  0 0 10px #000,
  0 0 20px #000;
+
 }
 
 .prev{
+
  left:20px;
+
 }
 
 .next{
+
  right:20px;
+
 }
 
 .close{
+
  position:absolute;
+
  top:20px;
+
  right:30px;
+
  font-size:40px;
+
  cursor:pointer;
+
 }
 
 #btnMusica{
+
  position:fixed;
+
  top:20px;
+
  right:20px;
+
  width:60px;
+
  height:60px;
+
  border-radius:50%;
+
  background:#ff00ff;
+
  display:flex;
+
  justify-content:center;
+
  align-items:center;
+
  font-size:28px;
+
  cursor:pointer;
+
  z-index:999999;
+
  box-shadow:
  0 0 15px #ff00ff,
  0 0 30px #ff00ff;
+
  transition:.3s;
+
  user-select:none;
+
 }
 
 #btnMusica:hover{
+
  transform:scale(1.1);
+
 }
 
 #btnMusica.activo{
+
  background:#00eaff;
+
  box-shadow:
  0 0 15px #00eaff,
  0 0 40px #00eaff;
+
 }
 
 @media(max-width:768px){
@@ -390,41 +549,84 @@ body{
   gap:0;
  }
 
+ /* BOTONES MÁS TRANSPARENTES EN MÓVIL */
+
  .boton{
-    width:90vw;
-    max-width:350px;
-    padding:14px;
-    margin:8px;
 
-    background:rgba(255,255,255,0.015);
-    border:1px solid rgba(255,255,255,0.08);
+  width:90vw;
 
-    backdrop-filter:blur(5px);
-    -webkit-backdrop-filter:blur(5px);
+  max-width:350px;
 
-    box-shadow:none;
+  padding:14px;
+
+  margin:8px;
+
+  background:rgba(255,255,255,.008);
+
+  border:1px solid rgba(255,255,255,.05);
+
+  backdrop-filter:blur(4px);
+  -webkit-backdrop-filter:blur(4px);
+
+  box-shadow:none;
+
+ }
+
+ /* VÍDEOS EN UNA COLUMNA */
+
+ .videos-grid{
+
+  grid-template-columns:1fr;
+
+  gap:12px;
+
+ }
+
+ .videos-grid video{
+
+  width:100%;
+
+  max-height:220px;
+
+ }
+
+ #overlayVideos h1{
+
+  font-size:28px;
+
  }
 
  .galeria{
+
   grid-template-columns:
   repeat(auto-fill,minmax(110px,1fr));
+
  }
 
  .galeria img{
+
   height:110px;
+
  }
 
  .viewer img{
+
   width:95%;
+
   max-height:85vh;
+
  }
 
  .nav{
+
   font-size:42px;
+
  }
 
  .close{
+
   font-size:34px;
+
  }
 
 }
@@ -543,27 +745,18 @@ body{
      VIDEOS
 ====================== -->
 
-<div
- id="overlayVideos"
- class="overlay">
+<div id="overlayVideos" class="overlay">
 
  <h1>
   🎬 Vídeos
  </h1>
 
- <div
-  style="
-  width:100%;
-  max-width:1000px;
-  display:grid;
-  grid-template-columns:
-  repeat(auto-fit,minmax(300px,1fr));
-  gap:20px;
-  margin-top:20px;">
+ <div class="videos-grid">
 
   <video
    controls
-   style="width:100%;border-radius:12px;">
+   playsinline
+   preload="metadata">
 
    <source
     src="videos/video1.mp4"
@@ -573,7 +766,8 @@ body{
 
   <video
    controls
-   style="width:100%;border-radius:12px;">
+   playsinline
+   preload="metadata">
 
    <source
     src="videos/video2.mp4"
@@ -583,7 +777,8 @@ body{
 
   <video
    controls
-   style="width:100%;border-radius:12px;">
+   playsinline
+   preload="metadata">
 
    <source
     src="videos/video3.mp4"
@@ -593,18 +788,15 @@ body{
 
  </div>
 
- <br>
-
  <div
-  class="boton"
+  class="boton btn-cerrar-videos"
   onclick="cerrarVideos()">
 
-  Cerrar
+  ✕ Cerrar vídeos
 
  </div>
 
 </div>
-
 <!-- ======================
      GRACIAS
 ====================== -->
@@ -754,7 +946,6 @@ body{
  🔈
 
 </div>
-
 <script>
 
 /* ======================
@@ -894,12 +1085,18 @@ function cerrarGaleria(){
 
 function abrirVideos(){
 
- document
- .getElementById(
+ const overlay =
+ document.getElementById(
  "overlayVideos"
- )
- .style.display =
+ );
+
+ overlay.style.display =
  "flex";
+
+ window.scrollTo(
+ 0,
+ 0
+ );
 
 }
 
@@ -913,7 +1110,6 @@ function cerrarVideos(){
  "none";
 
 }
-
 /* ======================
    MUSICA PRINCIPAL
 ====================== */
@@ -1028,6 +1224,10 @@ player.addEventListener(
 
 );
 
+/* ======================
+   MUSICA GALERIA
+====================== */
+
 const audioGaleria =
 document.getElementById(
  "audioGaleria"
@@ -1045,7 +1245,6 @@ audioGaleria.addEventListener(
  }
 
 );
-
 /* ======================
    CREAR GALERIA
 ====================== */
@@ -1057,7 +1256,9 @@ document.getElementById(
 
 const fotos = [];
 
-for (let i = 1; i <= 200; i++) {
+/* CAMBIADO DE 200 A 45 */
+
+for (let i = 1; i <= 45; i++) {
 
  const img =
  document.createElement(
@@ -1291,7 +1492,9 @@ document
 .forEach(overlay=>{
 
  overlay.addEventListener(
+
   "click",
+
   (e)=>{
 
    if(
@@ -1305,6 +1508,7 @@ document
    }
 
   }
+
  );
 
 });
