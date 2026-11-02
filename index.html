@@ -591,6 +591,27 @@ body{
  }
 
  #overlayVideos h1{
+/* CARRUSEL MÁS GRANDE SOLO EN MÓVIL */
+
+.carousel img{
+
+ object-fit:cover;
+
+ transform:scale(1.50);
+
+ transition:
+ opacity 1.5s ease,
+ transform 10s linear;
+
+}
+
+.carousel img.active{
+
+ opacity:1;
+
+ transform:scale(1);
+
+}
 
   font-size:28px;
 
